@@ -14,3 +14,4 @@
 
 ```
 
+我们的工作相关文档位于仓库的[Discussions位置](https://github.com/Irissssaa/code-debug_Asynchronous-trace/discussions)，包括了工作日志、学习记录、问题记录等内容
