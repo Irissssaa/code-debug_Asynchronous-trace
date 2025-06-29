@@ -1,0 +1,1076 @@
+1744298439.077273   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 4
+1744298439.125015   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 5
+1744298439.163462   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 6
+1744298439.192176   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937842) depth: 6
+1744298439.219466   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 6
+1744298439.265548   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937842) depth: 6
+1744298439.268011   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981938234) depth: 5
+1744298439.292278   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 5
+1744298439.330694   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981938234) depth: 5
+1744298439.356722   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 5
+1744298439.394907   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981938234) depth: 5
+1744298439.421714   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 5
+1744298439.459569   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981938234) depth: 5
+1744298439.482375   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 5
+1744298439.519159   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981938234) depth: 5
+1744298439.545458   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 5
+1744298439.611134   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 6
+1744298439.676039   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 7
+1744298439.715047   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981938234) depth: 7
+1744298439.718112   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981938234) depth: 6
+1744298439.734353   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 6
+1744298439.776767   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 7
+1744298439.841919   1: [entry] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937240) depth: 8
+1744298439.881140   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937842) depth: 8
+1744298439.885142   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981937842) depth: 7
+1744298439.888262   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981938234) depth: 6
+1744298439.891753   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981938234) depth: 5
+1744298439.896890   1: [exit ] <dtb_walker::walker::Walker>::walk_inner::<zcore::platform::arch::entry::boot_secondary_harts::{closure#0}>(18446743800981928924) depth: 5
+1744298440.036522   1: [entry] <str>::trim_matches::<<str>::trim::{closure#0}>(18446743800981910234) depth: 10
+1744298440.085310   1: [entry] <str>::trim_matches::<<str>::trim::{closure#0}>(18446743800981910234) depth: 10
+1744298440.138930   1: [entry] <str>::trim_matches::<<str>::trim::{closure#0}>(18446743800981910234) depth: 10
+1744298440.257800   1: [exit ] <str>::trim_matches::<<str>::trim::{closure#0}>(18446743800981294346) depth: 15
+1744298440.258345   1: [exit ] <str>::trim_matches::<<str>::trim::{closure#0}>(18446743800981294346) depth: 15
+1744298440.258466   1: [exit ] <str>::trim_matches::<<str>::trim::{closure#0}>(18446743800981294346) depth: 15
+1744298440.258548   1: [exit ] <str>::trim_matches::<<str>::trim::{closure#0}>(18446743800981294346) depth: 15
+1744298440.258715   1: [exit ] <str>::trim_matches::<<str>::trim::{closure#0}>(18446743800981294346) depth: 15
+1744298440.258817   1: [exit ] <str>::trim_matches::<<str>::trim::{closure#0}>(18446743800981294346) depth: 15
+1744298440.258910   1: [entry] kernel_hal::imp::arch::vm::init_kernel_page_table::{closure#0}(18446743800981294346) depth: 14
+1744298440.315165   1: [exit ] kernel_hal::imp::arch::vm::init_kernel_page_table::{closure#0}(18446743800981339876) depth: 14
+1744298440.451640   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 9
+1744298440.510799   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298440.576861   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298440.614243   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298440.647579   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298440.688534   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298440.692697   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298440.717986   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298440.779163   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298440.803483   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298440.851293   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298440.872791   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298440.909295   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298440.931153   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298440.969698   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298440.994589   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298441.058791   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298441.124997   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 12
+1744298441.174528   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 13
+1744298441.179359   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298441.208955   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298441.277864   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 12
+1744298441.362957   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 13
+1744298441.416296   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 14
+1744298441.421172   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 13
+1744298441.425788   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298441.429749   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298441.454715   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298441.491195   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298441.512815   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298441.552902   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298441.576924   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298441.621477   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298441.648427   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298441.696728   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298441.726671   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 10
+1744298441.798060   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298441.842893   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298441.865565   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298441.916910   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298441.951355   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.025245   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.055842   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.110522   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.137364   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.177469   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.196496   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.232594   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.259451   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.296517   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.316921   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.375253   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.400455   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.454680   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.479437   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.511943   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.531599   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.577791   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.605121   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.649621   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.670547   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.716202   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.739664   1: [entry] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981294784) depth: 11
+1744298442.782357   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 12
+1744298442.786172   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981297728) depth: 11
+1744298442.788521   1: [exit ] <zcore_drivers::utils::devicetree::Devicetree>::walk_inner::<<zcore_drivers::builder::devicetree::DevicetreeDriverBuilder<kernel_hal::imp::arch::drivers::IoMapperImpl>>::build::{closure#0}>(18446743800981331766) depth: 10
+1744298484.810734   1: [entry] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 12
+1744298484.983289   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 13
+1744298484.983375   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 13
+1744298484.983497   1: [entry] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 12
+1744298485.131747   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 13
+1744298485.131848   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 13
+1744298485.132081   1: [entry] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 12
+1744298485.291404   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 13
+1744298485.291494   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 13
+1744298485.291632   1: [entry] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 12
+1744298485.424621   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 13
+1744298485.424697   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 13
+1744298485.424799   1: [entry] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800982173170) depth: 12
+1744298485.660790   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800981455850) depth: 10
+1744298485.661644   1: [exit ] <alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut, usize, zircon_object::probe::kretprobes::KRetProbeInstance, alloc::collections::btree::node::marker::Leaf>, alloc::collections::btree::node::marker::KV>>::remove_leaf_kv::<<alloc::collections::btree::map::entry::OccupiedEntry<usize, zircon_object::probe::kretprobes::KRetProbeInstance>>::remove_kv::{closure#0}, alloc::alloc::Global>(18446743800981455850) depth: 10
+1744298485.661726   1: [entry] <hashbrown::raw::RawTable<(linux_object::fs::FileDesc, alloc::sync::Arc<dyn linux_object::fs::FileLike>)>>::reserve_rehash::<<hashbrown::map::HashMap<linux_object::fs::FileDesc, alloc::sync::Arc<dyn linux_object::fs::FileLike>>>::insert::{closure#1}>(18446743800981455850) depth: 9
+1744298485.691368   1: [exit ] <hashbrown::raw::RawTable<(linux_object::fs::FileDesc, alloc::sync::Arc<dyn linux_object::fs::FileLike>)>>::reserve_rehash::<<hashbrown::map::HashMap<linux_object::fs::FileDesc, alloc::sync::Arc<dyn linux_object::fs::FileLike>>>::insert::{closure#1}>(18446743800981577596) depth: 10
+1744298485.997604   1: [entry] xecutor::runtime::spawn_task::<zircon_object::task::thread::ThreadSwitchFuture>(18446743800982186556) depth: 12
+1744298486.143072   1: [exit ] xecutor::runtime::spawn_task::<zircon_object::task::thread::ThreadSwitchFuture>(18446743800981284556) depth: 6
+1744298486.143143   1: [exit ] xecutor::runtime::spawn_task::<zircon_object::task::thread::ThreadSwitchFuture>(18446743800981284556) depth: 6
+1744298486.143226   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298486.193342   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298486.341716   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298486.471813   1: [entry] <hashbrown::raw::RawTable<(linux_object::fs::FileDesc, alloc::sync::Arc<dyn linux_object::fs::FileLike>)>>::reserve_rehash::<<hashbrown::map::HashMap<linux_object::fs::FileDesc, alloc::sync::Arc<dyn linux_object::fs::FileLike>>>::insert::{closure#1}>(18446743800981455850) depth: 18
+1744298486.514630   1: [exit ] <hashbrown::raw::RawTable<(linux_object::fs::FileDesc, alloc::sync::Arc<dyn linux_object::fs::FileLike>)>>::reserve_rehash::<<hashbrown::map::HashMap<linux_object::fs::FileDesc, alloc::sync::Arc<dyn linux_object::fs::FileLike>>>::insert::{closure#1}>(18446743800981577596) depth: 19
+1744298486.932970   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298487.057002   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298487.057133   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298487.057302   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298487.111315   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298487.138452   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298487.138503   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298487.138580   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298487.184006   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298487.197598   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298487.222846   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298487.979133   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298488.035818   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298488.035873   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298488.035948   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298488.079017   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298488.208488   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298488.270573   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298488.389940   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298488.390121   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298488.390473   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298488.490319   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298488.511710   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298488.511756   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298488.511825   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298488.556141   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298488.580534   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298488.622746   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298489.637456   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298489.692298   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298489.692345   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298489.692503   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298489.737145   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298489.757612   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298489.812488   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298489.875996   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298489.876079   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298489.876194   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298489.912843   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298489.936775   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298489.936818   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298489.936878   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298489.972668   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298489.994774   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298490.033105   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298491.054114   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298491.109005   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298491.109063   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298491.109123   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298491.143497   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298491.166366   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298491.225233   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298491.287553   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298491.287637   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298491.287747   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298491.327514   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298491.349150   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298491.349212   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298491.349268   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298491.381855   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298491.400371   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298491.435339   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298492.469942   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298492.541381   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298492.541468   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298492.541567   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298492.605713   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298492.635641   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298492.735980   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298492.794665   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298492.794733   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298492.794844   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298492.830756   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298492.851522   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298492.851562   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298492.851616   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298492.897851   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298492.922611   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298492.957171   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298493.972512   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298494.043236   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298494.043343   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298494.043471   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298494.090785   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298494.136969   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298494.233515   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298494.334001   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298494.334074   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298494.334178   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298494.371155   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298494.397430   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298494.397474   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298494.397537   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298494.436357   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298494.466878   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298494.508745   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298495.518235   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298495.584253   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298495.584308   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298495.584393   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298495.626841   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298495.659353   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298495.717804   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298495.772376   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298495.772443   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298495.772541   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298495.813165   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298495.840871   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298495.840993   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298495.841136   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298495.895865   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298495.935543   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298495.991432   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298497.028246   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298497.092100   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298497.092151   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298497.092223   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298497.129180   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298497.155557   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298497.222221   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298497.303664   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298497.303751   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298497.303866   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298497.373631   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298497.419905   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298497.419998   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298497.420116   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298497.465498   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298497.489753   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298497.535596   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298498.557153   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298498.661924   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298498.662009   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298498.662087   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298498.697264   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298498.730505   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298498.792633   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298498.860763   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298498.860846   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298498.860992   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298498.927078   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298498.984487   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298498.984589   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298498.984725   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298499.052402   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298499.079030   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298499.115558   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298500.117904   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298500.184155   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298500.184214   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298500.184293   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298500.258966   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298500.307339   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298500.415568   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298500.491051   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298500.491121   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298500.491225   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298500.529928   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298500.554169   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298500.554230   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298500.554297   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298500.589799   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298500.618600   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298500.684066   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298501.694727   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298501.761784   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298501.761840   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298501.761906   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298501.805896   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298501.839150   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298501.901578   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298501.981186   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298501.981258   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298501.981361   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298502.037340   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298502.066151   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298502.066196   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298502.066258   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298502.102353   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298502.125668   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298502.165099   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298503.184342   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298503.253744   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298503.253795   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298503.253877   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298503.297740   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298503.330255   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298503.420546   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298503.544173   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298503.544241   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298503.544342   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298503.581995   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298503.608841   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298503.608885   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298503.608947   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298503.638934   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298503.662377   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298503.693055   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298504.702055   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298504.744874   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298504.744914   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298504.744962   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298504.775579   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298504.799094   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298504.859679   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298504.930979   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298504.931066   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298504.931184   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298504.982044   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298505.016824   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298505.016878   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298505.016937   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298505.066910   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298505.092908   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298505.128927   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298506.155792   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298506.235075   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298506.235116   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298506.235174   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298506.263864   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298506.288039   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298506.341678   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298506.428374   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298506.428467   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298506.428656   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298506.474280   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298506.501815   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298506.501883   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298506.501978   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298506.537342   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298506.557351   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298506.594187   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298507.617253   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298507.683162   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298507.683211   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298507.683280   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298507.727754   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298507.764503   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298507.836816   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298507.919606   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298507.919709   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298507.919835   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298507.967676   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298507.985207   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298507.985245   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298507.985302   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298508.016517   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298508.037628   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298508.076648   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298509.099854   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298509.170888   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298509.170984   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298509.171057   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298509.214408   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298509.244628   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298509.327089   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298509.376721   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298509.376787   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298509.376908   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298509.409588   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298509.428260   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298509.428300   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298509.428365   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298509.458167   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298509.482996   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298509.522455   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298510.545946   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298510.598981   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298510.599022   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298510.599082   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298510.632466   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298510.660535   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298510.721056   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298510.788725   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298510.788938   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298510.789033   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298510.834932   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298510.868683   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298510.868726   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298510.868784   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298510.903890   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298510.927797   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298510.962113   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298511.986349   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298512.049859   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298512.049903   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298512.049963   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298512.085567   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298512.115776   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298512.187727   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298512.253966   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298512.254056   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298512.254158   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298512.285057   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298512.304881   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298512.304917   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298512.304970   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298512.336526   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298512.359450   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298512.391961   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298513.406389   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298513.459965   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298513.460011   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298513.460069   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298513.497283   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298513.526663   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298513.586793   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298513.649602   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298513.649671   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298513.649770   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298513.695728   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298513.723725   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298513.723769   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298513.723829   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298513.759138   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298513.782794   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298513.817852   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298514.832024   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298514.898479   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298514.898532   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298514.898601   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298514.938668   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298514.968651   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298515.057388   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298515.126615   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298515.126689   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298515.126789   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298515.169833   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298515.198512   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298515.198559   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298515.198622   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298515.239667   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298515.268176   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298515.309435   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298516.320474   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298516.393797   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298516.393850   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298516.393920   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298516.437896   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298516.475284   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298516.567286   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298516.627455   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298516.627529   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298516.627680   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298516.665960   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298516.687021   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298516.687055   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298516.687111   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298516.721364   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298516.745985   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298516.783298   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298517.808892   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298517.878692   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298517.878743   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298517.878808   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298517.909446   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298517.934294   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298517.991151   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298518.050845   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298518.050941   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298518.051052   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298518.095968   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298518.125287   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298518.125329   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298518.125388   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298518.155156   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298518.181251   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298518.220650   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298519.234322   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298519.284909   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298519.284993   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298519.285091   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298519.317740   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298519.341528   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298519.402822   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298519.468926   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298519.469010   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298519.469261   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298519.507498   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298519.538771   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298519.538816   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298519.538879   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298519.586048   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298519.620756   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298519.671370   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298520.702692   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298520.753100   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298520.753149   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298520.753211   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298520.785675   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298520.813328   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298520.875654   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298520.957514   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298520.957587   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298520.957685   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298520.991538   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298521.017265   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298521.017308   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298521.017365   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298521.051851   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298521.074527   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298521.109636   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298522.129627   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298522.198947   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298522.198998   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298522.199068   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298522.239066   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298522.267305   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298522.331666   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298522.394686   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298522.394768   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298522.394890   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298522.437718   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298522.461330   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298522.461375   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298522.461503   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298522.500632   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298522.531352   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298522.581068   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298523.633097   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298523.691303   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298523.691360   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298523.691421   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298523.729384   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298523.758146   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298523.820550   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298523.869868   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298523.869934   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298523.870028   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298523.903324   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298523.924696   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298523.924736   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298523.924790   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298523.957776   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298523.979443   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298524.020245   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298525.032587   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298525.092268   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298525.092312   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298525.092373   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298525.135902   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298525.154779   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298525.226813   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298525.283594   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298525.283672   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298525.283757   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298525.320963   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298525.343098   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298525.343138   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298525.343193   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298525.376359   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298525.398533   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298525.429370   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298526.459437   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298526.507756   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298526.507798   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298526.507854   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298526.541781   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298526.566947   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298526.630022   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298526.686153   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298526.686222   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298526.686309   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298526.728527   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298526.757692   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298526.757735   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298526.757791   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298526.801862   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298526.830465   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298526.864305   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298527.890765   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298527.943524   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298527.943566   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298527.943631   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298527.970879   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298527.996165   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298528.049480   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298528.113089   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298528.113197   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298528.113349   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298528.141147   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298528.153389   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298528.153419   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298528.153468   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298528.173220   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298528.193349   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298528.227900   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298529.255344   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298529.300841   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298529.300883   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298529.300934   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298529.329439   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298529.360360   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298529.496921   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298529.581882   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298529.581968   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298529.582072   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298529.620631   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298529.640075   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298529.640110   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298529.640162   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298529.669115   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298529.694998   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298529.727532   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298530.738401   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298530.796736   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298530.796782   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298530.796841   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298530.834265   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298530.875170   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298530.954465   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298531.024482   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298531.024546   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298531.024639   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298531.055845   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298531.076958   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298531.077008   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298531.077071   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298531.109674   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298531.128447   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298531.158795   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298532.173071   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298532.235868   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298532.235939   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298532.236010   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298532.270004   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298532.299170   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298532.352818   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298532.411031   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298532.411105   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298532.411207   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298532.448367   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298532.470497   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298532.470551   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298532.470638   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298532.508283   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298532.573461   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298532.650908   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298533.658647   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298533.715299   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298533.715385   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298533.715456   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298533.754404   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298533.796499   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298533.913704   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298533.992583   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298533.992660   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298533.992776   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298534.027961   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298534.048719   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298534.048759   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298534.048818   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298534.084913   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298534.110809   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298534.146034   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298535.181841   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298535.270504   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298535.270574   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298535.270667   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298535.299171   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298535.315319   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298535.352841   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298535.398006   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298535.398074   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298535.398166   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298535.433157   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298535.455523   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298535.455564   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298535.455619   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298535.490942   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298535.525311   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298535.592599   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298536.614364   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298536.669537   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298536.669590   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298536.669650   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298536.707834   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298536.737881   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298536.809703   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298536.863459   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298536.863515   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298536.863597   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298536.899734   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298536.923942   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298536.923982   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298536.924045   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298536.960400   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298536.982846   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298537.019013   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298538.059971   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298538.172385   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298538.172462   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298538.172553   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298538.219060   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298538.246572   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298538.311110   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298538.375001   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298538.375068   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298538.375168   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298538.417539   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298538.444236   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298538.444280   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298538.444340   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298538.479725   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298538.503582   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298538.535142   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298539.542216   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298539.601389   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298539.601433   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298539.601493   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298539.632464   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298539.657584   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298539.711821   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298539.767485   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298539.767567   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298539.767668   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298539.814307   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298539.839181   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298539.839224   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298539.839283   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298539.874533   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298539.896211   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298539.929780   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298540.950790   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298540.994220   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298540.994261   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298540.994311   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298541.033993   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298541.077546   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298541.135432   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298541.189244   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298541.189307   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298541.189395   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298541.224302   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298541.249639   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298541.249697   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298541.249777   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298541.280306   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298541.302295   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298541.336556   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298542.351105   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298542.402292   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298542.402342   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298542.402407   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298542.439296   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298542.461588   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298542.512171   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298542.562714   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298542.562783   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298542.562876   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298542.598156   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298542.624326   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298542.624368   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298542.624425   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298542.655133   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298542.668111   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298542.686940   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298543.698100   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298543.739318   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298543.739361   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298543.739409   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298543.784232   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298543.816861   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298543.898915   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298543.956337   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298543.956404   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298543.956500   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298543.989272   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298544.010550   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298544.010595   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298544.010653   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298544.041434   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298544.061638   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298544.096803   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298545.125195   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298545.206114   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298545.206201   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298545.206310   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298545.251136   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298545.275891   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298545.316841   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298545.378262   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298545.378337   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298545.378444   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298545.415192   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298545.438425   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298545.438467   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298545.438522   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298545.471949   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298545.493341   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298545.532704   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298546.554565   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298546.633928   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298546.633982   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298546.634118   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298546.677190   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298546.710411   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298546.787517   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298546.852569   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298546.852654   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298546.852759   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298546.893956   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298546.918608   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298546.918671   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298546.918737   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298546.951557   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298546.971737   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298547.004403   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298548.068964   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298548.128460   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298548.128509   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298548.128571   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298548.160824   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298548.183901   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298548.237413   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298548.293604   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298548.293673   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298548.293765   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298548.328893   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298548.349300   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298548.349337   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298548.349407   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298548.380611   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298548.401686   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298548.433346   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298549.451267   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298549.503074   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298549.503125   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298549.503193   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298549.550678   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298549.578920   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298549.645119   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298549.706886   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298549.706953   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298549.707093   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298549.748465   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298549.775832   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298549.775892   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298549.775956   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298549.810517   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298549.834949   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298549.875165   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298550.893129   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298550.986289   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298550.986417   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298550.986764   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298551.054178   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298551.128190   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298551.245762   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298551.310296   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298551.310367   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298551.310470   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298551.347114   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298551.369420   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298551.369456   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298551.369508   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298551.396194   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298551.409154   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298551.448421   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298552.472469   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298552.548596   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298552.548642   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298552.548704   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298552.583522   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298552.618189   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298552.682086   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298552.759612   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298552.759695   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298552.759798   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298552.812819   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298552.847839   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298552.847934   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298552.848110   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298552.901489   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298552.925643   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298552.959902   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298553.983827   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298554.036734   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298554.036780   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298554.036838   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298554.074610   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298554.099341   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298554.160664   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298554.223617   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298554.223687   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298554.223781   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298554.265160   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298554.289573   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298554.289618   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298554.289679   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298554.325494   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298554.353895   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298554.399385   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298555.415141   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298555.481245   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298555.481300   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298555.481383   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298555.523405   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298555.556757   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298555.631882   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298555.711545   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298555.711617   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298555.711715   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298555.754145   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298555.781511   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298555.781557   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298555.781620   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298555.827368   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298555.863151   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298555.899488   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298556.921082   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298556.994844   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298556.994930   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298556.995004   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298557.036104   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298557.063916   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298557.124532   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298557.184209   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298557.184273   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298557.184361   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298557.217704   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298557.239302   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298557.239339   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298557.239394   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298557.275388   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298557.295626   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298557.327627   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298558.356652   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298558.424222   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298558.424330   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298558.424442   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298558.469194   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298558.498121   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298558.566839   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298558.637665   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298558.637785   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298558.637900   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298558.676967   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298558.699346   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298558.699391   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298558.699466   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298558.734923   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298558.758119   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298558.795734   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298559.824070   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298559.882250   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298559.882307   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298559.882398   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298559.920904   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298559.942377   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298560.010050   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298560.070875   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298560.070959   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298560.071073   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298560.109247   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298560.131502   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298560.131547   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298560.131622   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298560.167110   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298560.185031   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298560.219161   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298561.231506   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298561.281920   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298561.281967   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298561.282022   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298561.317033   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298561.337253   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298561.392697   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298561.447458   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298561.447544   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298561.447664   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298561.486041   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298561.506541   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298561.506586   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298561.506659   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298561.543921   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298561.566558   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298561.608875   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298562.638419   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298562.688929   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298562.688971   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298562.689024   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298562.720061   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298562.740736   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298562.794603   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298562.847798   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298562.847872   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298562.847974   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298562.886001   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298562.905120   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298562.905158   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298562.905223   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298562.939924   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298562.962271   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298563.002832   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298564.009774   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298564.059161   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298564.059222   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298564.059374   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298564.097486   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298564.118723   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298564.174183   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298564.229965   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298564.230037   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298564.230138   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298564.267238   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298564.288674   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298564.288736   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298564.288831   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298564.318017   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298564.333195   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298564.367942   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298565.398807   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298565.474517   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298565.474588   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298565.474676   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298565.512446   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298565.536955   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298565.598553   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298565.657546   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298565.657628   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298565.657740   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298565.695840   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298565.715428   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298565.715468   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298565.715549   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298565.751869   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298565.772705   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298565.805523   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
+1744298566.818166   1: [entry] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981694602) depth: 18
+1744298566.866167   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298566.866212   1: [exit ] ore::ptr::drop_in_place::<<<linux_syscall::Syscall>::sys_select::{closure#0}::SelectFuture as core::future::future::Future>::poll::{closure#0}>(18446743800981284556) depth: 6
+1744298566.866270   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298566.894750   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298566.917167   1: [entry] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800982227036) depth: 5
+1744298566.965943   1: [entry] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981420646) depth: 27
+1744298567.015447   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298567.015522   1: [exit ] <<linux_object::fs::stdio::Stdin as rcore_fs::vfs::INode>::async_poll::SerialFuture as core::future::future::Future>::poll(18446743800981378096) depth: 25
+1744298567.015616   1: [entry] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981378096) depth: 24
+1744298567.055769   1: [exit ] <zircon_object::task::thread::ThreadSwitchFuture as core::future::future::Future>::poll(18446743800981280966) depth: 8
+1744298567.084929   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298567.084972   1: [exit ] ore::ptr::drop_in_place::<core::future::from_generator::GenFuture<<linux_object::fs::file::File as linux_object::fs::FileLike>::async_poll::{closure#0}>>(18446743800981284556) depth: 6
+1744298567.085031   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 5
+1744298567.122543   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 5
+1744298567.151688   1: [entry] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981284556) depth: 6
+1744298567.183764   1: [exit ] <executor::task_collection::TaskCollection>::generator::{closure#0}(18446743800981285754) depth: 6
