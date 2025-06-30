@@ -1,0 +1,22 @@
+From: =?utf-8?b?SMOpY3RvciBPcsOzbiBNYXJ0w61uZXo=?= <zumbi@debian.org>
+Date: Wed, 20 Feb 2019 13:25:36 +0100
+Subject: gdb_configure.nat
+
+===================================================================
+---
+ gdb/configure.nat | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Index: gdb/gdb/configure.nat
+===================================================================
+--- gdb.orig/gdb/configure.nat
++++ gdb/gdb/configure.nat
+@@ -215,7 +215,7 @@ case ${gdb_host} in
+ 	    i386)
+ 		# Host: Intel 386 running the GNU Hurd
+ 		NATDEPFILES='i386-gnu-nat.o gnu-nat.o \
+-		     x86-nat.o nat/x86-dregs.o fork-child.o \
++		     x86-nat.o nat/x86-dregs.o fork-child.o fork-inferior.o \
+ 		     nat/fork-inferior.o \
+ 		     notify_S.o process_reply_S.o msg_reply_S.o \
+ 		     msg_U.o exc_request_U.o exc_request_S.o'

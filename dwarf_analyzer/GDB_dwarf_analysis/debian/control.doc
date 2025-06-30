@@ -1,0 +1,15 @@
+
+Package: gdb-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Breaks: gdb (<< 7.8), gdbserver (<< 7.8)
+Replaces: gdb (<< 7.8), gdbserver (<< 7.8)
+Description: The GNU Debugger Documentation
+ GDB is a source-level debugger, capable of breaking programs at
+ any specific line, displaying variable values, and determining
+ where errors occurred. Currently, it works for C, C++, Fortran,
+ Modula 2 and Java programs. A must-have for any serious
+ programmer.
+ .
+ This package contains the GDB manual.

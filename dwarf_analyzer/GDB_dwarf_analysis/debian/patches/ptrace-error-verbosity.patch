@@ -1,0 +1,26 @@
+Description: try to make the PTRACE scope sysctl more discoverable via a
+ verbose error message when failures happen.
+Author: Kees Cook <kees@ubuntu.com>
+
+Index: b/gdb/inf-ptrace.c
+===================================================================
+--- a/gdb/inf-ptrace.c
++++ b/gdb/inf-ptrace.c
+@@ -207,7 +207,16 @@ inf_ptrace_attach (struct target_ops *op
+   errno = 0;
+   ptrace (PT_ATTACH, pid, (PTRACE_TYPE_ARG3)0, 0);
+   if (errno != 0)
+-    perror_with_name (("ptrace"));
++    {
++      if (errno == EPERM)
++        {
++	      printf_unfiltered (
++            _("Could not attach to process.  If your uid matches the uid of the target\n"
++              "process, check the setting of /proc/sys/kernel/yama/ptrace_scope, or try\n"
++              "again as the root user.  For more details, see /etc/sysctl.d/10-ptrace.conf\n"));
++        }
++      perror_with_name (("ptrace"));
++    }
+ #else
+   error (_("This system does not support attaching to a process"));
+ #endif
