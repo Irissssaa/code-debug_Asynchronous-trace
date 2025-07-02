@@ -17,9 +17,9 @@
       - [2.1 现有研究调研概况](#21-现有研究调研概况)
       - [2.2 设计思路](#22-设计思路)
     - [3 核心模块实现与功能](#3-核心模块实现与功能)
-      - [3.1 模块一：数据采集层实现](https://github.com/Irissssaa/code-debug_Asynchronous-trace/blob/main/docs/%E5%88%9D%E8%B5%9B%E6%96%87%E6%A1%A3-Proj158-%E6%94%AF%E6%8C%81Rust%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7.md#31-%E6%A8%A1%E5%9D%97%E4%B8%80%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%B1%82%E5%AE%9E%E7%8E%B0)
-      - [3.2 模块二：数据处理层实现](https://github.com/Irissssaa/code-debug_Asynchronous-trace/blob/main/docs/%E5%88%9D%E8%B5%9B%E6%96%87%E6%A1%A3-Proj158-%E6%94%AF%E6%8C%81Rust%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7.md#32%E6%A8%A1%E5%9D%97%E4%BA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%B1%82%E5%AE%9E%E7%8E%B0)
-      - [3.3 模块三：可视化展示层实现](https://github.com/Irissssaa/code-debug_Asynchronous-trace/blob/main/docs/%E5%88%9D%E8%B5%9B%E6%96%87%E6%A1%A3-Proj158-%E6%94%AF%E6%8C%81Rust%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7.md#33-%E6%A8%A1%E5%9D%97%E4%B8%89%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA%E5%B1%82%E5%AE%9E%E7%8E%B0)
+      - [3.1 模块一：数据采集层实现](#31-模块一：数据采集层实现)
+      - [3.2 模块二：数据处理层实现](#32-模块二：数据处理层实现)
+      - [3.3 模块三：可视化展示层实现](#33-模块三：可视化展示层实现)
     - [4 功能评估与验证](#4-功能评估与验证)
     - [5 遇到的困难和解决办法](#5-遇到的困难和解决办法)
 
@@ -77,7 +77,7 @@ Rust 因其在安全性、并发性和性能方面的独特优势而备受关注
 
 Rust编译器使用的dwarf调试文件格式难以很好适应Rust语言中的异步函数调用形式。具体体现在如下两个问题：
 
-###### 问题一：在Rust编译环境下，异步代码和运行状态之间的对应关系缺失
+**问题一：在Rust编译环境下，异步代码和运行状态之间的对应关系缺失**
 
 异步代码和运行状态之间的对应关系缺失主要包括以下两个部分：
 
@@ -85,7 +85,7 @@ Rust编译器使用的dwarf调试文件格式难以很好适应Rust语言中的�
 
 * 运行时状态获取问题：rust官方提供的编译器没有提供统一的异步运行时，但是社区提供了很多第三方运行时，第三方运行时没有统一的状态暴露接口，导致没有一致的办法去获取运行时的状态。
 
-###### 问题二：在Rust编译环境下，异步函数调用关系挖掘困难
+**问题二：在Rust编译环境下，异步函数调用关系挖掘困难**
 
 Dwarf调试信息中异步函数调用关系不直观，导致分析函数调用关系困难，需要通过特殊的字段来获得完整的异步函数调用关系。
 
@@ -93,11 +93,11 @@ Dwarf调试信息中异步函数调用关系不直观，导致分析函数调用
 
 主要体现在：
 
-###### 问题三：已有的Rust异步函数的调试方法都是针对特定的Rust操作系统或者运行时设计的，通用性低
+**问题三：已有的Rust异步函数的调试方法都是针对特定的Rust操作系统或者运行时设计的，通用性低**
 
 现有的Rust异步函数调试方案都是针对特定的操作系统或者运行时，例如只能在 lilos 上使用的 lildb 的异步调试工具，tokio-console 则只支持 Tokio 运行时，这种平台依赖性限制了调试工具的适用范围，增加了跨平台调试的复杂性。
 
-###### 问题四：支持白名单的异步函数调试
+**问题四：支持白名单的异步函数调试**
 
 由于插桩影响运行效率，我们需要有动态调试的功能。通过对调试目标进行界定，来防止影响被调试系统的运行。
 
@@ -170,7 +170,7 @@ GDB（GNU Debugger）是 Linux 生态中广泛使用的命令行调试工具，�
 
 <img src="images/image_1.png" alt="图片" style="zoom:50%;" />
 
-​											图2.1  模块总体设计架构图
+*图2.1  模块总体设计架构图*
 
 ##### 2.2.1 数据采集层
 
@@ -205,9 +205,9 @@ GDB（GNU Debugger）是 Linux 生态中广泛使用的命令行调试工具，�
 # ..允许用户通过环境变量 GDB_DEBUGGER_PLUGIN 指定要加载的运行时插件加载插件
 PLUGIN_NAME = os.getenv("GDB_DEBUGGER_PLUGIN", "tokio")
 try:
-    plugin_mod = importlib.import_module(f"gdb_debugger.runtime_plugins.{PLUGIN_NAME}")
-    plugin = plugin_mod.plugin
-    print(f"[gdb_debugger] Loaded runtime plugin: {plugin.name}")
+    plugin_mod=importlib.import_module(f"gdb_debugger.runtime_plugins.{PLUGIN_NAME}")
+    plugin = plugin_mod.plugin
+    print(f"[gdb_debugger] Loaded runtime plugin: {plugin.name}")
 except (ImportError, AttributeError) as e:
 ```
 ##### 3.1.2 基于 GDB 的函数插桩
@@ -219,24 +219,21 @@ except (ImportError, AttributeError) as e:
 ```python
 # gdb_debugger/main.py
 class EntryBreakpoint(gdb.Breakpoint):
-    # ...
-    def stop(self):
-        # 创建一个临时断点，并为其绑定一个 Python 命令。GDB 会继续执行，立即命中这个临时断点，此时函数的 prolog 已执行完毕，所有参数都已在栈或寄存器中准备就绪
-        pc = gdb.selected_frame().pc()
-        t_break = gdb.Breakpoint(f"*{pc}", gdb.BP_BREAKPOINT, internal=True, temporary=True)
+    # ...
+    def stop(self):
+    # 创建一个临时断点，并为其绑定一个 Python 命令。GDB 会继续执行，立即命中这个临时断点，此时函数的 prolog 已执行完毕，所有参数都已在栈或寄存器中准备就绪
+        pc = gdb.selected_frame().pc()
+        t_break = gdb.Breakpoint(f"*{pc}", gdb.BP_BREAKPOINT, internal=True, temporary=True)
 
-        # 绑定一个 Python 函数到临时断点的命令列表
-        cmd_index = len(bp_commands)
-        bp_commands.append(lambda: run_tracers(self.symbol_name, self.entry_tracers, self.exit_tracers))
+        # 绑定一个 Python 函数到临时断点的命令列表
+        cmd_index = len(bp_commands)
+        bp_commands.append(lambda: run_tracers(self.symbol_name, self.entry_tracers, self.exit_tracers))
 
-        # GDB 会在命中临时断点时执行 python 命令，然后自动 continue
-        t_break.commands = f"""
-python bp_commands[{cmd_index}]()
-continue
-"""
-        return False # 继续执行，以命中临时断点
+        # GDB 会在命中临时断点时执行 python 命令，然后自动 continue
+        t_break.commands = f"""python bp_commands[{cmd_index}]()continue"""
+        return False # 继续执行，以命中临时断点
 ```
-一个值得注意的细节是，由于 GDB Python API 的限制，在断点触发后，被调试程序继续执行前，用于执行插桩代码的`gdb.execute` API只能执行一次，如果多次调用的话第一次之后的调用都是无效的，因此插桩代码需要利用  `break...commands...end` 语法合并到一个字符串内统一执行。
+一个值得注意的细节是，由于 GDB Python API 的限制，在断点触发后，被调试程序继续执行前，用于执行插桩代码的`gdb.execute` API只能执行一次，如果多次调用的话第一次之后的调用都是无效的，因此插桩代码需要利用`break...commands...end` 语法合并到一个字符串内统一执行。
 ##### 3.1.3 追踪器（Tracer）插件
 
 有了基于 GDB 的插桩框架后，我们引入了追踪器（Tracer）的概念，使用户可以方便地定义在插桩点需要采集的数据。
@@ -252,47 +249,45 @@ continue
 ```python
 // gdb_debugger/runtime_plugins/tokio.py
 // ... existing code ...
-    def instrument_points(self):
-        return [
-            {
-                "symbol": "tokio::runtime::task::core::Core<S, T>::poll",
-                "entry_tracers": [
-                    tracers.Variable.factory("self.header.id.as_u64()", "task_id"),
-                ],
-                "exit_tracers": [],
-            },
+    def instrument_points(self):
+        return [
+            {
+                "symbol": "tokio::runtime::task::core::Core<S, T>::poll",
+                "entry_tracers": [
+                    tracers.Variable.factory("self.header.id.as_u64()","task_id"),],
+                "exit_tracers": [],
+            },
 // ... existing code ...
 ```
-当  `tokio::runtime::task::core::Core<S, T>::poll` 函数被命中断点时， `run_tracers` 函数会被调用，并负责执行该插桩点定义的所有 tracer。
+当 `tokio::runtime::task::core::Core<S, T>::poll` 函数被命中断点时,`run_tracers` 函数会被调用，并负责执行该插桩点定义的所有 tracer。
 ```python
 # gdb_debugger/main.py
 # run_tracers 函数会遍历  entry_tracers 列表，对每个  tracer factory 函数，创建 tracer 实例，运行它，并将其采集到的数据存入一个全局的  traced_data 字典中
 def run_tracers(symbol_name, entry_tracers, exit_tracers):
-    # ...
-    # 为本次函数调用创建一个记录
-    invocation_data = {
-        "thread_id": thread.ptid,
-        "entry_tracers": {},
-        "exit_tracers": {},
-    }
-    traced_data[symbol_name].append(invocation_data)
+    # ...
+    # 为本次函数调用创建一个记录
+    invocation_data = {
+        "thread_id": thread.ptid,
+        "entry_tracers": {},
+        "exit_tracers": {},
+    }
+    traced_data[symbol_name].append(invocation_data)
 
-    # 运行所有入口追踪器
-    for tracer_factory in entry_tracers:
-        tracer = tracer_factory()
-        tracer.start(thread)
-        invocation_data["entry_tracers"][str(tracer)] = tracer.read_data()
-
-    # 如果有出口追踪器，则设置一个函数返回断点
-    if exit_tracers:
-        FinishBreakpoint(gdb.newest_frame(), symbol_name, invocation_data, exit_tracers)
+    # 运行所有入口追踪器
+    for tracer_factory in entry_tracers:
+        tracer = tracer_factory()
+        tracer.start(thread)
+        invocation_data["entry_tracers"][str(tracer)] = tracer.read_data()
+    # 如果有出口追踪器，则设置一个函数返回断点
+    if exit_tracers:
+        FinishBreakpoint(gdb.newest_frame(), symbol_name, invocation_data, exit_tracers)
 ```
 
 ##### 3.1.4 异步函数名映射到 poll 函数的关键信息收集
 
-从Dwarf调试信息中提取出异步状态机信息，我们采用了两种方式实现：基于objdump工具分析调试信息；基于GDB dwarf解析模块实现异步状态机的信息提取；前者已经完全实现，后者部分完成。两种方式的设计思路来源已在 2.2 节进行了阐述，以下是两者实现方式的具体阐述。
+从Dwarf调试信息中提取出异步状态机信息，我们采用了两种方式实现：基于objdump工具分析调试信息；基于GDB dwarf解析模块实现异步状态机的信息提取；前者已经完全实现，后者部分完成。两种方式的设计思路来源已在 2.2 节进行了阐述，以下是两者实现方式的具体阐述（基于GDB实现的异步状态机的信息提取是本模块的重点，所以我们将其作为3.1.5小节进行展示）。
 
-* **基于objdump工具分析调试信息（Dwarf Analyzer）**
+- **基于objdump工具分析调试信息（Dwarf Analyzer）**
 
 DWARF Analyzer 使用 DWARF 调试信息从已编译的 Rust 二进制文件中提取异步状态机信息。它无需运行时执行即可识别异步函数环境、未来状态机及其依赖项。该分析器能够理解异步代码结构，并生成动态分析工具使用的映射。
 
@@ -300,7 +295,7 @@ DWARF Analyzer 使用 DWARF 调试信息从已编译的 Rust 二进制文件中�
 
 <img src="images/image_2.png" alt="图片" style="zoom:33%;" />
 
-​																								图3.1 DwarfAnalyzer类
+*图3.1 DwarfAnalyzer类*
 
 该模块处理DWARF信息的流程如下：
 
@@ -406,7 +401,7 @@ DWARF Analyzer 使用 DWARF 调试信息从已编译的 Rust 二进制文件中�
 
 最终，分析器将分析结果输出为结构化的 JSON 格式，包含异步函数、状态机和依赖树信息。
 
-```typescript
+```python
     def output_json(self):
 349        analysis = self.analyze_futures()
 350        dep_tree = self.build_dependency_tree()
@@ -444,61 +439,60 @@ DWARF Analyzer 使用 DWARF 调试信息从已编译的 Rust 二进制文件中�
 382        }
 383        print(json.dumps(out, indent=2, ensure_ascii=False)
 ```
-* **基于GDB dwarf解析模块实现异步状态机的信息提取**
+##### 3.1.5 基于GDB dwarf解析模块实现异步状态机的信息提取
 
 该方式基于GDB dwarf调试信息解析模块，使用与第一种方式相同的分析思路，来获得完整的 future 相关信息。主要实现的代码放在了GDB/gdb/dwarf2下，分别是rust- future.h和rust-future.c。
 
 1. 关键类的实现
 
-* rust_future_member类 表示最小单位的 future成员
+* rust_future_member类 表示最小单位的 future 成员，包含成员名称、类型ID、状态机标识、偏移量和大小等元数据，其中 is_state_machine 标志用于识别嵌套状态机。
 
-```typescript
+```c
 struct rust_future_member // Rust Future结构体中的单个成员
 {
-  /* Member name */
-  const char *name;
+    /* Member name */
+    const char *name;
+
+    /* Type ID of the member */
+    sect_offset type_id;
   
-  /* Type ID of the member */
-  sect_offset type_id;
+    /* Whether this member is a state machine */
+    bool is_state_machine;
   
-  /* Whether this member is a state machine */
-  bool is_state_machine;
-  
-  /* Offset of the member in the struct */
-  ULONGEST offset;
-  
-  /* Size of the member */
-  ULONGEST size;
+    /* Offset of the member in the struct */
+    ULONGEST offset;
+    /* Size of the member */
+    ULONGEST size;
 };
 ```
-* rust_future_info 类 表示基本单位的 future 结构体
+* rust_future_info 类 表示基本单位的 future 结构体，记录结构体名称和是否为状态机的标志，并且存储了所有的 子future 成员。
 
-```typescript
+```c
 struct rust_future_info // 一个完整的Rust Future结构体
 {
-  /* Name of the Future struct */
-  const char *name;
-  
-  /* Whether this is a state machine */
-  bool is_state_machine;
-  
-  /* List of members */
-  std::vector<rust_future_member> members;
-  
-  /* Dependencies on other Futures */
-  std::vector<const char *> dependencies;
+    /* Name of the Future struct */
+    const char *name;
+
+    /* Whether this is a state machine */
+    bool is_state_machine;
+
+    /* List of members */
+    std::vector<rust_future_member> members;
+
+    /* Dependencies on other Futures */
+    std::vector<const char *> dependencies;
 };
 ```
-* rust_future_collection类 表示程序中所有的future结构体
+* rust_future_collection类 表示程序中所有的future结构体，这里我们使用哈希表实现名称到Future信息的快速查找，建立了类型ID到结构名的映射关系，支持跨编译单元的类型解析。
 
-```typescript
+```c
 struct rust_future_collection // 存储所有Rust Future信息
 {
-  /* Map of struct names to their Future info */
-  std::unordered_map<std::string, rust_future_info> futures;
-  
-  /* Map of type IDs to struct names */
-  std::unordered_map<sect_offset, std::string> type_id_to_struct;
+    /* Map of struct names to their Future info */
+    std::unordered_map<std::string, rust_future_info> futures;
+
+    /* Map of type IDs to struct names */
+    std::unordered_map<sect_offset, std::string> type_id_to_struct;
 };
 ```
 通过这三个类的实现，能够完整记录下Dwarf调试信息中和future相关的DIE内容，包括future之间的依赖关系。
@@ -509,7 +503,21 @@ rust-future.c中各函数的关系示意图如下：
 
 ![图片](images/image_3.png)
 
-​										图3.2 rust-future.c各函数的关系
+*图3.2 rust-future.c各函数的关系*
+
+该模块我们采用以下处理流程来分析和提取Future信息：
+
+1. 初始化阶段：通过_initialize_rust_future()注册GDB命令，建立调试输出通道；
+
+2. 扫描阶段：遍历所有编译单元(CU)，识别包含Future信息的DWARF条目；
+
+3. 解析阶段：深度分析每个Future结构体的成员和类型信息；
+
+4. 依赖分析阶段：构建Future间的依赖关系图；
+
+5. 输出阶段：生成结构化的JSON文档；
+
+具体的函数实现如下：
 
 我们期望在GDB中使用analyze-rust-futures命令，输出我们所需要的future依赖关系json文件，通过_initialize_rust_future ()将命令注册到GDB中，具体代码实现如下：
 
@@ -517,174 +525,157 @@ rust-future.c中各函数的关系示意图如下：
 void
 _initialize_rust_future ()
 {
-  /* Write to a file to confirm function is called */
-  FILE *debug_file = fopen("/tmp/rust_future_init_debug.txt", "w");
-  if (debug_file != nullptr)
-    {
-      fprintf(debug_file, "Rust Future initialization function called!\n");
-      fclose(debug_file);
-    }
+    /* Write to a file to confirm function is called */
+    FILE *debug_file = fopen("/tmp/rust_future_init_debug.txt", "w");
+    if (debug_file != nullptr)
+    {
+        fprintf(debug_file, "Rust Future initialization function called!\n");
+        fclose(debug_file);
+    }
 
-  /* Try to use gdb_printf, but it might not work during early initialization */
-  try
-    {
-      gdb_printf (_("Initializing Rust Future processing...\n"));
-    }
-  catch (...)
-    {
-      /* Ignore any exceptions during early initialization */
-    }
+    /* Try to use gdb_printf, but it might not work during early initialization */
+    try
+    {
+        gdb_printf (_("Initializing Rust Future processing...\n"));
+    }
+    catch (...)
+    {
+        /* Ignore any exceptions during early initialization */
+    }
 
-  /* Simple command registration - this should work if maintenancelist is ready */
-  struct cmd_list_element *cmd = add_cmd ("analyze-rust-futures", class_maintenance, analyze_rust_futures,
-               _("Analyze Rust Futures in the current program and generate JSON output."),
-               &maintenancelist);
+    /* Simple command registration - this should work if maintenancelist is ready */
+    struct cmd_list_element *cmd = add_cmd ("analyze-rust-futures", class_maintenance,analyze_rust_futures, _("Analyze Rust Futures in the current program and generate JSON output."), &maintenancelist);
 ```
 而该命令对应的函数 analyze_rust_futures 具体实现如下：
 ```typescript
 void
 analyze_rust_futures (const char *args, int from_tty)
 {
-  /* Check if we have any objfiles loaded */
-  if (current_program_space == nullptr)
-    {
-      warning (_("No program loaded. Please load a program first."));
-      return;
-    }
+    /* Check if we have any objfiles loaded */
+    if (current_program_space == nullptr)
+    {
+        warning (_("No program loaded. Please load a program first."));
+        return;
+    }
 
-  /* Check if there are any objfiles by checking the iterator */
-  bool has_objfiles = current_program_space->objfiles().begin() != current_program_space->objfiles().end();
+    /* Check if there are any objfiles by checking the iterator */
+    bool has_objfiles = current_program_space->objfiles().begin() != current_program_space->objfiles().end();
 
-  if (!has_objfiles)
-    {
-      warning (_("No object files loaded. Please load a program with debug information."));
-      return;
-    }
+    if (!has_objfiles)
+    {
+        warning (_("No object files loaded. Please load a program with debug information."));
+        return;
+    }
 
-  int cu_count = 0;
-  int analyzed_count = 0;
+    int cu_count = 0;
+    int analyzed_count = 0;
+    for (objfile *objfile : current_program_space->objfiles ())
+    {
+        if (objfile == nullptr || objfile->sf == nullptr)
+            continue;
+        dwarf2_per_objfile *per_objfile = get_dwarf2_per_objfile (objfile);
+        if (per_objfile == nullptr)
+            continue;
+        // Aging old units if needed
+        per_objfile->age_comp_units();
 
-  for (objfile *objfile : current_program_space->objfiles ())
-    {
-      if (objfile == nullptr || objfile->sf == nullptr)
-        continue;
-
-      dwarf2_per_objfile *per_objfile = get_dwarf2_per_objfile (objfile);
-      if (per_objfile == nullptr)
-        continue;
-
-      // Aging old units if needed
-      per_objfile->age_comp_units();
-
-      // Correctly iterate over all loaded compilation units (CUs)
-      for (dwarf2_per_cu_data *per_cu : per_objfile->get_all_per_cus())
-        {
-          dwarf2_cu *cu = per_objfile->get_cu(per_cu);
-          if (cu == nullptr || cu->dies == nullptr)
-            continue;
-        
-          ++cu_count;
-        
-          try
-            {
-              process_rust_futures(cu);
-              ++analyzed_count;
-            }
-          catch (const std::exception &e)
-            {
-              warning(_("Error analyzing CU for Rust Futures: %s"), e.what());
-            }
-        }
-    }
-
-  gdb_printf (_("Rust Future analysis complete.\n"
-                       "Total compilation units scanned: %d\n"
-                       "Successfully analyzed units: %d\n"),
-                     cu_count, analyzed_count);
+        // Correctly iterate over all loaded compilation units (CUs)
+        for (dwarf2_per_cu_data *per_cu : per_objfile->get_all_per_cus())
+        {
+            dwarf2_cu *cu = per_objfile->get_cu(per_cu);
+            if (cu == nullptr || cu->dies == nullptr)
+                continue;
+            ++cu_count;
+            try
+            {
+                process_rust_futures(cu);
+                ++analyzed_count;
+            }
+            catch (const std::exception &e)
+            {
+                warning(_("Error analyzing CU for Rust Futures: %s"), e.what());
+            }
+        }
+    }
+    gdb_printf (_("Rust Future analysis complete.\n" "Total compilation units scanned: %d\n"
+"Successfully analyzed units: %d\n"),cu_count, analyzed_count);
 }
 ```
-该函数的实现还依赖于其他重要的函数方法，具体来说，通过is_rust_future (struct die_info *die) 和 is_state_machine (struct die_info *die) 判断DIE结构体是否是future状态机。
+该函数的实现还依赖于其他重要的函数方法，具体来说，通过is_rust_future (struct die_info *die) 和 is_state_machine (struct die_info *die) 判断DIE结构体是否是future状态机。两个函数都首先检查DW_TAG_structure_type，因为Rust的Future和状态机都是用结构体实现的。
 ```typescript
 static bool
 is_rust_future (struct die_info *die)
 {
-  if (die->tag != DW_TAG_structure_type)
-    return false;
-
-  struct attribute *name_attr = die->attr (DW_AT_name);
-  if (name_attr == NULL)
-    return false;
-
-  const char *name = name_attr->as_string ();
-  return (strstr (name, "Future") != NULL || 
-          strstr (name, "future") != NULL);
+    if (die->tag != DW_TAG_structure_type)
+        return false;
+    struct attribute *name_attr = die->attr (DW_AT_name);
+    if (name_attr == NULL)
+        return false;
+    const char *name = name_attr->as_string ();
+    return (strstr (name, "Future") != NULL ||
+            strstr (name, "future") != NULL);
 }
 
 /* Check if a DIE represents a state machine */
 static bool
 is_state_machine (struct die_info *die)
 {
-  if (die->tag != DW_TAG_structure_type)
-    return false;
-
-  struct attribute *name_attr = die->attr (DW_AT_name);
-  if (name_attr == NULL)
-    return false;
-
-  const char *name = name_attr->as_string ();
-  return (strstr (name, "State") != NULL || 
-          strstr (name, "state") != NULL);
+    if (die->tag != DW_TAG_structure_type)
+        return false;
+    struct attribute *name_attr = die->attr (DW_AT_name);
+    if (name_attr == NULL)
+        return false;
+    const char *name = name_attr->as_string ();
+    return (strstr (name, "State") != NULL || 
+            strstr (name, "state") != NULL);
 }
 ```
-parse_rust_future (struct die_info *die, struct rust_future_collection *collection)函数通过上面两个方法筛选出future结构体，然后对future结构体中的子future进行解析，从而获得最后的rust_future_collection 类，具体实现代码如下：
+parse_rust_future (struct die_info *die, struct rust_future_collection *collection)函数通过上面两个方法筛选出future结构体，然后对future结构体中的子future进行解析，从而获得最后的rust_future_collection 类，函数中将DIE的段偏移(sect_off)映射到结构体名称，这是后续解析依赖关系的关键，具体实现代码如下：
 ```typescript
 static void
 parse_rust_future (struct die_info *die, struct rust_future_collection *collection)
 {
-  if (!is_rust_future (die))
-    return;
+    if (!is_rust_future (die))
+        return;
+    struct attribute *name_attr = die->attr (DW_AT_name);
+    if (name_attr == NULL)
+        return;
+    const char *name = name_attr->as_string ();
+    struct rust_future_info future_info;
+    future_info.name = name;
+    future_info.is_state_machine = is_state_machine (die);
+    future_info.members.clear ();
+    future_info.dependencies.clear ();
 
-  struct attribute *name_attr = die->attr (DW_AT_name);
-  if (name_attr == NULL)
-    return;
+    /* Store type ID mapping */
+    collection->type_id_to_struct[die->sect_off] = name;
+    
+    /* Parse members */
+    struct die_info *child = die->child;
+    while (child != NULL)
+    {
+        if (child->tag == DW_TAG_member)
+        {
+            struct rust_future_member member;
+            struct attribute *member_name = child->attr (DW_AT_name);
+            struct attribute *member_type = child->attr (DW_AT_type);
+            struct attribute *member_offset = child->attr (DW_AT_data_member_location);
+            struct attribute *member_size = child->attr (DW_AT_byte_size);
+            if (member_name != NULL && member_type != NULL)
+            {
+                member.name = member_name->as_string ();
+                member.type_id = (sect_offset) member_type->as_unsigned ();
+                member.is_state_machine = false;  // Will be updated when processing the type
+                member.offset = member_offset ? member_offset->as_unsigned () : 0;
+                member.size = member_size ? member_size->as_unsigned () : 0;
+                
+                future_info.members.push_back (member);
+            }
+        }
+        child = child->sibling;
+    }
 
-  const char *name = name_attr->as_string ();
-  struct rust_future_info future_info;
-  future_info.name = name;
-  future_info.is_state_machine = is_state_machine (die);
-  future_info.members.clear ();
-  future_info.dependencies.clear ();
-
-  /* Store type ID mapping */
-  collection->type_id_to_struct[die->sect_off] = name;
-
-  /* Parse members */
-  struct die_info *child = die->child;
-  while (child != NULL)
-    {
-      if (child->tag == DW_TAG_member)
-        {
-          struct rust_future_member member;
-          struct attribute *member_name = child->attr (DW_AT_name);
-          struct attribute *member_type = child->attr (DW_AT_type);
-          struct attribute *member_offset = child->attr (DW_AT_data_member_location);
-          struct attribute *member_size = child->attr (DW_AT_byte_size);
-
-          if (member_name != NULL && member_type != NULL)
-            {
-              member.name = member_name->as_string ();
-              member.type_id = (sect_offset) member_type->as_unsigned ();
-              member.is_state_machine = false;  // Will be updated when processing the type
-              member.offset = member_offset ? member_offset->as_unsigned () : 0;
-              member.size = member_size ? member_size->as_unsigned () : 0;
-
-              future_info.members.push_back (member);
-            }
-        }
-      child = child->sibling;
-    }
-
-  collection->futures[name] = future_info;
+    collection->futures[name] = future_info;
 }
 ```
 然后使用resolve_deps_recursive函数和export_future_info_to_json函数递归构建函数依赖关系，并将其以json文件的格式输出。目前该方式的功能还未完全实现，后续模块的工作都是基于objdump工具输出的future依赖关系文件进行展开的。
@@ -736,24 +727,22 @@ tokio_model.py 文件中定义了两个核心类： `Task` 和  `Runtime`。 `Ta
 ```python
 # gdb_debugger/runtime_plugins/tokio_model.py
 import datetime
-
 class Task:
-    """Represents a single Tokio task and its collected metrics."""
-    def __init__(self, task_id, backtrace=None):
-        self.id = task_id
-        self.pointers = set()
-        self.poll_count = 0
-        self.created_at = datetime.datetime.now()
-        self.dropped_at = None
-        self.spawn_location = self._extract_spawn_location(backtrace)
-    # ... 其他方法 ...
-
+    """Represents a single Tokio task and its collected metrics."""
+    def __init__(self, task_id, backtrace=None):
+        self.id = task_id
+        self.pointers = set()
+        self.poll_count = 0
+        self.created_at = datetime.datetime.now()
+        self.dropped_at = None
+        self.spawn_location = self._extract_spawn_location(backtrace)
+        # ... 其他方法 ...
 class Runtime:
-    """Represents the state of the Tokio runtime and all its tasks."""
-    def __init__(self):
-        self.tasks = {} # Dict of task_id -> Task
-        self.thread_task_lists = {} # Dict of thread_id -> last known OwnedTasks gdb.Value
-    # ... 其他方法 ...
+    """Represents the state of the Tokio runtime and all its tasks."""
+    def __init__(self):
+        self.tasks = {} # Dict of task_id -> Task
+        self.thread_task_lists = {} # Dict of thread_id -> last known OwnedTasks gdb.Value
+        # ... 其他方法 ...
 ```
 ##### 3.2.3 多种Tracer
 
@@ -768,7 +757,13 @@ Tracer 提供数据收集机制，用于在 GDB 调试会话期间捕获运行�
 GDB Profiler输出Rust异步运行时执行轨迹到 traceEvents.json 中，提供给可视化层。
 
 ```typescript
- { "traceEvents": [ { "ph": "B", "name": "async_main::{{closure}}", "ts": 100261253, "tid": 1073, "args": {"depth": 0, "Function address": "0x55a3980a21b5"} }, { "ph": "E", "name": "async_main::{{closure}}", "ts": 100261253, "tid": 1073, "dur": 1751, "args": {"depth": 0, "Function address": "0x55a3980a21b5"} } ], "displayTimeUnit": "microseconds" }
+{"traceEvents": [ {"ph": "B", 
+                    "name": "async_main::{{closure}}", 
+                    "ts": 100261253, 
+                    "tid": 1073,
+                    "args": {"depth": 0, "Function address": "0x55a3980a21b5"} }, 
+                  { "ph": "E", "name": "async_main::{{closure}}", "ts": 100261253, "tid": 1073, "dur": 1751, "args": {"depth": 0, "Function address": "0x55a3980a21b5"} } ],
+"displayTimeUnit": "microseconds" }
 ```
 
 
@@ -782,14 +777,14 @@ GDB Profiler输出Rust异步运行时执行轨迹到 traceEvents.json 中，提�
 
 ```json
 {
-  "name": "async_task_1",
-  "cat": "async",
-  "ph": "X",
-  "ts": 1234567.890,
-  "dur": 150.321,
-  "pid": 1,
-  "tid": 1234,
-  "args": { "task_id": 42 }
+    "name": "async_task_1",
+    "cat": "async",
+    "ph": "X",
+    "ts": 1234567.890,
+    "dur": 150.321,
+    "pid": 1,
+    "tid": 1234,
+    "args": { "task_id": 42 }
 }
 ```
 * name: 异步函数名。
@@ -842,8 +837,8 @@ GDB Profiler输出Rust异步运行时执行轨迹到 traceEvents.json 中，提�
 
 ```plain
 digraph G {
-    "complex_future_test::main" -> "complex_future_test::async_task_1";
-    "complex_future_test::main" -> "complex_future_test::async_task_2";
+"complex_future_test::main" -> "complex_future_test::async_task_1";
+"complex_future_test::main" -> "complex_future_test::async_task_2";
 }
 ```
 这个 .dot 文件可以使用  `dot` 命令行工具生成一张清晰的依赖关系图。这就是立项初期我们提到的“调用关系树形图”的简单实现。它有助于开发者理解异步代码的组织结构。
@@ -851,7 +846,7 @@ digraph G {
 
 
 ![图片](images/image_6.png)
-图3.5  async_task_1 和 async_task_2
+*图3.5  async_task_1 和 async_task_2*
 
 
 ### 4 功能评估与验证
@@ -861,20 +856,17 @@ digraph G {
 用户态：tokio
 
 ![图片](images/image_7.png)
-
-​																						图4.1 用户态tokio运行时结果
+*图4.1 用户态tokio运行时结果*
 
 内核态：rCore-Tutorial-v3
 
 ![图片](images/image_8.png)
-
-​																						图4.2 内核态 rcore 测试结果
+*图4.2 内核态 rcore 测试结果*
 
 GDB插桩+绘制异步函数火焰图功能：
 
 ![图片](images/image_9.png)
-
-​																											图4.3 火焰图
+*图4.3 火焰图*
 
 更严格的评估与验证决赛再进行补充。
 
@@ -882,31 +874,27 @@ GDB插桩+绘制异步函数火焰图功能：
 
 基于eBPF+kprobe技术实现异步函数跟踪：	运行 zCore 操作系统，并加载 eBPF 程序。通过模拟异步函数的调用场景，测试 eBPF 程序是否能够准确探测到函数的进入和退出事件。
 
-	经过测试，eBPF 程序能够成功探测到异步函数的kprobe和kretprobe事件，并正确记录事件类型、函数地址、线程 ID 等信息。通过查看 eBPF 输出的日志文件，验证了数据采集的准确性。如图4.4，在日志文件（async.log)中可以清晰看到函数进入和退出时记录的信息,此为原始数据，通过python脚本将日志输出转换为规范的json格式，得到图4.5，成功完成数据处理。
+经过测试，eBPF 程序能够成功探测到异步函数的kprobe和kretprobe事件，并正确记录事件类型、函数地址、线程 ID 等信息。通过查看 eBPF 输出的日志文件，验证了数据采集的准确性。如图4.4，在日志文件（async.log)中可以清晰看到函数进入和退出时记录的信息,此为原始数据，通过python脚本将日志输出转换为规范的json格式，得到图4.5，成功完成数据处理。
 	
-	 ![图片](images/image_10.png)
-
-​																										图4.4 log 文件内容
+![图片](images/image_10.png)
+*4.4 log 文件内容*
 
 ![图片](images/image_11.png)
-
-​																										图4.5 json 格式的输出
+*图4.5 json 格式的输出*
 
 该方法的可视化界面结果和分析：
 
 通过可视化界面展示异步函数的调用情况，不同颜色矩形条代表不同函数调用，其长度反映函数执行持续时间，位置对应执行时间点。如图4.6可清晰看到函数执行的先后顺序和时间跨度。点击不同的颜色条可以看到不同的函数信息，移动时间轴，可以看到整个过程的异步信息。不一样的颜色代表不同类型的异步函数，从上到下依次为异步函数的嵌套逻辑，从左到右为执行时间。
 
-例如，图中4.7中<core::future::from_generator::GenFuture<...>::poll 函数，其矩形条在时间轴上占据一定时长，表明执行有一定耗时。结合详细信息面板，该函数开始时间为 00:39:12.508 200 000 ，持续时间 1s 694ms 700us 。从线程和进程信息（线程 1073 [27883] 、进程 1073 [27877] ）可知其执行环境。
+例如，图中4.7中`<core::future::from_generator::GenFuture<...>::poll`函数，其矩形条在时间轴上占据一定时长，表明执行有一定耗时。结合详细信息面板，该函数开始时间为 00:39:12.508 200 000 ，持续时间 1s 694ms 700us 。从线程和进程信息（线程 1073 [27883] 、进程 1073 [27877] ）可知其执行环境。
 
-    这种可视化呈现方式，能直观展现异步函数调用流程，帮助开发者快速定位执行耗时较长的函数，识别可能影响系统性能的关键函数节点。
+这种可视化呈现方式，能直观展现异步函数调用流程，帮助开发者快速定位执行耗时较长的函数，识别可能影响系统性能的关键函数节点。
 
 ![图片](images/image_12.png)
-
-​																								图4.6 	可视化火焰图1
+*图4.6 	可视化火焰图1*
 
 ![图片](images/image_13.png)
-
-​																								图4.7  可视化火焰图2
+*图4.7  可视化火焰图2*
 
 ### 5 遇到的困难和解决办法
 
