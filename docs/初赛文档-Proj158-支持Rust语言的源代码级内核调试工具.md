@@ -17,9 +17,9 @@
       - [2.1 现有研究调研概况](#21-现有研究调研概况)
       - [2.2 设计思路](#22-设计思路)
     - [3 核心模块实现与功能](#3-核心模块实现与功能)
-      - [3.1 模块一：数据采集层实现](#31-模块一：数据采集层实现)
-      - [3.2 模块二：数据处理层实现](#32-模块二：数据处理层实现)
-      - [3.3 模块三：可视化展示层实现](#33-模块三：可视化展示层实现)
+      - [3.1 模块一：数据采集层实现](https://github.com/Irissssaa/code-debug_Asynchronous-trace/blob/main/docs/%E5%88%9D%E8%B5%9B%E6%96%87%E6%A1%A3-Proj158-%E6%94%AF%E6%8C%81Rust%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7.md#31-%E6%A8%A1%E5%9D%97%E4%B8%80%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%B1%82%E5%AE%9E%E7%8E%B0)
+      - [3.2 模块二：数据处理层实现](https://github.com/Irissssaa/code-debug_Asynchronous-trace/blob/main/docs/%E5%88%9D%E8%B5%9B%E6%96%87%E6%A1%A3-Proj158-%E6%94%AF%E6%8C%81Rust%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7.md#32%E6%A8%A1%E5%9D%97%E4%BA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%B1%82%E5%AE%9E%E7%8E%B0)
+      - [3.3 模块三：可视化展示层实现](https://github.com/Irissssaa/code-debug_Asynchronous-trace/blob/main/docs/%E5%88%9D%E8%B5%9B%E6%96%87%E6%A1%A3-Proj158-%E6%94%AF%E6%8C%81Rust%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7.md#33-%E6%A8%A1%E5%9D%97%E4%B8%89%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B1%95%E7%A4%BA%E5%B1%82%E5%AE%9E%E7%8E%B0)
     - [4 功能评估与验证](#4-功能评估与验证)
     - [5 遇到的困难和解决办法](#5-遇到的困难和解决办法)
 
