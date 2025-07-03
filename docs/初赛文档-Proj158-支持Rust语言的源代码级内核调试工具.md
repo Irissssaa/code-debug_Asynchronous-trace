@@ -6,6 +6,8 @@
 
 指导老师：吴竞邦
 
+初赛文档PDF版[入口](https://github.com/Irissssaa/code-debug_Asynchronous-trace/blob/main/docs/Proj158_%E6%94%AF%E6%8C%81Rust%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B71.pdf)
+
 ### 目录
 - [基于GDB的Rust异步函数调试方法](#基于GDB的Rust异步函数调试方法)
     - [摘要](#摘要)
