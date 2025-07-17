@@ -1,9 +1,0 @@
-gdb-fortran-main.patch
-solve_PATH_MAX_issue.patch
-gdb-6.5-bz185337-resolve-tls-without-debuginfo-v2.patch
-load-versioned-libcc1.patch
-gdb_configure.nat.patch
-fork-inferior-fix
-fix-build.patch
-gdb-strings.patch
-ptrace-error-verbosity.patch

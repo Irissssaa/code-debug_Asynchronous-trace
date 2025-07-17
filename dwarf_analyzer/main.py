@@ -390,6 +390,8 @@ def main():
     binary_path = sys.argv[1]
     output_json = len(sys.argv) > 2 and sys.argv[2] == '--json'
     analyzer = DwarfAnalyzer(binary_path)
+    print("PATH:", os.environ["PATH"])
+    print("PWD:", os.getcwd())
     if output_json:
         analyzer.output_json()
     else:

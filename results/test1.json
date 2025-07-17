@@ -1,0 +1,11 @@
+PATH: /home/iristseng/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/bin:/home/iristseng/data/bin/clang+llvm-12.0.1-x86_64-linux-gnu-ubuntu-/bin:/home/iristseng/data/bin/riscv64-linux-musl-cross/bin:/bin:/usr/bin:/home/iristseng/.cargo/bin
+PWD: /home/iristseng/data/code-debug_Asynchronous-trace
+
+[DEBUG] All parsed structures:
+=== Future Analysis ===
+
+Async Functions:
+
+State Machines:
+
+Future Dependency Tree:

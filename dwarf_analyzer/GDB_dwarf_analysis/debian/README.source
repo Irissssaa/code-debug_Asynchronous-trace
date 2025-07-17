@@ -1,9 +1,0 @@
-Debian and the FSF have different positions on the GFDL.
-Consequently, the GDB release tarball includes GFDL documents which
-must go in the Debian non-free section.
-
-To produce the necessary tarballs, download an official GDB release as
-.tar.xz from the FSF.  Run debian/sanitize-gdb.sh on it.  That
-will produce a gdb .orig.tar.xz and a gdb-doc .orig.tar.xz
-
- -- Samuel Bronson <naesten@gmail.com>, Sat,  3 May 2014 17:22:31 -0400
