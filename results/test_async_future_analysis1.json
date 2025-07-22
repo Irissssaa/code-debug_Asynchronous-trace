@@ -1,0 +1,5292 @@
+iristseng@iristseng:~/data/rust-future-tracing$ python3 ./dwarf_analyzer/main.py tests/async_future_analysis/target/debug/async_future_analysis --json
+{
+  "async_functions": [
+    {
+      "name": "<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable_type}",
+      "size": 32,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "drop_in_place",
+          "type": "d18",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "size",
+          "type": "d2c",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "align",
+          "type": "d2c",
+          "offset": 16,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__method3",
+          "type": "d18",
+          "offset": 24,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "ce0"
+    },
+    {
+      "name": "{async_block_env#0}",
+      "size": 40,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 100
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 103
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 103
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 101
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "1423",
+          "offset": 36,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "d95",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 100
+        },
+        {
+          "name": "1",
+          "type": "d9c",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 103
+        },
+        {
+          "name": "2",
+          "type": "da3",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 103
+        },
+        {
+          "name": "3",
+          "type": "daa",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 101
+        },
+        {
+          "name": "__awaitee",
+          "type": "e6c",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "d3d"
+    },
+    {
+      "name": "{async_fn_env#0}",
+      "size": 36,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 53
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 54
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 55
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "1423",
+          "offset": 0,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "ed4",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 53
+        },
+        {
+          "name": "1",
+          "type": "edb",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 56
+        },
+        {
+          "name": "2",
+          "type": "ee2",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 56
+        },
+        {
+          "name": "3",
+          "type": "ee9",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 54
+        },
+        {
+          "name": "4",
+          "type": "efc",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 55
+        },
+        {
+          "name": "__awaitee",
+          "type": "fd3",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "127a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "e6c"
+    },
+    {
+      "name": "{async_fn_env#0}<0xfd3>",
+      "size": 32,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 35
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 39
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 40
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "1423",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "103b",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 35
+        },
+        {
+          "name": "1",
+          "type": "1059",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 43
+        },
+        {
+          "name": "2",
+          "type": "1077",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 43
+        },
+        {
+          "name": "3",
+          "type": "1095",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 39
+        },
+        {
+          "name": "4",
+          "type": "10c9",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 40
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b_future",
+          "type": "1254",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "1254",
+          "offset": 24,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a_result",
+          "type": "142a",
+          "offset": 8,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "1254",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "fd3"
+    },
+    {
+      "name": "{async_fn_env#0}<0x127a>",
+      "size": 16,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 46
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 48
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "1423",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "12d2",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 46
+        },
+        {
+          "name": "1",
+          "type": "12e5",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 50
+        },
+        {
+          "name": "2",
+          "type": "12f8",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 50
+        },
+        {
+          "name": "3",
+          "type": "130b",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 48
+        },
+        {
+          "name": "n",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "1254",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "127a"
+    },
+    {
+      "name": "Pin<&mut async_future_analysis::add_future::{async_fn_env#0}>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "line": 1353
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "19f5",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "decl_line": 1353
+        }
+      ],
+      "type_id": "15ea"
+    },
+    {
+      "name": "Pin<&mut async_future_analysis::double_future::{async_fn_env#0}>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "line": 1353
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "1a1e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "decl_line": 1353
+        }
+      ],
+      "type_id": "1627"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<async_future_analysis::main::{async_block_env#0}, alloc::alloc::Global>>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "1b5d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "1664"
+    },
+    {
+      "name": "Pin<&mut async_future_analysis::compute_result::{async_fn_env#0}>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "line": 1353
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "1c4a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "decl_line": 1353
+        }
+      ],
+      "type_id": "16a0"
+    },
+    {
+      "name": "{async_fn_env#0}<0x4497>",
+      "size": 32,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 35
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 39
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 40
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "4b76",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "44ff",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 35
+        },
+        {
+          "name": "1",
+          "type": "451d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 43
+        },
+        {
+          "name": "2",
+          "type": "453b",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 43
+        },
+        {
+          "name": "3",
+          "type": "4559",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 39
+        },
+        {
+          "name": "4",
+          "type": "458d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 40
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b_future",
+          "type": "4335",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "4335",
+          "offset": 24,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a_result",
+          "type": "4724",
+          "offset": 8,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "4335",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "4497"
+    },
+    {
+      "name": "{async_fn_env#0}<0x45c8>",
+      "size": 16,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 46
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 48
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "4b76",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "4620",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 46
+        },
+        {
+          "name": "1",
+          "type": "4633",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 50
+        },
+        {
+          "name": "2",
+          "type": "4646",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 50
+        },
+        {
+          "name": "3",
+          "type": "4659",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 48
+        },
+        {
+          "name": "n",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "4335",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "45c8"
+    },
+    {
+      "name": "{async_fn_env#0}<0x467e>",
+      "size": 36,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 53
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 54
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 55
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "4b76",
+          "offset": 0,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "46e6",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 53
+        },
+        {
+          "name": "1",
+          "type": "46ed",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 56
+        },
+        {
+          "name": "2",
+          "type": "46f4",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 56
+        },
+        {
+          "name": "3",
+          "type": "46fb",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 54
+        },
+        {
+          "name": "4",
+          "type": "470e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 55
+        },
+        {
+          "name": "__awaitee",
+          "type": "4497",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "45c8",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "467e"
+    },
+    {
+      "name": "{async_block_env#0}<0x6e42>",
+      "size": 40,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 100
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 103
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 103
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 101
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "6cb7",
+          "offset": 36,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "6e9a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 100
+        },
+        {
+          "name": "1",
+          "type": "6ea1",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 103
+        },
+        {
+          "name": "2",
+          "type": "6ea8",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 103
+        },
+        {
+          "name": "3",
+          "type": "6eaf",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 101
+        },
+        {
+          "name": "__awaitee",
+          "type": "6ec9",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "6e42"
+    },
+    {
+      "name": "{async_fn_env#0}<0x6ec9>",
+      "size": 36,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 53
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 54
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 55
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "6cb7",
+          "offset": 0,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "6f31",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 53
+        },
+        {
+          "name": "1",
+          "type": "6f38",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 56
+        },
+        {
+          "name": "2",
+          "type": "6f3f",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 56
+        },
+        {
+          "name": "3",
+          "type": "6f46",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 54
+        },
+        {
+          "name": "4",
+          "type": "6f59",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 55
+        },
+        {
+          "name": "__awaitee",
+          "type": "6f73",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "70c5",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "6ec9"
+    },
+    {
+      "name": "{async_fn_env#0}<0x6f73>",
+      "size": 32,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 35
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 39
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 40
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "6cb7",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "6fdb",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 35
+        },
+        {
+          "name": "1",
+          "type": "6ff9",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 43
+        },
+        {
+          "name": "2",
+          "type": "7017",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 43
+        },
+        {
+          "name": "3",
+          "type": "7035",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 39
+        },
+        {
+          "name": "4",
+          "type": "7069",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 40
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b_future",
+          "type": "709f",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "709f",
+          "offset": 24,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a_result",
+          "type": "7177",
+          "offset": 8,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "709f",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "6f73"
+    },
+    {
+      "name": "{async_fn_env#0}<0x70c5>",
+      "size": 16,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 46
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 48
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "6cb7",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "711d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 46
+        },
+        {
+          "name": "1",
+          "type": "7130",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 50
+        },
+        {
+          "name": "2",
+          "type": "7143",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 50
+        },
+        {
+          "name": "3",
+          "type": "7156",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 48
+        },
+        {
+          "name": "n",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "709f",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "70c5"
+    }
+  ],
+  "state_machines": [
+    {
+      "name": "<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable_type}",
+      "size": 32,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "drop_in_place",
+          "type": "d18",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "size",
+          "type": "d2c",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "align",
+          "type": "d2c",
+          "offset": 16,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__method3",
+          "type": "d18",
+          "offset": 24,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "ce0"
+    },
+    {
+      "name": "{async_block_env#0}",
+      "size": 40,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 100
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 103
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 103
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 101
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "1423",
+          "offset": 36,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "d95",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 100
+        },
+        {
+          "name": "1",
+          "type": "d9c",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 103
+        },
+        {
+          "name": "2",
+          "type": "da3",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 103
+        },
+        {
+          "name": "3",
+          "type": "daa",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 101
+        },
+        {
+          "name": "__awaitee",
+          "type": "e6c",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "d3d"
+    },
+    {
+      "name": "{async_fn_env#0}",
+      "size": 36,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 53
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 54
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 55
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "1423",
+          "offset": 0,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "ed4",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 53
+        },
+        {
+          "name": "1",
+          "type": "edb",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 56
+        },
+        {
+          "name": "2",
+          "type": "ee2",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 56
+        },
+        {
+          "name": "3",
+          "type": "ee9",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 54
+        },
+        {
+          "name": "4",
+          "type": "efc",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 55
+        },
+        {
+          "name": "__awaitee",
+          "type": "fd3",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "127a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "e6c"
+    },
+    {
+      "name": "{async_fn_env#0}<0xfd3>",
+      "size": 32,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 35
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 39
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 40
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "1423",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "103b",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 35
+        },
+        {
+          "name": "1",
+          "type": "1059",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 43
+        },
+        {
+          "name": "2",
+          "type": "1077",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 43
+        },
+        {
+          "name": "3",
+          "type": "1095",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 39
+        },
+        {
+          "name": "4",
+          "type": "10c9",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 40
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b_future",
+          "type": "1254",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "1254",
+          "offset": 24,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a_result",
+          "type": "142a",
+          "offset": 8,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "1254",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "142a",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "fd3"
+    },
+    {
+      "name": "NumberFuture",
+      "size": 8,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "value",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "processed",
+          "type": "1431",
+          "offset": 4,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "1254"
+    },
+    {
+      "name": "{async_fn_env#0}<0x127a>",
+      "size": 16,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 46
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "line": 48
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "1423",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "12d2",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 46
+        },
+        {
+          "name": "1",
+          "type": "12e5",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 50
+        },
+        {
+          "name": "2",
+          "type": "12f8",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 50
+        },
+        {
+          "name": "3",
+          "type": "130b",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable}",
+          "decl_line": 48
+        },
+        {
+          "name": "n",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "1254",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "142a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "127a"
+    },
+    {
+      "name": "Pin<&mut async_future_analysis::NumberFuture>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "line": 1353
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "19cc",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "decl_line": 1353
+        }
+      ],
+      "type_id": "15ad"
+    },
+    {
+      "name": "Pin<&mut async_future_analysis::add_future::{async_fn_env#0}>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "line": 1353
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "19f5",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "decl_line": 1353
+        }
+      ],
+      "type_id": "15ea"
+    },
+    {
+      "name": "Pin<&mut async_future_analysis::double_future::{async_fn_env#0}>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "line": 1353
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "1a1e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "decl_line": 1353
+        }
+      ],
+      "type_id": "1627"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<async_future_analysis::main::{async_block_env#0}, alloc::alloc::Global>>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "1b5d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "1664"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "1b6a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "1682"
+    },
+    {
+      "name": "Pin<&mut async_future_analysis::compute_result::{async_fn_env#0}>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "line": 1353
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "1c4a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/size",
+          "decl_line": 1353
+        }
+      ],
+      "type_id": "16a0"
+    },
+    {
+      "name": "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "174f"
+    },
+    {
+      "name": "Vec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global>",
+      "size": 24,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "buf",
+          "type": "1af2",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "len",
+          "type": "d2c",
+          "offset": 16,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "1aab"
+    },
+    {
+      "name": "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global>",
+      "size": 16,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "inner",
+          "type": "1b25",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "_marker",
+          "type": "174f",
+          "offset": 16,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "1af2"
+    },
+    {
+      "name": "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "1b88",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "1b98",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "1b6a"
+    },
+    {
+      "name": "dyn core::future::future::Future<Output=()>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "1b91"
+    },
+    {
+      "name": "NonNull<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/_Align1Shl0",
+          "line": 385
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "2ab8",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/_Align1Shl0",
+          "decl_line": 385
+        }
+      ],
+      "type_id": "2ab8"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x2bd1>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "31c9",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "2bd1"
+    },
+    {
+      "name": "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x2c07>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "2c07"
+    },
+    {
+      "name": "Vec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x2d7e>",
+      "size": 24,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/core",
+          "line": 1618
+        }
+      ],
+      "members": [
+        {
+          "name": "buf",
+          "type": "309a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "len",
+          "type": "3370",
+          "offset": 16,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/core",
+          "decl_line": 1618
+        }
+      ],
+      "type_id": "2d7e"
+    },
+    {
+      "name": "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x309a>",
+      "size": 16,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/ptr",
+          "line": 285
+        }
+      ],
+      "members": [
+        {
+          "name": "inner",
+          "type": "311d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "_marker",
+          "type": "3292",
+          "offset": 16,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/ptr",
+          "decl_line": 285
+        }
+      ],
+      "type_id": "309a"
+    },
+    {
+      "name": "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x31c9>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "31e7",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "31f7",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "31c9"
+    },
+    {
+      "name": "dyn core::future::future::Future<Output=()><0x31f0>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "31f0"
+    },
+    {
+      "name": "&mut [core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>]",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "data_ptr",
+          "type": "3960",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "length",
+          "type": "3211",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "3942"
+    },
+    {
+      "name": "NumberFuture<0x4335>",
+      "size": 8,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 12
+        }
+      ],
+      "members": [
+        {
+          "name": "value",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "processed",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 12
+        }
+      ],
+      "type_id": "4335"
+    },
+    {
+      "name": "{async_fn_env#0}<0x4497>",
+      "size": 32,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 35
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 39
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 40
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "4b76",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "44ff",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 35
+        },
+        {
+          "name": "1",
+          "type": "451d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 43
+        },
+        {
+          "name": "2",
+          "type": "453b",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 43
+        },
+        {
+          "name": "3",
+          "type": "4559",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 39
+        },
+        {
+          "name": "4",
+          "type": "458d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 40
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b_future",
+          "type": "4335",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "4335",
+          "offset": 24,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a_result",
+          "type": "4724",
+          "offset": 8,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "4335",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "4724",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "4497"
+    },
+    {
+      "name": "{async_fn_env#0}<0x45c8>",
+      "size": 16,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 46
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 48
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "4b76",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "4620",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 46
+        },
+        {
+          "name": "1",
+          "type": "4633",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 50
+        },
+        {
+          "name": "2",
+          "type": "4646",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 50
+        },
+        {
+          "name": "3",
+          "type": "4659",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 48
+        },
+        {
+          "name": "n",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "4335",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "4724",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "45c8"
+    },
+    {
+      "name": "{async_fn_env#0}<0x467e>",
+      "size": 36,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 53
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 54
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "line": 55
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "4b76",
+          "offset": 0,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "46e6",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 53
+        },
+        {
+          "name": "1",
+          "type": "46ed",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 56
+        },
+        {
+          "name": "2",
+          "type": "46f4",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 56
+        },
+        {
+          "name": "3",
+          "type": "46fb",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 54
+        },
+        {
+          "name": "4",
+          "type": "470e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/async_future_analysis",
+          "decl_line": 55
+        },
+        {
+          "name": "__awaitee",
+          "type": "4497",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "45c8",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "467e"
+    },
+    {
+      "name": "Vec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x475e>",
+      "size": 24,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "buf",
+          "type": "47a5",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "len",
+          "type": "4b68",
+          "offset": 16,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "475e"
+    },
+    {
+      "name": "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x47a5>",
+      "size": 16,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "inner",
+          "type": "47d8",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "_marker",
+          "type": "4905",
+          "offset": 16,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "47a5"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x481a>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/NumberFuture",
+          "line": 1410
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "4bbb",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/NumberFuture",
+          "decl_line": 1410
+        }
+      ],
+      "type_id": "481a"
+    },
+    {
+      "name": "Pin<&mut dyn core::future::future::Future<Output=()>>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "4b9d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "4857"
+    },
+    {
+      "name": "Pin<&mut async_future_analysis::NumberFuture><0x4875>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "4c92",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "4875"
+    },
+    {
+      "name": "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x4905>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "4905"
+    },
+    {
+      "name": "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x4b20>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "4b3e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "4b4e",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "4b20"
+    },
+    {
+      "name": "dyn core::future::future::Future<Output=()><0x4b47>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "4b47"
+    },
+    {
+      "name": "&mut dyn core::future::future::Future<Output=()>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "4b3e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "4b4e",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "4b9d"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x4e07>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "4e27",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "4e07"
+    },
+    {
+      "name": "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x4e27>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "4e45",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "4e55",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "4e27"
+    },
+    {
+      "name": "dyn core::future::future::Future<Output=()><0x4e4e>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "4e4e"
+    },
+    {
+      "name": "&mut [core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>]<0x4e8a>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "data_ptr",
+          "type": "4ea8",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "length",
+          "type": "4e6f",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "4e8a"
+    },
+    {
+      "name": "Pin<&mut async_future_analysis::NumberFuture><0x6145>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/core",
+          "line": 1353
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "62f1",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/core",
+          "decl_line": 1353
+        }
+      ],
+      "type_id": "6145"
+    },
+    {
+      "name": "Pin<&async_future_analysis::NumberFuture>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/core",
+          "line": 1353
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "6333",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/core",
+          "decl_line": 1353
+        }
+      ],
+      "type_id": "61c0"
+    },
+    {
+      "name": "NumberFuture<0x6303>",
+      "size": 8,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "value",
+          "type": "6325",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "processed",
+          "type": "632c",
+          "offset": 4,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "6303"
+    },
+    {
+      "name": "NonNull<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x6836>",
+      "size": 8,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/Self",
+          "line": 385
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "6836",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/Self",
+          "decl_line": 385
+        }
+      ],
+      "type_id": "6836"
+    },
+    {
+      "name": "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x688c>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "688c"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x68e9>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "6cd2",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "68e9"
+    },
+    {
+      "name": "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x6af3>",
+      "size": 16,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/call_once<std::rt::lang_start::{closure_env#0}<()>, ()>",
+          "line": 285
+        }
+      ],
+      "members": [
+        {
+          "name": "inner",
+          "type": "6a6d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "_marker",
+          "type": "6d7a",
+          "offset": 16,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/call_once<std::rt::lang_start::{closure_env#0}<()>, ()>",
+          "decl_line": 285
+        }
+      ],
+      "type_id": "6af3"
+    },
+    {
+      "name": "Vec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x6ba4>",
+      "size": 24,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/FnOnce",
+          "line": 1756
+        }
+      ],
+      "members": [
+        {
+          "name": "buf",
+          "type": "6af3",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "len",
+          "type": "6da0",
+          "offset": 16,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/FnOnce",
+          "decl_line": 1756
+        }
+      ],
+      "type_id": "6ba4"
+    },
+    {
+      "name": "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x6cd2>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "6cf0",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "6d00",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "6cd2"
+    },
+    {
+      "name": "dyn core::future::future::Future<Output=()><0x6cf9>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "6cf9"
+    },
+    {
+      "name": "{async_block_env#0}<0x6e42>",
+      "size": 40,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 100
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 103
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 103
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 101
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "6cb7",
+          "offset": 36,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "6e9a",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 100
+        },
+        {
+          "name": "1",
+          "type": "6ea1",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 103
+        },
+        {
+          "name": "2",
+          "type": "6ea8",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 103
+        },
+        {
+          "name": "3",
+          "type": "6eaf",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 101
+        },
+        {
+          "name": "__awaitee",
+          "type": "6ec9",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "6e42"
+    },
+    {
+      "name": "{async_fn_env#0}<0x6ec9>",
+      "size": 36,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 53
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 56
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 54
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 55
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "6cb7",
+          "offset": 0,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "6f31",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 53
+        },
+        {
+          "name": "1",
+          "type": "6f38",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 56
+        },
+        {
+          "name": "2",
+          "type": "6f3f",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 56
+        },
+        {
+          "name": "3",
+          "type": "6f46",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 54
+        },
+        {
+          "name": "4",
+          "type": "6f59",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 55
+        },
+        {
+          "name": "__awaitee",
+          "type": "6f73",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "70c5",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "6ec9"
+    },
+    {
+      "name": "{async_fn_env#0}<0x6f73>",
+      "size": 32,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 35
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 43
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 39
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 40
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "6cb7",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "6fdb",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 35
+        },
+        {
+          "name": "1",
+          "type": "6ff9",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 43
+        },
+        {
+          "name": "2",
+          "type": "7017",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 43
+        },
+        {
+          "name": "3",
+          "type": "7035",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 39
+        },
+        {
+          "name": "4",
+          "type": "7069",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 40
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b_future",
+          "type": "709f",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "709f",
+          "offset": 24,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a_result",
+          "type": "7177",
+          "offset": 8,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "709f",
+          "offset": 16,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "a",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "b",
+          "type": "7177",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "6f73"
+    },
+    {
+      "name": "NumberFuture<0x709f>",
+      "size": 8,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "value",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "processed",
+          "type": "717e",
+          "offset": 4,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "709f"
+    },
+    {
+      "name": "{async_fn_env#0}<0x70c5>",
+      "size": 16,
+      "alignment": 4,
+      "is_async_fn": true,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 46
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 50
+        },
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "line": 48
+        }
+      ],
+      "members": [
+        {
+          "name": "__state",
+          "type": "6cb7",
+          "offset": 12,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": true,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "0",
+          "type": "711d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 46
+        },
+        {
+          "name": "1",
+          "type": "7130",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 50
+        },
+        {
+          "name": "2",
+          "type": "7143",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 50
+        },
+        {
+          "name": "3",
+          "type": "7156",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/function",
+          "decl_line": 48
+        },
+        {
+          "name": "n",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "__awaitee",
+          "type": "709f",
+          "offset": 4,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "n",
+          "type": "7177",
+          "offset": 0,
+          "size": 0,
+          "alignment": 4,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "70c5"
+    },
+    {
+      "name": "*mut [core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>]",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "data_ptr",
+          "type": "71b0",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "length",
+          "type": "6ccb",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "7192"
+    },
+    {
+      "name": "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x7730>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "7730"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x77cf>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "79de",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "77cf"
+    },
+    {
+      "name": "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x785b>",
+      "size": 16,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/core",
+          "line": 339
+        }
+      ],
+      "members": [
+        {
+          "name": "inner",
+          "type": "7800",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "_marker",
+          "type": "7964",
+          "offset": 16,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/data/rust-future-tracing/tests/async_future_analysis/core",
+          "decl_line": 339
+        }
+      ],
+      "type_id": "785b"
+    },
+    {
+      "name": "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x79de>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "79fc",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "7a0c",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "79de"
+    },
+    {
+      "name": "dyn core::future::future::Future<Output=()><0x7a05>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "7a05"
+    },
+    {
+      "name": "LocalFutureObj<()>",
+      "size": 24,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/noop_waker",
+          "line": 45
+        }
+      ],
+      "members": [
+        {
+          "name": "future",
+          "type": "31791",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "drop_fn",
+          "type": "31d85",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "_marker",
+          "type": "31e01",
+          "offset": 24,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/noop_waker",
+          "decl_line": 45
+        }
+      ],
+      "type_id": "30455"
+    },
+    {
+      "name": "FutureObj<()>",
+      "size": 24,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/noop_waker",
+          "line": 111
+        }
+      ],
+      "members": [
+        {
+          "name": "__0",
+          "type": "31e01",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/noop_waker",
+          "decl_line": 111
+        }
+      ],
+      "type_id": "30527"
+    },
+    {
+      "name": "NonNull<dyn core::future::future::Future<Output=()>>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/*const ()",
+          "line": 486
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "30c28",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/*const ()",
+          "decl_line": 486
+        }
+      ],
+      "type_id": "30c28"
+    },
+    {
+      "name": "Unique<dyn core::future::future::Future<Output=()>>",
+      "size": 16,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/data_ptr",
+          "line": 152
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "30c28",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "_marker",
+          "type": "30d8b",
+          "offset": 16,
+          "size": 0,
+          "alignment": 1,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/data_ptr",
+          "decl_line": 152
+        }
+      ],
+      "type_id": "30d8b"
+    },
+    {
+      "name": "PhantomData<dyn core::future::future::Future<Output=()>>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "311e7"
+    },
+    {
+      "name": "ManuallyDrop<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "value",
+          "type": "313de",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "312ca"
+    },
+    {
+      "name": "ManuallyDrop<core::pin::Pin<alloc::boxed::Box<(dyn core::future::future::Future<Output=()> + core::marker::Send), alloc::alloc::Global>>>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "value",
+          "type": "3141b",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "312e8"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x313de>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/noop_waker_ref",
+          "line": 1410
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "31f1d",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/noop_waker_ref",
+          "decl_line": 1410
+        }
+      ],
+      "type_id": "313de"
+    },
+    {
+      "name": "Pin<alloc::boxed::Box<(dyn core::future::future::Future<Output=()> + core::marker::Send), alloc::alloc::Global>>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [
+        {
+          "file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/noop_waker_ref",
+          "line": 1410
+        }
+      ],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "31f64",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-task-0.3.31/noop_waker_ref",
+          "decl_line": 1410
+        }
+      ],
+      "type_id": "3141b"
+    },
+    {
+      "name": "Pin<&mut dyn core::future::future::Future<Output=()>><0x31458>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "31eff",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "31458"
+    },
+    {
+      "name": "Pin<&mut (dyn core::future::future::Future<Output=()> + core::marker::Send)>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "31f46",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "31476"
+    },
+    {
+      "name": "dyn core::future::future::Future<Output=()><0x31749>",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "31749"
+    },
+    {
+      "name": "*const dyn core::future::future::Future<Output=()>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "3176e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "31777",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "31750"
+    },
+    {
+      "name": "*mut dyn core::future::future::Future<Output=()>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "3176e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "31777",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "31791"
+    },
+    {
+      "name": "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x31c27>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "3176e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "31777",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "31c27"
+    },
+    {
+      "name": "alloc::boxed::Box<(dyn core::future::future::Future<Output=()> + core::marker::Send), alloc::alloc::Global>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "31e1f",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "31777",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "31e01"
+    },
+    {
+      "name": "(dyn core::future::future::Future<Output=()> + core::marker::Send)",
+      "size": 0,
+      "alignment": 1,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [],
+      "type_id": "31e28"
+    },
+    {
+      "name": "&mut dyn core::future::future::Future<Output=()><0x31eff>",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "3176e",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "31777",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "31eff"
+    },
+    {
+      "name": "&mut (dyn core::future::future::Future<Output=()> + core::marker::Send)",
+      "size": 16,
+      "alignment": 8,
+      "is_async_fn": false,
+      "state_machine": true,
+      "locations": [],
+      "members": [
+        {
+          "name": "pointer",
+          "type": "31e1f",
+          "offset": 0,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        },
+        {
+          "name": "vtable",
+          "type": "31777",
+          "offset": 8,
+          "size": 0,
+          "alignment": 8,
+          "is_artificial": false,
+          "decl_file": null,
+          "decl_line": null
+        }
+      ],
+      "type_id": "31f46"
+    }
+  ],
+  "dependency_tree": {
+    "<async_future_analysis::main::{async_block_env#0} as core::future::future::Future>::{vtable_type}": [],
+    "{async_block_env#0}": [
+      "{async_fn_env#0}<0x127a>",
+      "{async_fn_env#0}",
+      "{async_fn_env#0}<0xfd3>",
+      "NumberFuture"
+    ],
+    "{async_fn_env#0}": [
+      "{async_fn_env#0}<0x127a>",
+      "{async_fn_env#0}<0xfd3>",
+      "NumberFuture"
+    ],
+    "{async_fn_env#0}<0xfd3>": [
+      "NumberFuture"
+    ],
+    "NumberFuture": [],
+    "{async_fn_env#0}<0x127a>": [
+      "NumberFuture"
+    ],
+    "Pin<&mut async_future_analysis::NumberFuture>": [],
+    "Pin<&mut async_future_analysis::add_future::{async_fn_env#0}>": [],
+    "Pin<&mut async_future_analysis::double_future::{async_fn_env#0}>": [],
+    "Pin<alloc::boxed::Box<async_future_analysis::main::{async_block_env#0}, alloc::alloc::Global>>": [],
+    "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>": [
+      "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>"
+    ],
+    "Pin<&mut async_future_analysis::compute_result::{async_fn_env#0}>": [],
+    "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>>": [],
+    "Vec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global>": [
+      "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>>",
+      "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global>"
+    ],
+    "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global>": [
+      "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>>"
+    ],
+    "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>": [],
+    "dyn core::future::future::Future<Output=()>": [],
+    "NonNull<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>>": [],
+    "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x2bd1>": [
+      "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x31c9>"
+    ],
+    "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x2c07>": [],
+    "Vec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x2d7e>": [
+      "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x309a>"
+    ],
+    "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x309a>": [],
+    "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x31c9>": [],
+    "dyn core::future::future::Future<Output=()><0x31f0>": [],
+    "&mut [core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>]": [],
+    "NumberFuture<0x4335>": [],
+    "{async_fn_env#0}<0x4497>": [
+      "NumberFuture<0x4335>"
+    ],
+    "{async_fn_env#0}<0x45c8>": [
+      "NumberFuture<0x4335>"
+    ],
+    "{async_fn_env#0}<0x467e>": [
+      "NumberFuture<0x4335>",
+      "{async_fn_env#0}<0x4497>",
+      "{async_fn_env#0}<0x45c8>"
+    ],
+    "Vec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x475e>": [
+      "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x4905>",
+      "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x47a5>"
+    ],
+    "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x47a5>": [
+      "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x4905>"
+    ],
+    "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x481a>": [],
+    "Pin<&mut dyn core::future::future::Future<Output=()>>": [
+      "&mut dyn core::future::future::Future<Output=()>"
+    ],
+    "Pin<&mut async_future_analysis::NumberFuture><0x4875>": [],
+    "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x4905>": [],
+    "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x4b20>": [],
+    "dyn core::future::future::Future<Output=()><0x4b47>": [],
+    "&mut dyn core::future::future::Future<Output=()>": [],
+    "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x4e07>": [
+      "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x4e27>"
+    ],
+    "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x4e27>": [],
+    "dyn core::future::future::Future<Output=()><0x4e4e>": [],
+    "&mut [core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>]<0x4e8a>": [],
+    "Pin<&mut async_future_analysis::NumberFuture><0x6145>": [],
+    "Pin<&async_future_analysis::NumberFuture>": [],
+    "NumberFuture<0x6303>": [],
+    "NonNull<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x6836>": [],
+    "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x688c>": [],
+    "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x68e9>": [
+      "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x6cd2>"
+    ],
+    "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x6af3>": [],
+    "Vec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x6ba4>": [
+      "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x6af3>"
+    ],
+    "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x6cd2>": [],
+    "dyn core::future::future::Future<Output=()><0x6cf9>": [],
+    "{async_block_env#0}<0x6e42>": [
+      "{async_fn_env#0}<0x70c5>",
+      "{async_fn_env#0}<0x6ec9>",
+      "NumberFuture<0x709f>",
+      "{async_fn_env#0}<0x6f73>"
+    ],
+    "{async_fn_env#0}<0x6ec9>": [
+      "{async_fn_env#0}<0x70c5>",
+      "NumberFuture<0x709f>",
+      "{async_fn_env#0}<0x6f73>"
+    ],
+    "{async_fn_env#0}<0x6f73>": [
+      "NumberFuture<0x709f>"
+    ],
+    "NumberFuture<0x709f>": [],
+    "{async_fn_env#0}<0x70c5>": [
+      "NumberFuture<0x709f>"
+    ],
+    "*mut [core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>]": [],
+    "PhantomData<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>><0x7730>": [],
+    "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x77cf>": [
+      "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x79de>"
+    ],
+    "RawVec<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>, alloc::alloc::Global><0x785b>": [],
+    "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x79de>": [],
+    "dyn core::future::future::Future<Output=()><0x7a05>": [],
+    "LocalFutureObj<()>": [
+      "*mut dyn core::future::future::Future<Output=()>",
+      "alloc::boxed::Box<(dyn core::future::future::Future<Output=()> + core::marker::Send), alloc::alloc::Global>"
+    ],
+    "FutureObj<()>": [
+      "alloc::boxed::Box<(dyn core::future::future::Future<Output=()> + core::marker::Send), alloc::alloc::Global>"
+    ],
+    "NonNull<dyn core::future::future::Future<Output=()>>": [],
+    "Unique<dyn core::future::future::Future<Output=()>>": [
+      "NonNull<dyn core::future::future::Future<Output=()>>"
+    ],
+    "PhantomData<dyn core::future::future::Future<Output=()>>": [],
+    "ManuallyDrop<core::pin::Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>>>": [
+      "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x313de>"
+    ],
+    "ManuallyDrop<core::pin::Pin<alloc::boxed::Box<(dyn core::future::future::Future<Output=()> + core::marker::Send), alloc::alloc::Global>>>": [
+      "Pin<alloc::boxed::Box<(dyn core::future::future::Future<Output=()> + core::marker::Send), alloc::alloc::Global>>"
+    ],
+    "Pin<alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global>><0x313de>": [],
+    "Pin<alloc::boxed::Box<(dyn core::future::future::Future<Output=()> + core::marker::Send), alloc::alloc::Global>>": [],
+    "Pin<&mut dyn core::future::future::Future<Output=()>><0x31458>": [
+      "&mut dyn core::future::future::Future<Output=()><0x31eff>"
+    ],
+    "Pin<&mut (dyn core::future::future::Future<Output=()> + core::marker::Send)>": [
+      "&mut (dyn core::future::future::Future<Output=()> + core::marker::Send)"
+    ],
+    "dyn core::future::future::Future<Output=()><0x31749>": [],
+    "*const dyn core::future::future::Future<Output=()>": [],
+    "*mut dyn core::future::future::Future<Output=()>": [],
+    "alloc::boxed::Box<dyn core::future::future::Future<Output=()>, alloc::alloc::Global><0x31c27>": [],
+    "alloc::boxed::Box<(dyn core::future::future::Future<Output=()> + core::marker::Send), alloc::alloc::Global>": [],
+    "(dyn core::future::future::Future<Output=()> + core::marker::Send)": [],
+    "&mut dyn core::future::future::Future<Output=()><0x31eff>": [],
+    "&mut (dyn core::future::future::Future<Output=()> + core::marker::Send)": []
+  }
+}
