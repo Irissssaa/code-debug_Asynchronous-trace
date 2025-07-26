@@ -1,0 +1,725 @@
+from collections import namedtuple
+import io, os
+from os import path, listdir
+from elftools.dwarf.dwarfinfo import DWARFInfo, DebugSectionDescriptor, DwarfConfig
+
+# Simple replacement for wait_with_events without Qt dependencies
+def wait_with_events(cond, timeout=100):
+    """Simple replacement for Qt's wait_with_events - just sleep briefly"""
+    import time
+    while cond():
+        time.sleep(timeout / 1000.0)  # Convert ms to seconds
+
+# This doesn't depend on Qt
+# The dependency on filebytes only lives here
+# Format codes: 0 = ELF, 1 = MACHO, 2 = PE, 3 - WASM, 4 - ELF inside A, 5 - arch specific MachO inside A, 6 - MachO inside A inside a fat binary
+
+class FormatError(Exception):
+    def __init__(self, s):
+        Exception.__init__(self, s)
+
+def read_pe(filename):
+    from filebytes.pe import PE, IMAGE_FILE_MACHINE, BinaryError
+    import struct, zlib
+
+    try:
+        pefile = PE(filename)
+
+        # Section's real size might be padded - see https://github.com/sashs/filebytes/issues/28
+        sections = [(section.name if section.name[1] != 'z' else '.' + section.name[2:],
+            section.name[1] == 'z',
+            section,
+            section.header.PhysicalAddress_or_VirtualSize,
+            section.header.SizeOfRawData)
+            for section in pefile.sections
+            if section.name.startswith('.debug') or section.name.startswith('.zdebug')]
+        
+        def read_section(name, is_compressed, section, virtual_size, raw_size):
+            data = section.bytes
+            size = raw_size if virtual_size == 0 else min((raw_size, virtual_size))
+            if is_compressed:
+                if size < 12:
+                    raise FormatError("Compressesed section %s is unexpectedly short." % (name,))
+                if data[0:4] != b'ZLIB':
+                    raise FormatError("Unsupported format in compressesed section %s, ZLIB is expected." % (name,))
+                (size,) = struct.unpack_from('>Q', data, offset=4) #TODO, replace, no need to bring structs over this
+                data = zlib.decompress(data[12:])
+                if len(data) != size:
+                    raise FormatError("Wrong uncompressed size in compressesed section %s: expected %d, got %d." % (name, size, len(data)))
+            return DebugSectionDescriptor(io.BytesIO(data), name, None, size, 0)
+
+        data = {sec[0]: read_section(*sec) for sec in sections}
+
+        if not '.debug_info' in data:
+            return None
+
+        machine = pefile.imageNtHeaders.header.FileHeader.Machine
+        is64 = machine in (IMAGE_FILE_MACHINE.AMD64, IMAGE_FILE_MACHINE.ARM64, IMAGE_FILE_MACHINE.IA64) # There are also some exotic architectures...
+        di = DWARFInfo(
+            config = DwarfConfig(
+                little_endian = True,
+                default_address_size = 8 if is64 else 4,
+                machine_arch = IMAGE_FILE_MACHINE[machine].name
+            ),
+            debug_info_sec = data['.debug_info'],
+            debug_aranges_sec = data.get('.debug_aranges'),
+            debug_abbrev_sec = data.get('.debug_abbrev'),
+            debug_frame_sec = data.get('.debug_frame'),
+            eh_frame_sec = None, # Unwind/exceptino info is stored in PE elsewhere
+            debug_str_sec = data.get('.debug_str'),
+            debug_loc_sec = data.get('.debug_loc'),
+            debug_ranges_sec = data.get('.debug_ranges'),
+            debug_line_sec = data.get('.debug_line'),
+            debug_pubtypes_sec = data.get('.debug_pubtypes'),
+            debug_pubnames_sec = data.get('.debug_pubnames'),
+            debug_addr_sec = data.get('.debug_addr'),
+            debug_str_offsets_sec = data.get('.debug_str_offsets'),
+            debug_line_str_sec = data.get('.debug_line_str'),
+            debug_loclists_sec = data.get('.debug_loclists'),
+            debug_rnglists_sec = data.get('.debug_rnglists'),
+            debug_sup_sec = data.get('.debug_sup'),
+            gnu_debugaltlink_sec = data.get('.gnu_debugaltlink'),
+            debug_types_sec = data.get('.debug_types')
+        )
+        di._format = 2
+        di._arch_code = machine
+        di._start_address = pefile.imageNtHeaders.header.OptionalHeader.ImageBase
+        di._frames = None
+        return di
+    except BinaryError as err:
+        raise FormatError("Error parsing the binary.\n" + str(err))
+
+########################################################################
+######################### Mach-O
+########################################################################
+
+# CPU type, CPU subtupe - numeric
+def make_macho_arch_name_raw(c, st):
+    from filebytes.mach_o import CpuType, CpuSubTypeARM, CpuSubTypeARM64
+    flavor = ''
+    if st != 0:
+        if c == CpuType.ARM:
+            flavor = CpuSubTypeARM[st].name
+        elif c == CpuType.ARM64:
+            # With ARM64E, ABI flags are in the subuppermost byte
+            # They don't seem to be acknowledged by dump tools
+            # https://llvm.org/doxygen/BinaryFormat_2MachO_8h.html
+            flavor = CpuSubTypeARM64[st & 0xffffff].name
+    return CpuType[c].name + flavor
+
+# Arch + flavor where flavor matters
+# The arg is a slice object or a MachO object
+def make_macho_arch_name(macho):
+    h = macho.machHeader.header
+    return make_macho_arch_name_raw(h.cputype, h.cpusubtype)
+        
+# For debugging purposes only - dump individual debug related sections in a Mach-O file/slice as files
+def macho_save_sections(filename, macho):
+    from filebytes.mach_o import LC
+    arch = make_macho_arch_name(macho)
+    for cmd in macho.loadCommands:
+        if cmd.header.cmd in (LC.SEGMENT, LC.SEGMENT_64):
+            for section in cmd.sections:
+                if section.name.startswith('__debug'):
+                    sec_file = ".".join((filename, arch, section.name))
+                    if not path.exists(sec_file):
+                        write_to_file(sec_file, section.bytes)
+
+
+_MACHO_fat_header = False
+
+# Given a file pointer past the fat signature, returns an array of slice headers
+def parse_fat_header(file):
+    global _MACHO_fat_header
+    if not _MACHO_fat_header:
+        from elftools.construct import PrefixedArray, Struct, UBInt32
+        _MACHO_fat_header = PrefixedArray(
+            Struct('MACHOFatSlice',
+                UBInt32('cputype'),
+                UBInt32('cpusubtype'),
+                UBInt32('offset'),
+                UBInt32('size'),
+                UBInt32('align')),
+            UBInt32(''))
+    return _MACHO_fat_header.parse_stream(file)    
+
+# resolve_arch takes a list of architecture descriptions, and returns
+# the desired index/multiindex, or None if the user has cancelled
+# file read position should be past the fat signature
+# filename is a real file name, not bundle 
+def read_fat_macho(file, resolve_arch):
+    arches = parse_fat_header(file)
+    # Fat executable binary or fat static lib?
+    slice_names = list()
+    libs_by_arch = dict() # Arch index to lib file list
+    for (i, arch) in enumerate(arches):
+        arch_name = make_macho_arch_name_raw(arch.cputype, arch.cpusubtype)
+        file.seek(arch.offset, os.SEEK_SET)
+        signature = file.read(8)
+        if signature[:4] in (b'\xFE\xED\xFA\xCE', b'\xFE\xED\xFA\xCF', b'\xCE\xFA\xED\xFE', b'\xCF\xFA\xED\xFE'):
+            slice_names.append(arch_name)
+        elif signature == b'!<arch>\n':
+            lib_headers = scan_staticlib(file, arch.size)
+            libs_by_arch[i] = lib_headers
+            slice_names.append((arch_name, tuple(h.name.decode('UTF-8') for h in lib_headers))) # TODO: encoding
+        else:
+            raise FormatError(f"Slice #{i+1} in this file is of unrecognized or unsupported type: {''.join('%02X' % b for b in signature)}. Let the author know")
+
+    arch_no = resolve_arch(slice_names, 'Mach-O Fat Binary', 'Choose an architecture:')
+    if arch_no is None: # User cancellation
+        return False
+    if isinstance(arch_no, tuple):
+        (arch_no, file_no) = arch_no
+        slice_code = (slice_names[arch_no][0], slice_names[arch_no][1][file_no])
+    else:
+        slice_code = (slice_names[arch_no],)
+        file_no = None
+
+    if file_no is not None: # Object inside lib inside fat binary
+        libfile = libs_by_arch[arch_no][file_no]
+        offset = libfile.data_offset
+        size = libfile.size
+        format = 6 # file inside lib inside fat
+    else:
+        slice = arches[arch_no]
+        offset = slice.offset
+        size = slice.size
+        format = 1 # Plain Mach-O or slice inside fat
+
+    file.seek(offset)
+    data = file.read(size) # TODO: avoid copying? Hand-parse MachO maybe
+    macho = open_macho('', data)
+    di = get_macho_dwarf(macho, slice_code)
+    if di:
+        di._format = format
+    return di
+
+# Only used for nonfat, standalone macho files.    
+def read_macho(filename):
+    macho = open_macho(filename) # Not fat - checked upstack
+    return get_macho_dwarf(macho, None)
+
+# Given a filename and an arch code (type, subtype), returns dwarfinfo, if any
+# The arch code must be given. If the target is fat, it will choose the right slice.
+# No provision for fat libraries. TODO what happens if you build a fat library with DWARF in dSYM.
+def read_macho_with_arch(filename, slice_code, arch_code):
+    with open(filename, 'rb') as file:
+        signature = file.read(4)
+        if signature == b'\xCA\xFE\xBA\xBE':
+            arches = parse_fat_header(file)
+            arch = next(a for a in arches if arch_code == (a.cputype, a.cpusubtype))
+            file.seek(arch.offset, os.SEEK_SET)
+            data = file.read(arch.size)
+        else:
+            file.seek(arch.offset, 0)
+            data = file.read()
+        macho = open_macho(filename, data)
+        return get_macho_dwarf(macho, slice_code)
+
+# TODO, but debug the command line location logic first
+def locate_dsym(uuid):
+    try:
+        from Foundation import NSMetadataQuery, NSPredicate
+
+        su = uuid.decode('ASCII').upper()
+        su = f"{su[0:8]}-{su[8:12]}-{su[12:16]}-{su[16:20]}-{su[20:]}"
+        query = NSMetadataQuery.alloc().init()
+        query.setPredicate_(NSPredicate.predicateWithFormat_("(com_apple_xcode_dsym_uuids == '"+su+"')"))
+        #query.setSearchScopes_(["/Applications", "/Users"])
+        query.startQuery()
+        query.retain()
+        wait_with_events(lambda: query.isGathering())
+        query.stopQuery()
+        res = query.results()
+        query.release()
+        if len(res):
+            path = res[0].valueForAttribute_("kMDItemPath")
+            if path:
+                return path 
+    except ImportError:
+        pass
+
+def macho_arch_code(macho):
+    h = macho.machHeader.header
+    return (h.cputype, h.cpusubtype)
+
+def get_macho_dwarf(macho, slice_code):
+    """Slice_code is (arch_name,) or (arch_name, file_name) or None"""
+    from filebytes.mach_o import TypeFlags, LC, MH
+    # We proceed with macho being a arch-specific file, or a slice within a fat binary
+    sections = {
+        section.name: section.bytes
+        for cmd in macho.loadCommands
+        if cmd.header.cmd in (LC.SEGMENT, LC.SEGMENT_64)
+        for section in cmd.sections
+        if (section.name.startswith('__debug') or section.name in ('__eh_frame', '__unwind_info')) and section.header.offset > 0
+    }
+
+    uuid_cmd = next((cmd for cmd in macho.loadCommands if cmd.header.cmd == LC.UUID), None)
+    uuid = uuid_cmd.uuid if uuid_cmd else None
+    # a bytes with a hex representation of the binary GUID 
+
+    if not '__debug_info' in sections:
+        if macho.machHeader.header.filetype == MH.EXECUTE and uuid:
+            # TODO: locate dSYM by UUID
+            dsym_path = locate_dsym(uuid)
+            if dsym_path:
+                if path.isdir(dsym_path):
+                    dsym_path = binary_from_bundle(dsym_path)
+                # TODO: match CPU types instead of strings
+                di = read_macho_with_arch(dsym_path, macho_arch_code(macho))
+                if di:
+                    add_macho_sections_from_executable(di, macho)
+                    return di
+            else:
+                return None
+                
+                # TODO this
+                symtab = next((cmd for cmd in macho.loadCommands if cmd.header.cmd == LC.SYMTAB), False)
+                le = next((cmd for cmd in macho.loadCommands if cmd.header.cmd in (LC.SEGMENT, LC.SEGMENT_64) and cmd.name == '__LINKEDIT'), False)
+                if symtab and le:
+                    import struct
+                    big_endian = False # Oh well
+                    endianness = '>' if big_endian else '<'
+                    is64 = (macho.machHeader.header.cputype & TypeFlags.ABI64) != 0
+                    format = endianness + ("IBBHQ" if is64 else "IBBHI")
+                    # Name Type Sec_no Info Address
+                    stride = struct.calcsize(format)
+                    ledata = le.bytes
+                    sym_start = symtab.header.symbols_offset - le.header.fileoff
+                    str_start = symtab.header.strings_offset - le.header.fileoff
+
+                    def string_at(off):
+                        return ledata[str_start+off:ledata.find(b'\x00', str_start+off)].decode('ASCII')
+                    
+                    st = (struct.unpack_from(format, ledata, sym_start+i*stride) for i in range(symtab.header.nsymbols))
+                    st = [(string_at(name), type, sec, info, address) for (name, type, sec, info, address) in st]
+                    pass
+        return None
+    
+    data = {
+        name: DebugSectionDescriptor(io.BytesIO(contents), name, None, len(contents), 0)
+        for (name, contents)
+        in sections.items()
+    }
+    # '__eh_frame', '__unwind_info' are not in dSYM bundles
+
+    #macho_save_sections(friendly_filename, macho)
+
+    cpu = macho.machHeader.header.cputype
+    di = DWARFInfo(
+        config = DwarfConfig(
+            little_endian=True,
+            default_address_size = 8 if (cpu & TypeFlags.ABI64) != 0 else 4,
+            machine_arch = make_macho_arch_name(macho)
+        ),
+        debug_info_sec = data['__debug_info'],
+        debug_aranges_sec = data.get('__debug_aranges'),
+        debug_abbrev_sec = data['__debug_abbrev'],
+        debug_frame_sec = data.get('__debug_frame'),
+        eh_frame_sec = data.get('__eh_frame'), # __unwind_info separately, not a part of DWARF proper
+        debug_str_sec = data['__debug_str'],
+        debug_loc_sec = data.get('__debug_loc'),
+        debug_ranges_sec = data.get('__debug_ranges'),
+        debug_line_sec = data.get('__debug_line'),
+        debug_pubtypes_sec = data.get('__debug_pubtypes'), #__debug_gnu_pubn?
+        debug_pubnames_sec = data.get('__debug_pubtypes'), #__debug_gnu_pubt?
+        debug_addr_sec = data.get('__debug_addr'),
+        debug_str_offsets_sec = data.get('__debug_str_offsets'),
+        debug_line_str_sec = data.get('__debug_line_str'),
+        debug_loclists_sec = data.get('__debug_loclists'),
+        debug_rnglists_sec = data.get('__debug_rnglists'),
+        debug_sup_sec = data.get('__debug_sup'),
+        gnu_debugaltlink_sec = data.get('__gnu_debugaltlink'),
+        debug_types_sec = data.get('__debug_types'),
+    )
+    di._unwind_sec = sections.get('__unwind_info') # VERY unlikely to be None
+    di._format = 1 # Will be adjusted later if Mach-O within A within fat Mach-O
+    di._arch_code = macho_arch_code(macho)
+    di._slice_code = slice_code
+    di._uuid = uuid
+    text_cmd = next((cmd for cmd in macho.loadCommands if cmd.header.cmd in (LC.SEGMENT, LC.SEGMENT_64) and cmd.name == "__TEXT"), False)
+    di._start_address = text_cmd.header.vmaddr if text_cmd else 0
+    di._frames = None
+    di._has_exec = False
+    return di
+
+def open_macho(filename, contents=None):
+    """ Wrapper around the filebytes' MachO constructor
+        that translates filebytes' exceptions to our own
+    """
+    from filebytes.mach_o import MachO, BinaryError
+    try:
+        return MachO(filename, contents)
+    except BinaryError as err:
+        raise FormatError("Error parsing the binary.\n" + str(err))
+
+# TODO: don't load the whole binary, load just the right slice
+def load_companion_executable(filename, di):
+    from filebytes.mach_o import LC, MH
+    if path.isdir(filename):
+        binary = binary_from_bundle(filename)
+        if not binary:
+            raise FormatError("The specified bundle does not contain a Mach-O binary, or it could not be found. Try locating the binary manually.")
+    else:
+        binary = filename
+    
+    macho = open_macho(binary)
+    if macho.isFat:
+        macho = next((slice for slice in macho.fatArches if macho_arch_code(slice) == di._arch_code), None)
+        if macho is None:
+            arch = make_macho_arch_name_raw(*di._arch_code)
+            raise FormatError(f"This binary does not contain a slice for {arch}.")
+    elif macho_arch_code(macho) != di._arch_code:
+        arch = make_macho_arch_name_raw(*di._arch_code)
+        raise FormatError(f"The architecture of this binary does not match that of the curernt DWARF, which is {arch}.")
+    
+    ft = macho.machHeader.header.filetype
+    if ft != MH.EXECUTE:
+        raise FormatError(f"This binary is not an executable - type {MH[ft].name}.")
+
+    uuid = next(cmd for cmd in macho.loadCommands if cmd.header.cmd == LC.UUID).uuid
+    if uuid != di._uuid:
+        raise FormatError(f"This binary is from a different build than the current DWARF - the UUIDs do not match.")
+    
+    # Match on arch and UUID
+    add_macho_sections_from_executable(di, macho)
+
+def add_macho_sections_from_executable(di, macho):
+    from filebytes.mach_o import LC
+    sections = {
+        section.name: section
+        for cmd in macho.loadCommands
+        if cmd.header.cmd in (LC.SEGMENT, LC.SEGMENT_64)
+        for section in cmd.sections
+        if section.header.offset > 0
+    }
+
+    di._text_sec = sections.get('__text').bytes
+
+    unwind = sections.get('__unwind_info', None)
+    if unwind:
+        di._unwind_sec = unwind.bytes
+
+    eh = sections.get('__eh_frame', None)
+    if eh:
+        di.eh_frame_sec = DebugSectionDescriptor(io.BytesIO(eh.bytes), eh.name, None, len(eh.bytes), 0)
+        
+    di._text_section_start = sections.get('__text').header.addr
+    di._has_exec = True
+
+def binary_from_bundle(filename):
+    # Is it a dSYM bundle?
+    nameparts = path.basename(filename).split('.') 
+    if nameparts[-1] == 'dSYM' and path.exists(path.join(filename, 'Contents', 'Resources', 'DWARF')):
+        files = listdir(path.join(filename, 'Contents', 'Resources', 'DWARF'))
+        if len(files) > 0:
+            # When are there multiple DWARF files in a dSYM bundle?
+            # TODO: let the user choose?
+            dsym_file_path = path.join(filename, 'Contents', 'Resources', 'DWARF', files[0])
+            return dsym_file_path
+    # Is it an app bundle? appname.app
+    if len(nameparts) > 1 and nameparts[-1] in ('app', 'framework'):
+        app_file = path.join(filename, '.'.join(nameparts[0:-1]))
+        if path.exists(app_file):
+            return app_file
+
+        # Any other bundle formats we should be aware of?
+    return None
+
+########################################################################
+######################### WASM
+########################################################################
+
+_WASM_section_header = False
+
+def read_wasm(file):
+    global _WASM_section_header
+    from elftools.common.construct_utils import ULEB128, StreamOffset
+    from elftools.construct import ULInt8, ULInt32, Struct, If, PascalString, Value
+    if not _WASM_section_header:
+        _WASM_section_header = Struct('WASMSectionHeader',
+            ULInt8('id'),
+            ULEB128('section_length'),
+            StreamOffset('off1'),
+            # Subheader on custom (id 0) sections - ULEB128 length prefixed name
+            If(lambda ctx: ctx.id == 0, PascalString('name', length_field = ULEB128('length'), encoding='UTF-8')),
+            StreamOffset('off2'),
+            # This is effective content length - for custom sections, section size minus the name subheader
+            Value('length', lambda ctxt: ctxt.section_length - ctxt.off2 + ctxt.off1)
+        )
+    
+    file.seek(0, os.SEEK_END)
+    file_size = file.tell()
+    # Signature already checked, move on to file version
+    file.seek(4, os.SEEK_SET)
+    ver = ULInt32('').parse_stream(file)
+    if ver != 1:
+        raise FormatError("WASM binary format version %d is not supported." % ver)
+    
+    data = dict()
+    dwarf_url = None
+    while file.tell() < file_size:
+        sh = _WASM_section_header.parse_stream(file)
+        if sh.id == 0 and sh.name.startswith(".debug"):
+            content = file.read(sh.length)
+            data[sh.name] = DebugSectionDescriptor(io.BytesIO(content), sh.name, None, sh.length, 0)
+        elif sh.id == 0 and sh.name == 'external_debug_info':
+            dwarf_url = file.read(sh.length).decode('UTF-8')
+        else: # Skip this section
+            file.seek(sh.length, os.SEEK_CUR)
+
+    if dwarf_url:
+        raise FormatError("The debug information for this WASM file is at %s." % dwarf_url)
+
+    # TODO: relocations, start address
+
+    di = DWARFInfo(
+        config = DwarfConfig(
+            little_endian=True,
+            default_address_size = 4, # Is it variable???
+            machine_arch = 'WASM'
+        ),
+        debug_info_sec = data['.debug_info'],
+        debug_aranges_sec = data.get('.debug_aranges'),
+        debug_abbrev_sec = data['.debug_abbrev'],
+        debug_frame_sec = data.get('.debug_frame'),
+        eh_frame_sec = None, # In WASM??
+        debug_str_sec = data['.debug_str'],
+        debug_loc_sec = data.get('.debug_loc'),
+        debug_ranges_sec = data.get('.debug_ranges'),
+        debug_line_sec = data.get('.debug_line'),
+        debug_pubtypes_sec = data.get('.debug_pubtypes'),
+        debug_pubnames_sec = data.get('.debug_pubtypes'),
+        debug_addr_sec = data.get('.debug_addr'),
+        debug_str_offsets_sec = data.get('.debug_str_offsets'),
+        debug_line_str_sec = data.get('.debug_line_str'),
+        debug_loclists_sec = data.get('.debug_loclists'),
+        debug_rnglists_sec = data.get('.debug_rnglists'),
+        debug_sup_sec = None,
+        gnu_debugaltlink_sec = None,
+        debug_types_sec = data.get('.debug_types')
+    )
+    di._format = 3
+    di._arch_code = None #N/A
+    di._start_address = 0
+    di._frames = None
+    return di
+
+# Filename is only needed for supplemental DWARF resolution
+def read_elf(file, filename):
+    from elftools.elf.elffile import ELFFile
+    file.seek(0)
+    # TODO: interactive supplemental DWARF resolver here...
+    elffile = ELFFile(file, lambda s: open(path.join(path.dirname(filename), s.decode('UTF-8')), 'rb'))
+
+    # Retrieve the preferred loading address
+    load_segment = next((seg for seg in elffile.iter_segments() if seg.header.p_type == 'PT_LOAD'), None)
+    start_address = load_segment.header.p_vaddr if load_segment else 0
+    di = None
+    if elffile.has_dwarf_info():
+        di = elffile.get_dwarf_info() # elffile.header.e_type != 'ET_REL' - was trying to address pyelftools/#564
+    elif elffile.get_section_by_name(".debug"):
+        from .dwarfone import parse_dwarf1
+        di = parse_dwarf1(elffile)
+
+    if di:
+        di._format = 0
+        di._start_address = start_address
+        di._arch_code = elffile.header.e_machine
+        di._frames = None
+    return di
+
+###########################################################################
+############################ Libraries
+###########################################################################
+
+_ar_file_header = namedtuple('ARHeader', ('header_offset', 'data_offset',
+                                          'name',
+                                          # Don't care for the metadata
+                                          #'last_mod_date', 'user_id', 'group_id', 'mode',
+                                          'size'))
+
+
+def scan_staticlib(file, size):
+    """Returns an array of headers.
+       file read position should be past the A signature.
+       size should include the A signature
+       Offsets are relative to the file top, not to the position on entry
+    """
+    long_names = False
+    def read_header():
+        header_offset = file.tell()
+        b = file.read(60)
+        data_size = int(b[48:58])
+        name = b[0:16].rstrip()
+        # Resolve BSD style long names
+        if name.startswith(b'#1/') and len(name) > 3:
+            name_len = int(name[3:])
+            name = file.read(name_len).rstrip(b'\0')
+            data_size -= name_len
+        # Resolve GNU style long file names
+        elif name.startswith(b'/') and len(name) > 1 and ord(b'0') <= name[1] <= ord(b'9'):
+            if not long_names:
+                FormatError("Long file name in a static library, but no long name section was found.")
+            str_offset = int(name[1:])
+            end_pos = long_names.find(b'\n', str_offset)
+            name = long_names[str_offset:end_pos] if end_pos >= 0 else long_names[str_offset:]
+        data_offset = file.tell()
+        return _ar_file_header(header_offset, data_offset, name,
+                               #int(b[16:28]), int(b[28:34]),
+                               #int(b[34:40]), int(b[40:48], 8),
+                               data_size)
+    
+    # Not used. Just in case. GNU symtab only.
+    def read_symtab(size, is64):
+        ilen = 8 if is64 else 4
+        length = int.from_bytes(file.read(ilen), 'big')
+        d = file.read(length * ilen)
+        offsets = [int.from_bytes(d[i*ilen:(i+1)*ilen], 'big') for i in range(length)]
+        d = file.read(size - (length+1)*ilen)
+        symbols = d.split(b'\0')[:-1]
+        return zip(offsets, symbols)
+    
+    def skip_content(header):
+        file.seek(((header.size + 1) // 2) * 2, os.SEEK_CUR)
+
+    ############################
+    # read_staticlib starts here
+
+    top_offset = file.tell()-8
+
+    # First section most likely a symtab - skip
+    header = read_header() 
+    if header.name == b'/' or header.name == b'/SYM64/' or header.name == b'__.SYMDEF':
+        skip_content(header)
+        # read_symtab(header.size, header.name == b'/SYM64/')
+        # if header.size % 2 == 1:
+        #    file.seek(1, os.SEEK_CUR)
+    else: # Skip back
+        file.seek(header.header_offset, os.SEEK_SET)
+
+    # Probably a long file name directory - read and keep
+    header = read_header() 
+    if header.name == b'//':
+        long_names = file.read(header.size)
+        if header.size % 2 == 1:
+            file.seek(1, os.SEEK_CUR)
+    else: # It's a file, skip back
+        file.seek(header.header_offset, os.SEEK_SET)
+        
+    # Read all file headers, build a list
+    headers = list()
+    while file.tell() - top_offset < size:
+        header = read_header()
+        headers.append(header)
+        skip_content(header)
+    return headers
+
+# resolve_slice takes a list of files in the archive, and returns
+# the desired index, or None if the user has cancelled
+def read_staticlib(file, resolve_slice):
+    from io import BytesIO
+
+    file.seek(0, os.SEEK_END)
+    size = file.tell()
+    file.seek(8) # Past the magic signature    
+    headers = scan_staticlib(file, size)
+
+    # Present the user with slice choice
+    # TODO: encoding?
+    names = tuple(h.name.rstrip(b'/').decode('ASCII') for h in headers)
+    slice = resolve_slice(names, 'Static Library', 'Choose an object file:')
+    if slice is None:
+        return False # Cancellation
+    
+    header = headers[slice]
+    file.seek(header.data_offset)
+    b = file.read(header.size)
+    slice_code = (names[slice],)
+    # We support ELF and MachO static libraries so far
+    if b[:4] == b'\x7FELF':
+        di = read_elf(BytesIO(b), None)
+        if di:
+            di._slice_code = slice_code
+    elif b[:4] in (b'\xFE\xED\xFA\xCE', b'\xFE\xED\xFA\xCF', b'\xCE\xFA\xED\xFE', b'\xCF\xFA\xED\xFE'):
+        from filebytes.mach_o import MachO
+        macho = open_macho(None, b)
+        di = get_macho_dwarf(macho, slice_code)
+    elif b[:4] == b'\xCA\xFE\xBA\xBE':
+        raise FormatError("The selected slice of the static library is a Mach-O fat binary. Those are not supported. Let the author know.")
+    else:
+        raise FormatError("The selected slice of the static library is not a supported object file. Let the author know.")
+    
+    if di:
+        di._format += 4
+    return di
+
+#########################################################################
+######################## The main entry point - file in, DWARF out
+#########################################################################
+
+def read_dwarf(filename, resolve_arch):
+    """ UI agnostic - resolve_arch might be interactive
+        Returns slightly augmented DWARFInfo
+        Or None if not a DWARF containing file (or unrecognized)
+        Or False if user has cancelled
+        Or throws an exception
+        resolve_arch is for Mach-O fat binaries - see read_macho()
+        and repurposed for .a static libraries
+        Primary point of call is open_file() in main
+    """
+    if path.isfile(filename): # On MacOS, opening dSYM bundles as is would be right, and they are technically folders
+        with open(filename, 'rb') as file:
+            xsignature = file.read(8)
+            signature = xsignature[:4]
+
+            if xsignature[:2] == b'MZ': # DOS header - this might be a PE. Don't verify the PE header, just feed it to the parser
+                return read_pe(filename)
+            elif signature == b'\x7FELF': #It's an ELF
+                return read_elf(file, filename)
+            elif signature in (b'\xFE\xED\xFA\xCE', b'\xFE\xED\xFA\xCF', b'\xCE\xFA\xED\xFE', b'\xCF\xFA\xED\xFE'):
+                # Mach-O 32/64-bit Mach-O in big/little-endian format, but not a fat binary
+                # TODO: little endian is not supported!
+                return read_macho(filename)
+            elif signature == b'\xCA\xFE\xBA\xBE': 
+                # Mach-O fat binary - could be executable, or a multiarch static lib.
+                if int.from_bytes(xsignature[4:8], 'big') >= 0x20:
+                    # Java .class files also have CAFEBABE, check the fat binary arch count
+                    return None
+                file.seek(4, os.SEEK_SET)
+                return read_fat_macho(file, resolve_arch)
+            elif signature == b'\0asm':
+                return read_wasm(file)
+            elif xsignature == b'!<arch>\n':
+                return read_staticlib(file, resolve_arch)
+    elif path.isdir(filename):
+        binary_filename = binary_from_bundle(filename)
+        if binary_filename:
+            return read_dwarf(binary_filename, resolve_arch)
+        
+def get_debug_sections(di):
+    section_names = {name: "debug_%s_sec" % name
+            for name in 
+            ('info', 'aranges', 'abbrev', 'frame',
+            'str', 'loc', 'ranges', 'line', 'addr',
+            'str_offsets', 'line_str', 'pubtypes',
+            'pubnames', 'loclists', 'rnglists', 'sup')}
+    section_names['eh_frame'] = 'eh_frame_sec'
+    section_names['gnu_debugaltlink'] = 'gnu_debugaltlink'
+    section_names['unwind_info'] = '_unwind_sec'
+    section_names['text'] = '_text_sec'
+
+    # Display name to section object
+    return {display_name: getattr(di, field_name)
+        for (display_name, field_name) in section_names.items()
+        if hasattr(di, field_name)}
+
+# Section can be a SectionDescription or a raw dump
+def section_bytes(section):
+    return section if isinstance(section, (bytes, bytearray, memoryview)) else section.stream.getbuffer()
+    # TODO: reliance on stream being a BytesIO
+
+def write_to_file(filename, data):
+    with open(filename, 'wb') as f:
+        f.write(data)
