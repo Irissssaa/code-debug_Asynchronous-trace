@@ -1,5 +1,11 @@
 # NOTE: This is an independent module that is called from command line.
 # Later we will replace this module with a GDB-based module.
+#
+# Updated format according to dwarf_analyzer.md requirements:
+# 1. async dependency tree now only contains DIE offsets for efficient access
+# 2. async_functions and state_machines use DIE offsets as keys (not "base offset + relative offset")
+# 3. Added offset_to_name mapping for DIE offset <-> function name conversion
+# This improves search efficiency as DIE offsets can be used directly as Dict keys.
 
 import subprocess
 import re
@@ -284,13 +290,19 @@ class DwarfAnalyzer:
         return deps
 
     def build_dependency_tree(self):
-        """Build a dependency tree of futures/state machines, following nested structs recursively."""
+        """Build a dependency tree of futures/state machines using DIE offsets for efficiency."""
         tree: Dict[str, List[str]] = {}
         for struct in self.structs.values():
-            if not struct.state_machine:
+            if not struct.state_machine or not struct.type_id:
                 continue
             deps = self._resolve_deps_recursive(struct, {struct.name})
-            tree[struct.name] = list(deps)
+            # Convert dependency names to DIE offsets
+            dep_offsets = []
+            for dep_name in deps:
+                dep_struct = self.structs.get(dep_name)
+                if dep_struct and dep_struct.type_id:
+                    dep_offsets.append(dep_struct.type_id)
+            tree[struct.type_id] = dep_offsets
         return tree
 
     def output_json(self):
@@ -323,10 +335,29 @@ class DwarfAnalyzer:
                 ],
                 'type_id': struct.type_id
             }
+       
+        # Convert async_functions and state_machines to use DIE offsets as keys
+        async_functions_by_offset = {}
+        for struct in analysis['async_functions'].values():
+            if struct.type_id:
+                async_functions_by_offset[struct.type_id] = struct_to_dict(struct)
+        
+        state_machines_by_offset = {}
+        for struct in analysis['state_machines'].values():
+            if struct.type_id:
+                state_machines_by_offset[struct.type_id] = struct_to_dict(struct)
+        
+        # Create a mapping from DIE offset to function/struct name for easy lookup
+        offset_to_name = {}
+        for struct in self.structs.values():
+            if struct.type_id:
+                offset_to_name[struct.type_id] = struct.name
+
         out = {
-            'async_functions': [struct_to_dict(s) for s in analysis['async_functions'].values()],
-            'state_machines': [struct_to_dict(s) for s in analysis['state_machines'].values()],
-            'dependency_tree': dep_tree
+            'async_functions': async_functions_by_offset,
+            'state_machines': state_machines_by_offset,
+            'dependency_tree': dep_tree,
+            'offset_to_name': offset_to_name
         }
         print(json.dumps(out, indent=2, ensure_ascii=False))
 
