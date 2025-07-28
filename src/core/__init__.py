@@ -207,6 +207,52 @@ class StartAsyncDebugCommand(gdb.Command):
             components.append(current_component.strip())
         
         return components
+    def parse_future_struct_hierarchy(self, future_struct_name):
+        """
+        Parse a future struct name into hierarchical components for DWARF analysis.
+        
+        Args:
+            future_struct_name (str): Future struct name like "reqwest::get::{async_fn_env#0}<&str>"
+            
+        Returns:
+            list: Hierarchical namespace components
+            
+        Examples:
+            "reqwest::get::{async_fn_env#0}<&str>" -> ["reqwest", "get", "{async_fn_env#0}<&str>"]
+        """
+        import re
+        
+        # Remove any "static " prefix if present
+        cleaned_name = re.sub(r'^static\s+', '', future_struct_name)
+        
+        # Split by "::" but be careful not to split inside angle brackets
+        components = []
+        current_component = ""
+        bracket_depth = 0
+        
+        i = 0
+        while i < len(cleaned_name):
+            if cleaned_name[i] == '<':
+                bracket_depth += 1
+                current_component += cleaned_name[i]
+            elif cleaned_name[i] == '>':
+                bracket_depth -= 1
+                current_component += cleaned_name[i]
+            elif cleaned_name[i:i+2] == '::' and bracket_depth == 0:
+                # Only split on :: when we're not inside angle brackets
+                if current_component.strip():
+                    components.append(current_component.strip())
+                current_component = ""
+                i += 1  # Skip the second ':'
+            else:
+                current_component += cleaned_name[i]
+            i += 1
+        
+        # Add the last component
+        if current_component.strip():
+            components.append(current_component.strip())
+        
+        return components
 
     def debug_print_compilation_unit(self, cu_index=0, max_depth=2):
         """
@@ -319,7 +365,7 @@ class StartAsyncDebugCommand(gdb.Command):
         tag = die.tag if hasattr(die, 'tag') else ""
         return tag == 'DW_TAG_namespace'
     
-    def search_hierarchy_in_cu(self, cu_die, hierarchy, depth=0):
+    def search_poll_hierarchy_in_cu(self, cu_die, hierarchy, depth=0):
         """
         Search for a hierarchy of names in a compilation unit.
         
@@ -343,22 +389,70 @@ class StartAsyncDebugCommand(gdb.Command):
         # Iterate through all children of the current DIE
         for child_die in cu_die._children:
             child_name = safe_DIE_name(child_die, "")
-            
+            child_tag = child_die.tag if hasattr(child_die, 'tag') else ""
+
             # Check if this child matches the current hierarchy level
             if child_name == current_name:
                 if depth == len(hierarchy) - 1:
                     # We've matched the full hierarchy - this is a final match
-                    matches.append(child_die)
+                    # check if it's an function (not necessarily an async function)
+                    if child_tag == 'DW_TAG_subprogram':
+                        matches.append(child_die)
                 else:
                     # Continue searching deeper in this subtree
-                    sub_matches = self.search_hierarchy_in_cu(child_die, hierarchy, depth + 1)
+                    sub_matches = self.search_poll_hierarchy_in_cu(child_die, hierarchy, depth + 1)
                     matches.extend(sub_matches)
             
             # Also recursively search in child's subtree even if name doesn't match
             # This handles nested namespace structures caused by, for example, {impl#0}
             if child_die.has_children:
-                sub_matches = self.search_hierarchy_in_cu(child_die, hierarchy, depth)
+                sub_matches = self.search_poll_hierarchy_in_cu(child_die, hierarchy, depth)
                 matches.extend(sub_matches)
+        
+        return matches
+
+    def search_future_struct_in_cu(self, cu_die, hierarchy, depth=0):
+        """
+        Search for a future struct hierarchy in a compilation unit.
+        
+        Args:
+            cu_die (DIE): The compilation unit to search in
+            hierarchy (list): List of names to match in order
+            depth (int): Current depth in the hierarchy
+            
+        Returns:
+            list: Matching future struct DIEs
+        """
+        if depth >= len(hierarchy):
+            return []
+        
+        current_name = hierarchy[depth]
+        matches = []
+        
+        # Load children if not already loaded
+        load_children(cu_die, True)
+        
+        # Iterate through all children of the current DIE
+        for child_die in cu_die._children:
+            child_name = safe_DIE_name(child_die, "")
+            child_tag = child_die.tag if hasattr(child_die, 'tag') else ""
+            
+            # Check if this child matches the current hierarchy level
+            if child_name == current_name:
+                if depth == len(hierarchy) - 1:
+                    # We've matched the full hierarchy - check if it's a structure_type
+                    if child_tag == 'DW_TAG_structure_type':
+                        matches.append(child_die)
+                else:
+                    # Continue searching deeper in this subtree
+                    sub_matches = self.search_future_struct_in_cu(child_die, hierarchy, depth + 1)
+                    matches.extend(sub_matches)
+            
+            # Also recursively search in child's subtree even if name doesn't match
+            # This handles nested namespace structures
+            if child_die.has_children:
+                sub_matches = self.search_future_struct_in_cu(child_die, hierarchy, depth)
+		matches.extend(sub_matches)
         
         return matches
 
@@ -386,15 +480,114 @@ class StartAsyncDebugCommand(gdb.Command):
         # Look for sibling structures that could be the future
         for sibling in parent_die._children:
             sibling_name = safe_DIE_name(sibling, "")
+	    sibling_counter = None # the number after async_fn_env#
+            sibling_counter_result = re.search(r'\{async_fn_env#(\d+)\}', sibling_name)
+            if sibling_counter_result:
+                sibling_counter = sibling_counter_result.group(1)
             sibling_tag = sibling.tag if hasattr(sibling, 'tag') else ""
             
             # Check if this sibling is a future struct
-            if (sibling_tag == 'DW_TAG_structure_type' and
-                ('{async_fn_env#0}' in sibling_name or 
-                 'async_fn_env' in sibling_name)):
-                return sibling
-        
+           # the sibling counter should match the async_fn_env# counter too
+	    if (sibling_tag == 'DW_TAG_structure_type' and
+                '{async_fn_env#' + sibling_counter + '}' in sibling_name):
+                    return sibling
+
+        print(f"[rust-future-tracing] No future struct found for function: {safe_DIE_name(async_fn_die, '')}")
         return None
+    
+    def _find_sibling_poll_function(self, future_struct_die):
+        """
+        Find the corresponding poll function for a future struct DIE.
+        
+        According to dwarf_analyzer.md, we need to look for sibling
+        subprograms with names like {async_fn#0} that represent the poll function.
+        
+        Args:
+            future_struct_die (DIE): The future struct DIE to find the poll function for
+            
+        Returns:
+            DIE or None: The poll function DIE, or None if not found
+        """
+        if not future_struct_die or not hasattr(future_struct_die, '_parent') or not future_struct_die._parent:
+            return None
+        
+        parent_die = future_struct_die._parent
+        
+        # Load parent's children to search for siblings
+        load_children(parent_die, True)
+        
+        # Look for sibling subprograms that could be the poll function
+        for sibling in parent_die._children:
+            sibling_name = safe_DIE_name(sibling, "")
+            sibling_counter = None # the number after async_fn#0
+            sibling_counter_result = re.search(r'\{async_fn#(\d+)\}', sibling_name)
+            if sibling_counter_result:
+                sibling_counter = sibling_counter_result.group(1)
+            sibling_tag = sibling.tag if hasattr(sibling, 'tag') else ""
+            
+            # Check if this sibling is a poll function
+            # the sibling counter should match the async_fn# counter too
+            # TODO: we assume the poll function is always a subprogram
+            # and has a name like {async_fn#0} or {impl#N}
+            # This is a simplification, but it matches the common patterns in Rust async code.
+            if (sibling_tag == 'DW_TAG_subprogram' and
+                ('{async_fn#' + sibling_counter + '}' in sibling_name)):
+                return sibling
+
+        print(f"[rust-future-tracing] No poll function found for future struct: {safe_DIE_name(future_struct_die, '')}")
+        return None
+
+    def _build_poll_function_name(self, poll_die, future_struct_name):
+        """
+        Build the full poll function name from a poll DIE and the original future struct name.
+        
+        Args:
+            poll_die (DIE): The poll function DIE
+            future_struct_name (str): Original future struct name for context
+            
+        Returns:
+            str: Full poll function name with namespace
+        """
+        poll_name = safe_DIE_name(poll_die, "")
+        
+        # Parse the original future struct name to get the namespace path
+        hierarchy = self.parse_future_struct_hierarchy(future_struct_name)
+        
+        if len(hierarchy) >= 2:
+            # Replace the last component ({async_fn_env#0}) with the poll function name
+            namespace_parts = hierarchy[:-1]  # Everything except the last part
+            
+            # Build the full poll function name
+            full_name = "::".join(namespace_parts) + "::" + poll_name
+            return full_name
+        
+        return poll_name
+
+    def _build_future_struct_name(self, future_die, poll_fn_name):
+        """
+        Build the full future struct name from a future DIE and the original poll function name.
+        
+        Args:
+            future_die (DIE): The future struct DIE
+            poll_fn_name (str): Original poll function name for context
+            
+        Returns:
+            str: Full future struct name with namespace
+        """
+        future_name = safe_DIE_name(future_die, "")
+        
+        # Parse the original poll function name to get the namespace path
+        hierarchy = self.parse_poll_function_hierarchy(poll_fn_name)
+        
+        if len(hierarchy) >= 2:
+            # Replace the last component ({async_fn#0}) with the future struct name
+            namespace_parts = hierarchy[:-1]  # Everything except the last part
+            
+            # Build the full future struct name
+            full_name = "::".join(namespace_parts) + "::" + future_name
+            return full_name
+        
+        return future_name
 
     def pollToFuture(self, poll_fn_name):
         """
@@ -418,7 +611,7 @@ class StartAsyncDebugCommand(gdb.Command):
         # Search for the poll function across all compilation units
         all_matches = []
         for cu_die in tree.top_dies:
-            matches = self.search_hierarchy_in_cu(cu_die, components, 0)
+            matches = self.search_poll_hierarchy_in_cu(cu_die, components, 0)
             all_matches.extend(matches)
         
         if not all_matches:
@@ -436,10 +629,71 @@ class StartAsyncDebugCommand(gdb.Command):
             print(f"[rust-future-tracing] No future structs found for poll function: {poll_fn_name}")
             return None
         
-        # Return the name of the first future struct found
-        future_name = safe_DIE_name(future_structs[0], "")
+        # Return the full name of the first future struct found
+        future_name = self._build_future_struct_name(future_structs[0], poll_fn_name)
         print(f"[rust-future-tracing] Mapped {poll_fn_name} -> {future_name}")
         return future_name
+
+    def futureToPoll(self, future_struct_name):
+        """
+        Convert a future struct name to its corresponding polling function name.
+        
+        This implements the reverse mapping described in dwarf_analyzer.md lines 513-520:
+        "future 结构体 -> poll 函数名"
+        
+        Args:
+            future_struct_name (str): Future struct name like "reqwest::get::{async_fn_env#0}<&str>"
+            
+        Returns:
+            str or None: The corresponding poll function name, or None if not found
+            
+        Examples:
+            "reqwest::get::{async_fn_env#0}<&str>" -> "reqwest::get::{async_fn#0}<&str>"
+        """
+        # Parse future struct name into hierarchy
+        components = self.parse_future_struct_hierarchy(future_struct_name)
+        if not components:
+            print(f"[rust-future-tracing] ERROR: Unable to parse future struct name: {future_struct_name}")
+            return None
+        
+        # Validate that this looks like a future struct (should end with {async_fn_env#0})
+        # TODO: this is a simplification, we should also check for other async_fn_env patterns
+        # like {impl#N} or {closure_env#N} if they are used
+        # in the future struct name.
+        if not any('{async_fn_env#0}' in comp for comp in components):
+            print(f"[rust-future-tracing] ERROR: Not a valid future struct name (missing async_fn_env): {future_struct_name}")
+            return None
+        
+        # Get the DWARF tree
+        tree = self._get_tree_safely()
+        if not tree:
+            return None  # Not initialized
+
+        # Search for the future struct across all compilation units
+        all_matches = []
+        for cu_die in tree.top_dies:
+            matches = self.search_future_struct_in_cu(cu_die, components, 0)
+            all_matches.extend(matches)
+        
+        if not all_matches:
+            print(f"[rust-future-tracing] No future struct matches found for hierarchy: {components}")
+            return None
+        
+        # For each match, try to find the corresponding poll function
+        poll_functions = []
+        for match in all_matches:
+            poll_function = self._find_sibling_poll_function(match)
+            if poll_function:
+                poll_functions.append(poll_function)
+        
+        if not poll_functions:
+            print(f"[rust-future-tracing] No poll functions found for future struct: {future_struct_name}")
+            return None
+        
+        # Return the first poll function found
+        poll_name = self._build_poll_function_name(poll_functions[0], future_struct_name)
+        print(f"[rust-future-tracing] Mapped {future_struct_name} -> {poll_name}")
+        return poll_name
 
     def invoke(self, arg, from_tty):
         if not plugin:
