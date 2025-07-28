@@ -15,7 +15,7 @@ build-tokio-test:
 build-future-executor-test:
 	cargo build --manifest-path tests/future_executor_test/Cargo.toml
 
-test-gdb: build-tokio-test
+test-gdb: 
 	@if [ -d "venv/lib/python3.12/site-packages" ]; then \
 		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
 	else \
@@ -23,5 +23,5 @@ test-gdb: build-tokio-test
 		PYTHONPATH="$$VENV_SITE_PACKAGES:$$PYTHONPATH" gdb -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
 	fi
 
-test-dwarf-analyzer: build-tokio-test
-	venv/bin/python src/core/dwarf/async_deps.py tests/tokio_test_project/target/debug/tokio_test_project --json > results/async-tokio.json
+test-dwarf-analyzer: 
+	venv/bin/python src/core/dwarf/async_deps.py tests/tokio_test_project/target/debug/tokio_test_project --json > results/async_dependencies.json
