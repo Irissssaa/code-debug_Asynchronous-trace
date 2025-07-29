@@ -587,3 +587,50 @@ Python Exception <class 'AttributeError'>: type object 'Callable' has no attribu
 我都不知道 `_abc_registry` 是什么。
 
 最后查明是因为我们用的是已经内置 typing 模块的 python3.12，但是根据 requirements.txt, 我们却安装了适用于 python3.5 的外部 typing 模块，于是`elftools`尝试 import 内置 typing 模块的时候却引入了老版本的外部 typing 模块，造成了这个问题。解决办法是在 requirements.txt 中删除外部 typing 模块并清空 venv 文件夹（我提供了 `make clean-venv` 命令）。
+
+在移植了 `dwex` 的 DIE 树之后，我编写了上文提到的 DIE 树内的搜索算法（和一个测试脚本），这个算法写起来很别扭，因为一般的 DFS 算法搜索某个元素就好了，我们的这个 "DFS算法" 搜索的是一串元素，也就是说不仅节点本身要符合某个条件，这个节点的父亲节点，爷爷节点......也需要符合某些条件。需要注意的是，泛型不应当从函数名中被去除（因为可能出现带泛型和不带泛型的同名函数同时出现的情况），泛型内的`::`不应该作为分割符。
+
+实际上如果不实现这个 DIE 树，而是直接把所有 DIE 的全名拼接出来（比如 `{async_fn#0} -> reqwest::get::{async_fn#0}`）然后直接搜索全名也是可行的，但是由于 DIE 太多了（一个用 tokio 下载单个网页的简单爬虫就有三百多个编译单元，每个编译单元内有 50-1000 个 DIE），这个列出 DIE 和拼接全名的过程会非常漫长，生成的 "DIE 列表" 文件也会非常巨大，因此只能需要用到某个 DIE 元素的时候再在 DIE 树里搜索。
+
+**注意，目前只处理了 `函数{async_fn#?} <-> future结构体{async_fn_env#?}` 的情况，不过在现有的代码框架上添加其他的情况应该不是很困难。**
+
+比如，我添加了 `_build_future_struct_name` 和 `_build_poll_function_name` 函数，可以用于处理将来可能出现的，DIE 树内搜索路径构建出来的名称和实际的名称不一致的情况。以及目前暂未处理的 `closure_env#` 和 `impl#` 的情况。
+
+**想到一个问题，如何验证我们工具所跟踪出来信息（future依赖和异步backtrace）的完整性? 最方便的办法应该是和 runtime 内置的 tracer 进行比较（比如和 tokio-console）因为 runtime 内置的 tracer 展示的信息一般具有完整性** 这是后期的一个任务。
+
+有了 poll->future 和 future->poll 的功能后，dwarf 解析层的任务就基本完成了，接下来需要编写处理运行状态获取层。
+
+在此之前我需要修改以下 async_dependencies.json 的格式. 因为这个 json 里的内容是要被反复读取的（被用于搜索 future依赖）而它的格式其实会降低搜索效率。主要的问题是：
+
+async 依赖树的每一项都是 "函数名<DIE offset>" 的格式，这个格式虽然保留了函数名便于阅读，又添加了唯一的 DIE offset 防止重名，但是每一次读取这种字符串都需要用正则表达式解析出 函数名和 DIE offset. 
+
+最简单的解决方案是： 
+
+1. async 依赖树只保留 DIE offset，这样 python 读取 json 之后可以直接把 DIE offset 当作 Dict 的 key 访问到某个元素的 future 依赖关系。这样做代码简单且高效。
+2. async_functions 和 state_machines 中的每一项的 key 都改为 DIE offset。这么做的目的是：第一个解决手段导致 async 依赖树里只有 DIE offset 了，而**我们还是需要读取 future 名的（这里又又多出来一个工作，future 名和 DIE offset 转换变成了一个需要反复被用到的功能，而且和前面关于为什么不把 DIE 树直接拼接出全名然后全部打印的讨论一样， future-die_offset的索引文件会非常巨大且生成时间过长。因此需要将 future <-> DIE offset 的功能保留在内存里面随时准备被调用。所以 async_dependencies.py 不可以是一个终端命令了，要重新改成 GDB 内部的命令）** 这样需要读取每一个 DIE offset 对应的future名的时候就很方便     
+
+在解决了这个问题后，我继续编写运行状态获取层。第一步 - 第四步的代码都应该实现在 StartAsyncDebugCommand 的 invoke 方法里，第五步应该要实现一个 runtime plugin （其中包含了存储插桩数据的数据结构的实现,还要保证这个数据结构能被 inspect-async 命令访问到），这个 runtime plugin 调用的插桩代码是一个单独的新tracer. 
+
+第一步是读取 poll_map.json 中用户勾选的“感兴趣函数”，并且利用 pollToFuture 方法转换为 "感兴趣future"
+
+第二步是获取 读取 async_dependencies.json 中的 DIE 依赖关系，并且对“感兴趣 future”进行 "future 扩展". 往长辈方向"扩展"可以知道异步调用栈的底部和协程的划分（一个最底层的 future 就是一个协程），往子孙方向"扩展"可以知道异步调用栈的顶部。
+
+第三步是利用 pollToFuture 和 FutureToPoll 功能，获得扩展后的 future 列表对应的 poll 函数
+
+第四步是利用之前编写的插桩框架对这些 poll 函数插桩。
+
+第五步是利用之前编写的插桩框架获取异步调用栈信息。第一部分的工作是设计和编写用于给插桩代码存储数据的数据结构。数据结构是一个多级字典`dict[process][thread][coroutine]`. 第二部分的工作是编写插桩代码本身（即放在tracers/文件夹里的一个tracer），插桩代码获取的数据有：进程id，线程id，协程id（通过我们之前的分析，future依赖树最顶层的那个future就等于一个协程）。函数进入时，和函数退出时都要运行这段插桩代码，这样做的目的是：函数退出时，调用栈也会对应地更新（调用栈里最顶层的函数调用被去除）
+
+第六步是编写 inspect-async 命令，读取并显示第五步中存储的数据结构。
+
+下一步工作：
+1. 编写 benchmark 测试我们这个方法的准确性
+  - （比如可以跟 tokio-console / 
+  - bugstalker 
+  - 或自己在异步代码里添加一个宏
+  - 进行对比，看看是否有跟踪到
+    - 所有的协程和
+    - 所有的 future 依赖关系）
+2. 编写一个例子，里面包含所有异步代码的形式（比如 async fn, impl future 等，应该不止这两个但是我暂时不了解），看我们这个工具是否能跟踪所有的形式，如果不行的话需要修改代码。基于目前这个代码框架，修改起来不会太难
+
+
