@@ -3,6 +3,7 @@ import os
 import sys
 import importlib
 import re
+from typing import Optional, List, Tuple, Union
 
 # --- Setup ---
 
@@ -16,6 +17,15 @@ if not PLUGIN_NAME:
 from core.init_dwarf_analysis import get_dwarf_tree
 from core.dwarf.tree import load_children
 from core.dwarf.dwarfutil import safe_DIE_name, DIE_has_name
+
+# Type imports for DIE structures
+try:
+    from elftools.dwarf.die import DIE
+    from elftools.dwarf.compileunit import CompileUnit
+except ImportError:
+    # Fallback for when elftools is not available
+    DIE = object
+    CompileUnit = object
 
 # --- Global Data Store ---
 
@@ -207,6 +217,7 @@ class StartAsyncDebugCommand(gdb.Command):
             components.append(current_component.strip())
         
         return components
+
     def parse_future_struct_hierarchy(self, future_struct_name):
         """
         Parse a future struct name into hierarchical components for DWARF analysis.
@@ -334,7 +345,6 @@ class StartAsyncDebugCommand(gdb.Command):
                 future_struct = self._find_sibling_future_struct(match)
                 print(f"    Match: {safe_DIE_name(match, '')} -> Future: {safe_DIE_name(future_struct, '') if future_struct else 'None'}")
 
-
     def _is_target_async_function(self, die):
         """Check if this DIE is the target async function we're looking for"""
         tag = die.tag if hasattr(die, 'tag') else ""
@@ -343,22 +353,43 @@ class StartAsyncDebugCommand(gdb.Command):
         return (tag == 'DW_TAG_subprogram' and 
                 '{async_fn#0}' in name)
     
-    def is_async_function_die(die):
-        """Check if DIE represents an async function"""
+    def is_async_function_die(self, die) -> bool:
+        """
+        Check if DIE represents an async function.
+        
+        Args:
+            die: DWARF DIE object with .offset attribute for getting DIE offset
+            
+        Returns:
+            bool: True if this is an async function DIE
+            
+        Note:
+            DIE offset can be accessed via: die.offset (returns int)
+        """
         name = safe_DIE_name(die, "")
         tag = die.tag if hasattr(die, 'tag') else ""
         
         return (tag == 'DW_TAG_subprogram' and 
-                '{async_fn#0}' in name)
+                '{async_fn#' in name)  # TODO: 1. handle {impl#?} 2. in rare cases this might not strict enough, should use regex to match {async_fn#\d+} or {impl#\d+}
 
-    def is_future_struct_die(die):
-        """Check if DIE represents a future structure"""
+    def is_future_struct_die(self, die) -> bool:
+        """
+        Check if DIE represents a future structure.
+        
+        Args:
+            die: DWARF DIE object with .offset attribute for getting DIE offset
+            
+        Returns:
+            bool: True if this is a future struct DIE
+            
+        Note:
+            DIE offset can be accessed via: die.offset (returns int)
+        """
         name = safe_DIE_name(die, "")
         tag = die.tag if hasattr(die, 'tag') else ""
         
         return (tag == 'DW_TAG_structure_type' and 
-                ('async_fn_env#0' in name or 
-                'async_fn_env' in name))
+                ('{async_fn_env#' in name)) # TODO: 1. handle {impl#?} 2. in rare cases this might not strict enough, should use regex to match {async_fn_env#\d+} or {impl#\d+}
 
     def is_namespace_die(die):
         """Check if DIE is a namespace"""
@@ -390,7 +421,7 @@ class StartAsyncDebugCommand(gdb.Command):
         for child_die in cu_die._children:
             child_name = safe_DIE_name(child_die, "")
             child_tag = child_die.tag if hasattr(child_die, 'tag') else ""
-
+            
             # Check if this child matches the current hierarchy level
             if child_name == current_name:
                 if depth == len(hierarchy) - 1:
@@ -452,7 +483,7 @@ class StartAsyncDebugCommand(gdb.Command):
             # This handles nested namespace structures
             if child_die.has_children:
                 sub_matches = self.search_future_struct_in_cu(child_die, hierarchy, depth)
-		matches.extend(sub_matches)
+                matches.extend(sub_matches)
         
         return matches
 
@@ -480,15 +511,15 @@ class StartAsyncDebugCommand(gdb.Command):
         # Look for sibling structures that could be the future
         for sibling in parent_die._children:
             sibling_name = safe_DIE_name(sibling, "")
-	    sibling_counter = None # the number after async_fn_env#
+            sibling_counter = None # the number after async_fn_env#
             sibling_counter_result = re.search(r'\{async_fn_env#(\d+)\}', sibling_name)
             if sibling_counter_result:
                 sibling_counter = sibling_counter_result.group(1)
             sibling_tag = sibling.tag if hasattr(sibling, 'tag') else ""
             
             # Check if this sibling is a future struct
-           # the sibling counter should match the async_fn_env# counter too
-	    if (sibling_tag == 'DW_TAG_structure_type' and
+            # the sibling counter should match the async_fn_env# counter too
+            if (sibling_tag == 'DW_TAG_structure_type' and
                 '{async_fn_env#' + sibling_counter + '}' in sibling_name):
                     return sibling
 
@@ -588,139 +619,763 @@ class StartAsyncDebugCommand(gdb.Command):
             return full_name
         
         return future_name
-
-    def pollToFuture(self, poll_fn_name):
+    
+    def find_poll_function_in_dwarf_tree(self, poll_fn_name: str) -> List[Tuple[object, int]]:
         """
-        Convert a polling function name to a future function name.
-        This is a placeholder implementation and should be replaced with
-        the actual conversion logic.
+        Step 1: Find poll function DIEs in DWARF tree.
+        
+        This is the decomposed first part of pollToFuture that searches for poll functions
+        in the DWARF tree and returns both the DIE and its offset.
+        
+        Args:
+            poll_fn_name (str): Poll function name from GDB
+            
+        Returns:
+            List[Tuple[DIE, int]]: List of (DIE object, DIE offset) tuples for found poll functions
         """
-        # turn poll_fn_name into hierarchy
+        # Parse poll function name into hierarchy
         components = self.parse_poll_function_hierarchy(poll_fn_name)
         if not components:
             print(f"[rust-future-tracing] ERROR: Unable to parse poll function name: {poll_fn_name}")
-            return None
-        
-        
+            return []
         
         # Get the DWARF tree
         tree = self._get_tree_safely()
         if not tree:
-            return None  # Not initialized
+            return []  # Not initialized
 
         # Search for the poll function across all compilation units
         all_matches = []
         for cu_die in tree.top_dies:
             matches = self.search_poll_hierarchy_in_cu(cu_die, components, 0)
-            all_matches.extend(matches)
+            # Convert matches to (DIE, offset) tuples
+            for match in matches:
+                all_matches.append((match, match.offset))
         
         if not all_matches:
             print(f"[rust-future-tracing] No matches found for hierarchy: {components}")
+            return []
+        
+        return all_matches
+    
+    def find_future_struct_for_poll_function(self, poll_die: object, poll_offset: int) -> Optional[Tuple[object, int]]:
+        """
+        Step 2: Find future struct DIE for a given poll function DIE.
+        
+        This is the decomposed second part of pollToFuture that finds the corresponding
+        future struct and returns both the DIE and its offset.
+        
+        Args:
+            poll_die: Poll function DIE object
+            poll_offset (int): Poll function DIE offset
+            
+        Returns:
+            Optional[Tuple[DIE, int]]: (future struct DIE, future struct offset) or None if not found
+        """
+        future_struct = self._find_sibling_future_struct(poll_die)
+        if future_struct:
+            return (future_struct, future_struct.offset)
+        
+        print(f"[rust-future-tracing] No future struct found for poll function at offset: {poll_offset}")
+        return None
+
+    def pollToFuture(self, poll_fn_name: str) -> Optional[str]:
+        """
+        Convert a polling function name to a future function name.
+        
+        This method now uses the decomposed approach for better code reuse and abstraction.
+        
+        Args:
+            poll_fn_name (str): Poll function name from GDB
+            
+        Returns:
+            Optional[str]: Future struct name, or None if not found
+            
+        Note:
+            This method finds DIE objects with .offset attribute (int) for DIE offsets
+        """
+        # Step 1: Find poll function DIEs in DWARF tree
+        poll_matches = self.find_poll_function_in_dwarf_tree(poll_fn_name)
+        if not poll_matches:
             return None
         
-        # For each match, try to find the corresponding future struct
+        # Step 2: Find corresponding future structs
         future_structs = []
-        for match in all_matches:
-            future_struct = self._find_sibling_future_struct(match)
-            if future_struct:
-                future_structs.append(future_struct)
+        for poll_die, poll_offset in poll_matches:
+            future_result = self.find_future_struct_for_poll_function(poll_die, poll_offset)
+            if future_result:
+                future_structs.append(future_result)
         
         if not future_structs:
             print(f"[rust-future-tracing] No future structs found for poll function: {poll_fn_name}")
             return None
         
         # Return the full name of the first future struct found
-        future_name = self._build_future_struct_name(future_structs[0], poll_fn_name)
-        print(f"[rust-future-tracing] Mapped {poll_fn_name} -> {future_name}")
+        future_die, future_offset = future_structs[0]
+        future_name = self._build_future_struct_name(future_die, poll_fn_name)
+        print(f"[rust-future-tracing] Mapped {poll_fn_name} -> {future_name} (DIE offset: {future_offset})")
         return future_name
 
-    def futureToPoll(self, future_struct_name):
+    def find_future_struct_in_dwarf_tree(self, future_struct_name: str) -> List[Tuple[object, int]]:
+        """
+        Step 1: Find future struct DIEs in DWARF tree.
+        
+        This is the decomposed first part of futureToPoll that searches for future structs
+        in the DWARF tree and returns both the DIE and its offset.
+        
+        Args:
+            future_struct_name (str): Future struct name like "reqwest::get::{async_fn_env#0}<&str>"
+            
+        Returns:
+            List[Tuple[DIE, int]]: List of (DIE object, DIE offset) tuples for found future structs
+        """
+        # Parse future struct name into hierarchy
+        components = self.parse_future_struct_hierarchy(future_struct_name)
+        if not components:
+            print(f"[rust-future-tracing] ERROR: Unable to parse future struct name: {future_struct_name}")
+            return []
+        
+        # Validate that this looks like a future struct (should end with {async_fn_env#0})
+        if not any('{async_fn_env#0}' in comp for comp in components):
+            print(f"[rust-future-tracing] ERROR: Not a valid future struct name (missing async_fn_env): {future_struct_name}")
+            return []
+        
+        # Get the DWARF tree
+        tree = self._get_tree_safely()
+        if not tree:
+            return []  # Not initialized
+
+        # Search for the future struct across all compilation units
+        all_matches = []
+        for cu_die in tree.top_dies:
+            matches = self.search_future_struct_in_cu(cu_die, components, 0)
+            # Convert matches to (DIE, offset) tuples
+            for match in matches:
+                all_matches.append((match, match.offset))
+        
+        if not all_matches:
+            print(f"[rust-future-tracing] No future struct matches found for hierarchy: {components}")
+            return []
+        
+        return all_matches
+    
+    def find_poll_function_for_future_struct(self, future_die: object, future_offset: int) -> Optional[Tuple[object, int]]:
+        """
+        Step 2: Find poll function DIE for a given future struct DIE.
+        
+        This is the decomposed second part of futureToPoll that finds the corresponding
+        poll function and returns both the DIE and its offset.
+        
+        Args:
+            future_die: Future struct DIE object
+            future_offset (int): Future struct DIE offset
+            
+        Returns:
+            Optional[Tuple[DIE, int]]: (poll function DIE, poll function offset) or None if not found
+        """
+        poll_function = self._find_sibling_poll_function(future_die)
+        if poll_function:
+            return (poll_function, poll_function.offset)
+        
+        print(f"[rust-future-tracing] No poll function found for future struct at offset: {future_offset}")
+        return None
+
+    def futureToPoll(self, future_struct_name: str) -> Optional[str]:
         """
         Convert a future struct name to its corresponding polling function name.
         
         This implements the reverse mapping described in dwarf_analyzer.md lines 513-520:
         "future 结构体 -> poll 函数名"
         
+        This method now uses the decomposed approach for better code reuse and abstraction.
+        
         Args:
             future_struct_name (str): Future struct name like "reqwest::get::{async_fn_env#0}<&str>"
             
         Returns:
-            str or None: The corresponding poll function name, or None if not found
+            Optional[str]: The corresponding poll function name, or None if not found
             
         Examples:
             "reqwest::get::{async_fn_env#0}<&str>" -> "reqwest::get::{async_fn#0}<&str>"
+            
+        Note:
+            This method finds DIE objects with .offset attribute (int) for DIE offsets
         """
-        # Parse future struct name into hierarchy
-        components = self.parse_future_struct_hierarchy(future_struct_name)
-        if not components:
-            print(f"[rust-future-tracing] ERROR: Unable to parse future struct name: {future_struct_name}")
+        # Step 1: Find future struct DIEs in DWARF tree
+        future_matches = self.find_future_struct_in_dwarf_tree(future_struct_name)
+        if not future_matches:
             return None
         
-        # Validate that this looks like a future struct (should end with {async_fn_env#0})
-        # TODO: this is a simplification, we should also check for other async_fn_env patterns
-        # like {impl#N} or {closure_env#N} if they are used
-        # in the future struct name.
-        if not any('{async_fn_env#0}' in comp for comp in components):
-            print(f"[rust-future-tracing] ERROR: Not a valid future struct name (missing async_fn_env): {future_struct_name}")
-            return None
-        
-        # Get the DWARF tree
-        tree = self._get_tree_safely()
-        if not tree:
-            return None  # Not initialized
-
-        # Search for the future struct across all compilation units
-        all_matches = []
-        for cu_die in tree.top_dies:
-            matches = self.search_future_struct_in_cu(cu_die, components, 0)
-            all_matches.extend(matches)
-        
-        if not all_matches:
-            print(f"[rust-future-tracing] No future struct matches found for hierarchy: {components}")
-            return None
-        
-        # For each match, try to find the corresponding poll function
+        # Step 2: Find corresponding poll functions
         poll_functions = []
-        for match in all_matches:
-            poll_function = self._find_sibling_poll_function(match)
-            if poll_function:
-                poll_functions.append(poll_function)
+        for future_die, future_offset in future_matches:
+            poll_result = self.find_poll_function_for_future_struct(future_die, future_offset)
+            if poll_result:
+                poll_functions.append(poll_result)
         
         if not poll_functions:
             print(f"[rust-future-tracing] No poll functions found for future struct: {future_struct_name}")
             return None
         
         # Return the first poll function found
-        poll_name = self._build_poll_function_name(poll_functions[0], future_struct_name)
-        print(f"[rust-future-tracing] Mapped {future_struct_name} -> {poll_name}")
+        poll_die, poll_offset = poll_functions[0]
+        poll_name = self._build_poll_function_name(poll_die, future_struct_name)
+        print(f"[rust-future-tracing] Mapped {future_struct_name} -> {poll_name} (DIE offset: {poll_offset})")
         return poll_name
 
-    def invoke(self, arg, from_tty):
-        if not plugin:
-            print("[gdb_debugger] No plugin loaded. Cannot start.")
-            return
-
-        print("[gdb_debugger] Setting instrumentation points...")
-        for point in plugin.instrument_points():
-            try:
-                EntryBreakpoint(point["symbol"], point["entry_tracers"], point["exit_tracers"])
-                print(f"  - Breakpoint set for {point['symbol']}")
-            except gdb.error as e:
-                print(f"  - ERROR setting breakpoint for {point['symbol']}: {e}")
+    def _read_interesting_functions_and_convert_to_futures(self):
+        """
+        Read poll_map.json for user-selected interesting functions and convert them to futures.
         
-        print("\n[gdb_debugger] Instrumentation complete. Run your program.")
-        print("Use 'dump-async-data' after execution to see the report.")
+        Returns:
+            list: List of interesting future struct names converted from poll functions
+        """
+        import json
+        import os
+        
+        # Look for poll_map.json in results directory
+        poll_map_path = os.path.join(os.getcwd(), "results", "poll_map.json")
+        if not os.path.exists(poll_map_path):
+            print(f"[rust-future-tracing] Error: poll_map.json not found at {poll_map_path}")
+            return []
+        
+        try:
+            with open(poll_map_path, 'r') as f:
+                poll_map = json.load(f)
+        except Exception as e:
+            print(f"[rust-future-tracing] Error reading poll_map.json: {e}")
+            return []
+        
+        # Find functions marked with async_backtrace: true
+        interesting_poll_functions = []
+        for file_path, function_data in poll_map.items():
+            if function_data.get("async_backtrace", False):
+                fn_name = function_data.get("fn_name", "")
+                if fn_name:
+                    interesting_poll_functions.append(fn_name)
+                    print(f"[rust-future-tracing] Found interesting poll function: {fn_name}")
+        
+        if not interesting_poll_functions:
+            print("[rust-future-tracing] No functions marked with 'async_backtrace': true")
+            return []
+        
+        # Convert poll functions to future structs using pollToFuture
+        interesting_futures = []
+        for poll_fn in interesting_poll_functions:
+            try:
+                future_struct = self.pollToFuture(poll_fn)
+                if future_struct:
+                    interesting_futures.append(future_struct)
+                else:
+                    print(f"[rust-future-tracing] Warning: Could not convert poll function to future: {poll_fn}")
+            except Exception as e:
+                print(f"[rust-future-tracing] Error converting {poll_fn}: {e}")
+        
+        return interesting_futures
+
+    def offsetToDIE(self, die_offset: int) -> Optional[Tuple[object, str]]:
+        """
+        Convert a DIE offset to the corresponding DIE object and determine its type.
+        
+        This method is referenced in the document for Step 3 implementation.
+        It uses the DWARF tree's existing API to find a DIE by offset and classify it.
+        
+        Args:
+            die_offset (int): DIE offset to look up
+            
+        Returns:
+            Optional[Tuple[DIE, str]]: (DIE object, DIE type) where DIE type is one of:
+                - "async_function" for async function DIEs
+                - "future_struct" for future struct DIEs  
+                - "other" for other types of DIEs
+                Returns None if DIE not found
+        """
+        tree = self._get_tree_safely()
+        if not tree:
+            return None
+        
+        # Use the tree model's find_offset method (similar to on_byoffset in dwarf/__main__.py)
+        try:
+            index = tree.find_offset(die_offset)
+            if not index:
+                print(f"[rust-future-tracing] DIE offset {die_offset} not found in DWARF tree")
+                return None
+            
+            # Get the DIE object from the index
+            die = index.internalPointer()
+            if not die:
+                print(f"[rust-future-tracing] No DIE object found at offset {die_offset}")
+                return None
+            
+            # Classify the DIE type
+            if self.is_async_function_die(die):
+                return (die, "async_function")
+            elif self.is_future_struct_die(die):
+                return (die, "future_struct")
+            else:
+                return (die, "other")
+                
+        except Exception as e:
+            print(f"[rust-future-tracing] Error looking up DIE at offset {die_offset}: {e}")
+            return None
+
+    def convert_interesting_futures_to_die_offsets(self, interesting_futures: List[str]) -> List[int]:
+        """
+        Convert interesting future names to their DIE offsets for dependency lookup.
+        
+        This is the small step added after Step 1 as mentioned in the document:
+        "在'第一步'后添加一个小步骤：把'感兴趣future'转换为 DIE offset 供第二步查询"
+        
+        Args:
+            interesting_futures: List of future struct names like ["reqwest::get::{async_fn_env#0}<&str>"]
+            
+        Returns:
+            List[int]: List of DIE offsets corresponding to the future structs
+        """
+        die_offsets = []
+        
+        for future_name in interesting_futures:
+            print(f"[rust-future-tracing] Converting future to DIE offset: {future_name}")
+            
+            # Use our decomposed method from Step 2 to find the future struct DIE
+            future_matches = self.find_future_struct_in_dwarf_tree(future_name)
+            
+            if future_matches:
+                # Take the first match and get its offset
+                future_die, future_offset = future_matches[0]
+                die_offsets.append(future_offset)
+                print(f"[rust-future-tracing] Mapped {future_name} -> DIE offset: {future_offset}")
+            else:
+                print(f"[rust-future-tracing] WARNING: Could not find DIE offset for future: {future_name}")
+        
+        return die_offsets
+
+    def load_async_dependencies(self) -> Optional[dict]:
+        """
+        Load async dependency information from async_dependencies.json.
+        
+        Returns:
+            Optional[dict]: Parsed JSON data or None if loading failed
+        """
+        import json
+        import os
+        
+        # Look for async_dependencies.json in results directory
+        deps_path = os.path.join(os.getcwd(), "results", "async_dependencies.json")
+        if not os.path.exists(deps_path):
+            print(f"[rust-future-tracing] ERROR: async_dependencies.json not found at {deps_path}")
+            return None
+        
+        try:
+            with open(deps_path, 'r') as f:
+                deps_data = json.load(f)
+            print(f"[rust-future-tracing] Loaded async dependencies from {deps_path}")
+            return deps_data
+        except Exception as e:
+            print(f"[rust-future-tracing] ERROR loading async_dependencies.json: {e}")
+            return None
+
+    def expand_future_dependencies(self, interesting_die_offsets: List[int]) -> dict:
+        """
+        Expand future dependencies in both ancestor and descendant directions.
+        
+        As described in the document:
+        - Ancestor expansion ("往长辈方向扩展") finds the bottom of async call stacks and coroutine boundaries
+        - Descendant expansion ("往子孙方向扩展") finds the top of async call stacks
+        
+        Args:
+            interesting_die_offsets: List of DIE offsets for interesting futures
+            
+        Returns:
+            dict: Expanded dependency information with structure:
+                {
+                    "expanded_offsets": List[int],  # All expanded DIE offsets
+                    "ancestors": {offset: [ancestor_offsets]},  # Ancestor relationships
+                    "descendants": {offset: [descendant_offsets]},  # Descendant relationships
+                    "coroutines": List[int],  # Bottom-level futures (coroutines)
+                    "call_stack_tops": List[int]  # Top-level futures
+                }
+        """
+        # Load dependency data
+        deps_data = self.load_async_dependencies()
+        if not deps_data:
+            return {"expanded_offsets": [], "ancestors": {}, "descendants": {}, "coroutines": [], "call_stack_tops": []}
+        
+        dependency_tree = deps_data.get("dependency_tree", {})
+        
+        # Convert DIE offsets to hex strings (JSON keys are strings)
+        interesting_hex_offsets = [hex(offset)[2:] for offset in interesting_die_offsets]
+        
+        expanded_offsets = set(interesting_die_offsets)
+        ancestors = {}
+        descendants = {}
+        
+        # Helper function to perform DFS expansion
+        def expand_dependencies(current_hex_offset: str, direction: str, visited: set):
+            if current_hex_offset in visited:
+                return []
+            
+            visited.add(current_hex_offset)
+            current_offset = int(current_hex_offset, 16)
+            
+            if direction == "ancestors":
+                # Find all DIEs that depend on this one (this DIE is in their dependency list)
+                related_offsets = []
+                for die_hex, deps in dependency_tree.items():
+                    if current_hex_offset in deps:
+                        related_offsets.append(int(die_hex, 16))
+                
+                if current_offset not in ancestors:
+                    ancestors[current_offset] = []
+                
+                for related_offset in related_offsets:
+                    ancestors[current_offset].append(related_offset)
+                    expanded_offsets.add(related_offset)
+                    # Recursively expand ancestors
+                    expand_dependencies(hex(related_offset)[2:], direction, visited.copy())
+                    
+            elif direction == "descendants":
+                # Find all DIEs that this one depends on
+                deps = dependency_tree.get(current_hex_offset, [])
+                descendant_offsets = [int(dep, 16) for dep in deps]
+                
+                if current_offset not in descendants:
+                    descendants[current_offset] = []
+                
+                for desc_offset in descendant_offsets:
+                    descendants[current_offset].append(desc_offset)
+                    expanded_offsets.add(desc_offset)
+                    # Recursively expand descendants
+                    expand_dependencies(hex(desc_offset)[2:], direction, visited.copy())
+        
+        # Expand in both directions for each interesting future
+        for hex_offset in interesting_hex_offsets:
+            print(f"[rust-future-tracing] Expanding dependencies for DIE offset: 0x{hex_offset}")
+            
+            # Expand ancestors (find what depends on this future)
+            expand_dependencies(hex_offset, "ancestors", set())
+            
+            # Expand descendants (find what this future depends on)
+            expand_dependencies(hex_offset, "descendants", set())
+        
+        # Identify coroutines (futures with no ancestors - bottom of call stack)
+        coroutines = []
+        for offset in expanded_offsets:
+            if offset not in ancestors or not ancestors[offset]:
+                coroutines.append(offset)
+        
+        # Identify call stack tops (futures with no descendants)
+        call_stack_tops = []
+        for offset in expanded_offsets:
+            if offset not in descendants or not descendants[offset]:
+                call_stack_tops.append(offset)
+        
+        result = {
+            "expanded_offsets": list(expanded_offsets),
+            "ancestors": ancestors,
+            "descendants": descendants,
+            "coroutines": coroutines,
+            "call_stack_tops": call_stack_tops
+        }
+        
+        print(f"[rust-future-tracing] Expansion complete:")
+        print(f"  - Total expanded DIE offsets: {len(expanded_offsets)}")
+        print(f"  - Coroutines (bottom-level): {len(coroutines)}")
+        print(f"  - Call stack tops: {len(call_stack_tops)}")
+        
+        return result
+
+    def validate_expanded_futures_with_die_tree(self, expanded_info: dict) -> dict:
+        """
+        Validate expanded futures using DIE tree data structures instead of offset_to_name.
+        
+        As mentioned in the document: "不要使用 async_dependencies.json 内部的 DIE offset - 函数/结构体名 对照表
+        (offset_to_name) 那个对照表是从 objdump 的输出中提取出来的，所以函数名/结构体名不一定和 elftools 的解析结果一致"
+        
+        Args:
+            expanded_info: Result from expand_future_dependencies
+            
+        Returns:
+            dict: Validated expansion info with DIE type classification
+        """
+        validated_futures = {
+            "async_functions": [],
+            "future_structs": [],
+            "other_dies": [],
+            "invalid_offsets": []
+        }
+        
+        for die_offset in expanded_info["expanded_offsets"]:
+            # Use offsetToDIE method to get DIE and classify its type
+            die_result = self.offsetToDIE(die_offset)
+            
+            if die_result:
+                die_obj, die_type = die_result
+                
+                if die_type == "async_function":
+                    validated_futures["async_functions"].append({
+                        "offset": die_offset,
+                        "die": die_obj,
+                        "name": safe_DIE_name(die_obj, f"<unknown_async_fn_{die_offset}>")
+                    })
+                elif die_type == "future_struct":
+                    validated_futures["future_structs"].append({
+                        "offset": die_offset,
+                        "die": die_obj,
+                        "name": safe_DIE_name(die_obj, f"<unknown_future_{die_offset}>")
+                    })
+                else:
+                    validated_futures["other_dies"].append({
+                        "offset": die_offset,
+                        "die": die_obj,
+                        "type": die_type,
+                        "name": safe_DIE_name(die_obj, f"<unknown_{die_offset}>")
+                    })
+            else:
+                validated_futures["invalid_offsets"].append(die_offset)
+                print(f"[rust-future-tracing] WARNING: Invalid DIE offset during validation: {die_offset}")
+        
+        print(f"[rust-future-tracing] Validation complete:")
+        print(f"  - Async functions: {len(validated_futures['async_functions'])}")
+        print(f"  - Future structs: {len(validated_futures['future_structs'])}")
+        print(f"  - Other DIEs: {len(validated_futures['other_dies'])}")
+        print(f"  - Invalid offsets: {len(validated_futures['invalid_offsets'])}")
+        
+        return validated_futures
+
+    def perform_future_expansion(self, interesting_futures: List[str]) -> dict:
+        """
+        Complete Step 3: Perform future expansion on interesting futures.
+        
+        This method orchestrates the entire Step 3 process:
+        1. Convert interesting futures to DIE offsets
+        2. Load async dependencies
+        3. Expand dependencies in both directions
+        4. Validate using DIE tree (not offset_to_name)
+        
+        Args:
+            interesting_futures: List of interesting future names from Step 1
+            
+        Returns:
+            dict: Complete expansion and validation results
+        """
+        print("[rust-future-tracing] === Step 3: Performing future expansion ===")
+        
+        # Sub-step: Convert interesting futures to DIE offsets
+        print("[rust-future-tracing] Converting interesting futures to DIE offsets...")
+        interesting_die_offsets = self.convert_interesting_futures_to_die_offsets(interesting_futures)
+        
+        if not interesting_die_offsets:
+            print("[rust-future-tracing] No DIE offsets found for interesting futures")
+            return {}
+        
+        # Main expansion process
+        print("[rust-future-tracing] Expanding future dependencies...")
+        expanded_info = self.expand_future_dependencies(interesting_die_offsets)
+        
+        # Validation using DIE tree
+        print("[rust-future-tracing] Validating expanded futures with DIE tree...")
+        validated_futures = self.validate_expanded_futures_with_die_tree(expanded_info)
+        
+        # Combine results
+        result = {
+            "original_futures": interesting_futures,
+            "interesting_die_offsets": interesting_die_offsets,
+            "expansion_info": expanded_info,
+            "validated_futures": validated_futures
+        }
+        
+        print("[rust-future-tracing] === Step 3 complete ===")
+        return result
+
+    def convert_expanded_futures_to_poll_functions(self, expansion_results: dict) -> List[str]:
+        """
+        Step 4: Convert expanded future list to corresponding poll functions.
+        
+        This implements Step 4 from the document: "利用 pollToFuture 和 FutureToPoll 功能，
+        获得扩展后的 future 列表对应的 poll 函数"
+        
+        Args:
+            expansion_results: Results from Step 3 future expansion
+            
+        Returns:
+            List[str]: List of poll function names corresponding to expanded futures
+        """
+        print("[rust-future-tracing] === Step 4: Converting expanded futures to poll functions ===")
+        
+        validated_futures = expansion_results.get("validated_futures", {})
+        future_structs = validated_futures.get("future_structs", [])
+        
+        if not future_structs:
+            print("[rust-future-tracing] No future structs found in expansion results")
+            return []
+        
+        poll_functions = []
+        
+        # Convert each expanded future struct to its corresponding poll function
+        for future_info in future_structs:
+            future_offset = future_info["offset"]
+            future_die = future_info["die"]
+            future_name = future_info["name"]
+            
+            print(f"[rust-future-tracing] Converting future to poll function: {future_name} (offset: {future_offset})")
+            
+            # Use our decomposed method from Step 2 to find the corresponding poll function
+            poll_result = self.find_poll_function_for_future_struct(future_die, future_offset)
+            
+            if poll_result:
+                poll_die, poll_offset = poll_result
+                # Build the full poll function name using the existing method
+                poll_name = self._build_poll_function_name(poll_die, future_name)
+                
+                if poll_name:
+                    poll_functions.append(poll_name)
+                    print(f"[rust-future-tracing] Mapped future -> poll: {future_name} -> {poll_name} (DIE offset: {poll_offset})")
+                else:
+                    print(f"[rust-future-tracing] WARNING: Could not build poll function name for future: {future_name}")
+            else:
+                print(f"[rust-future-tracing] WARNING: No poll function found for future: {future_name}")
+        
+        # Also handle async functions that were expanded (convert them to function names)
+        async_functions = validated_futures.get("async_functions", [])
+        for async_info in async_functions:
+            async_offset = async_info["offset"]
+            async_die = async_info["die"]
+            async_name = async_info["name"]
+            
+            print(f"[rust-future-tracing] Including async function: {async_name} (offset: {async_offset})")
+            
+            # Build the full async function name
+            full_async_name = self._build_poll_function_name(async_die, async_name)
+            if full_async_name:
+                poll_functions.append(full_async_name)
+                print(f"[rust-future-tracing] Added async function: {full_async_name}")
+        
+        # Remove duplicates while preserving order
+        unique_poll_functions = []
+        seen = set()
+        for func in poll_functions:
+            if func not in seen:
+                unique_poll_functions.append(func)
+                seen.add(func)
+        
+        print(f"[rust-future-tracing] Step 4 complete. Found {len(unique_poll_functions)} unique poll functions:")
+        for i, func in enumerate(unique_poll_functions, 1):
+            print(f"  {i}. {func}")
+        
+        return unique_poll_functions
+
+    def invoke(self, arg, from_tty):
+        # === STEP 1: Read poll_map.json and convert interesting poll functions to futures ===
+        print("[rust-future-tracing] Step 1: Reading user-selected interesting functions...")
+        
+        interesting_futures = self._read_interesting_functions_and_convert_to_futures()
+        if not interesting_futures:
+            print("[rust-future-tracing] No interesting functions found. Please mark functions with 'async_backtrace': true in poll_map.json")
+            return
+        
+        print(f"[rust-future-tracing] Found {len(interesting_futures)} interesting futures:")
+        for future in interesting_futures:
+            print(f"  - {future}")
+        
+        # === STEP 3: Perform future expansion ===
+        expansion_results = self.perform_future_expansion(interesting_futures)
+        
+        if not expansion_results:
+            print("[rust-future-tracing] Future expansion failed, cannot continue")
+            return
+        
+        # Store expansion results for Step 4
+        self.expansion_results = expansion_results
+        
+        print(f"[rust-future-tracing] Step 3 complete. Expanded to {len(expansion_results.get('expansion_info', {}).get('expanded_offsets', []))} total futures")
+        
+        # === STEP 4: Convert expanded futures to poll functions ===
+        poll_functions_to_instrument = self.convert_expanded_futures_to_poll_functions(expansion_results)
+        
+        if not poll_functions_to_instrument:
+            print("[rust-future-tracing] No poll functions found from expanded futures, cannot continue")
+            return
+        
+        print(f"[rust-future-tracing] Step 4 complete. Ready to instrument {len(poll_functions_to_instrument)} poll functions")
+        
+        # === STEP 5 & 6: Set up instrumentation using the async backtrace plugin ===
+        # This plugin will use the tracer to collect data into async_backtrace_store
+        plugin = AsyncBacktracePlugin(poll_functions_to_instrument, expansion_results)
+        
+        # The original instrumentation logic from gdb-debugger
+        # This will set the breakpoints and run the tracers
+        global traced_data
+        traced_data = defaultdict(list)
+        
+        instrument_points = plugin.instrument_points()
+        for point in instrument_points:
+            spec = point["symbol"]
+            entry_tracers = point.get("entry_tracers", [])
+            exit_tracers = point.get("exit_tracers", [])
+            
+            FinishBreakpoint(
+                spec,
+                entry_tracers,
+                exit_tracers,
+                traced_data[spec],
+                internal=True
+            )
+        
+        print("[rust-future-tracing] All steps complete. Instrumentation is active.")
+        print("Hint: Use 'continue' or 'run' to start the program, then 'inspect-async' to see results.")
+
+from .runtime_plugins.async_backtrace_plugin import AsyncBacktracePlugin
+from .runtime_plugins.async_backtrace_data import async_backtrace_store
+from collections import defaultdict
+
 
 class InspectAsync(gdb.Command):
     """
-    Inspects the current state of the async runtime and prints a detailed
-    snapshot, including worker threads and their states.
+    Inspects the current state of asynchronous tasks and prints the
+    captured asynchronous backtraces.
+    This command implements Step 7.
     """
     def __init__(self):
         super().__init__("inspect-async", gdb.COMMAND_USER)
 
     def invoke(self, arg, from_tty):
-        pass
+        self.dont_repeat()
+        
+        backtraces = async_backtrace_store.get_backtraces()
+        offset_to_name = async_backtrace_store.get_offset_to_name_map()
+
+        if not backtraces:
+            print("[rust-future-tracing] No asynchronous backtrace data collected.")
+            print("Hint: Run the 'start-async-debug' command and then 'continue' or 'run' the program.")
+            return
+
+        print("=" * 80)
+        print(" " * 28 + "Asynchronous Backtraces")
+        print("=" * 80)
+
+        for pid, thread_map in backtraces.items():
+            print(f"Process {pid}:")
+            for tid, coroutine_map in thread_map.items():
+                print(f"  Thread {tid}:")
+                if not coroutine_map:
+                    print("    No coroutines found.")
+                    continue
+                
+                for coroutine_id, stack in coroutine_map.items():
+                    coroutine_name = offset_to_name.get(coroutine_id, f"Coroutine<{coroutine_id}>")
+                    print(f"    Coroutine '{coroutine_name}' (ID: {coroutine_id}):")
+                    
+                    if not stack:
+                        print("      Stack is empty.")
+                    else:
+                        # Print stack from top to bottom
+                        for i, future_name in enumerate(stack):
+                            indent = "      " + "  " * i
+                            arrow = "->" if i > 0 else "  "
+                            print(f"{indent}{arrow} {future_name}")
+        
+        print("=" * 80)
 
 
 class DumpAsyncData(gdb.Command):
