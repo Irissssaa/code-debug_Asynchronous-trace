@@ -110,3 +110,6 @@ class FindPollFnCommand(gdb.Command):
             elif f"-> {poll_type}" in line:
                 print(f"[rust-future-tracing] No match (which contains '-> {poll_type}') found for: {line}")
         return poll_map
+
+FindPollFnCommand()
+
