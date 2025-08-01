@@ -50,7 +50,7 @@ Since `async_dependencies.json` is already generated, you can proceed directly w
     Once GDB starts, the first command you need to run is `init-dwarf-analysis`. This builds the DWARF tree in memory, which is essential for all subsequent steps.
 
     ```gdb
-    (gdb) init-dwarf-analysis
+    (gdb) init-dwarf-analysis <--binary-->
     ```
     You should see output indicating that the DWARF tree is being parsed and initialized.
 
