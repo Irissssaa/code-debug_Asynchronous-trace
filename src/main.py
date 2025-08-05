@@ -37,24 +37,14 @@ if script_dir not in sys.path:
 
 # define core utilities and register all GDB commands
 # 注意，即使只 import 一个方法/函数/常量，整个模块都会被执行（执行的入口是 __init__.py）
-from core.find_poll_fn import FindPollFnCommand
-from core import StartAsyncDebugCommand, DumpAsyncData, InspectAsync
-from core.init_dwarf_analysis import initDwarfAnalysisCommand
-
-# entry point (用于依次执行命令)
-# 这个功能暂时没做。
-# 目前为了测试方便，使用方法如下：
-
 
 
 # 0. 利用 `init-dwarf-analysis` 命令，初始化 Dwarf 分析器（包括 future 和 poll 函数之间转换的功能）
-initDwarfAnalysisCommand()
-
+from core.init_dwarf_analysis import initDwarfAnalysisCommand # import will execute the whole module
 # 1. 调用 core/dwarf.py 提供的终端命令，生成 async_dependencies.json
 
 # 2. 利用 find-poll-fn 命令，找到所有 poll 函数
-# TODO: 未来添加：并利用 dwarf 分析器找到它们对应的 futures，并输出到 json 文件中
-FindPollFnCommand()
+from core.find_poll_fn import FindPollFnCommand
 
 # 3. 用户修改 json 文件，选择要跟踪的 poll 函数 （即修改 `async_backtrace` 选项，未来可以用 `jq` 工具做自动化）
 
@@ -63,19 +53,16 @@ FindPollFnCommand()
 # 然后再次在第二步中生成的 json 里找到依赖这些 future 的所有 future（即future的父future，爷爷future，太爷爷future......），
 # 然后再利用第一步中生成的 json 文件反解出这些 "future 家族们" 的 poll 函数，
 # 最后对这些 poll 函数插桩
-StartAsyncDebugCommand()
+from core import StartAsyncDebugCommand
 
 # 5. 利用 `inspect-async` 命令，获得异步调用栈。
 # 这个命令的工作原理是：前面一步的插桩会记录函数调用/返回的时间戳，是哪个线程的，以及stacktrace.
 # 每当poll函数触发的时候就将stacktrace信息更新到那个poll函数对应的thread中。
 # 当用户调用这个命令的时候，会显示所有线程的stacktrace信息，并标注出每个线程的当前状态（running, blocked, waiting, etc.）
-# InspectAsync()
+from core import InspectAsync # NOTE: 这个语句实际上是没有必要的，因为上一个 from import 语句已经执行了整个文件，所以已经注册了 InspectAsync 命令。这个语句实际上什么都不做
 
 # 6. 利用 `dump-async-data` 命令，dump 异步数据
 # 这个功能先不做，不知道要dump什么
-# DumpAsyncData()
-
-
 
 # 用户手动调用 future analyzer 获得 json
 # 命令行：
