@@ -17,15 +17,10 @@ if not PLUGIN_NAME:
 from core.init_dwarf_analysis import get_dwarf_tree
 from core.dwarf.tree import load_children
 from core.dwarf.dwarfutil import safe_DIE_name, DIE_has_name
+from elftools.dwarf.die import DIE
+from elftools.dwarf.compileunit import CompileUnit
 
-# Type imports for DIE structures
-try:
-    from elftools.dwarf.die import DIE
-    from elftools.dwarf.compileunit import CompileUnit
-except ImportError:
-    # Fallback for when elftools is not available
-    DIE = object
-    CompileUnit = object
+
 
 # --- Global Data Store ---
 
@@ -45,6 +40,10 @@ traced_data = {}
 
 # This list holds temporary commands for breakpoints.
 bp_commands = []
+
+# Make bp_commands available in GDB's global namespace
+import __main__
+__main__.bp_commands = bp_commands
 
 def run_tracers(symbol_name, entry_tracers, exit_tracers):
     """
@@ -70,6 +69,8 @@ def run_tracers(symbol_name, entry_tracers, exit_tracers):
     if exit_tracers:
         FinishBreakpoint(gdb.newest_frame(), symbol_name, invocation_data, exit_tracers)
 
+# Make run_tracers available in GDB's global namespace since it's called by the instrumentation framework
+__main__.run_tracers = run_tracers
 
 # --- Load Plugin (Plugin loaders load tracers)---
 
@@ -116,6 +117,7 @@ class EntryBreakpoint(gdb.Breakpoint):
     stepping over the function's prolog code.
     """
     def __init__(self, symbol: str, entry_tracers: list, exit_tracers: list):
+        print(f"[rust-future-tracing] Setting up entry breakpoint for: {symbol}")
         super().__init__(symbol, internal=True)
         self.symbol_name = symbol
         self.entry_tracers = entry_tracers
@@ -567,6 +569,52 @@ class StartAsyncDebugCommand(gdb.Command):
 
         print(f"[rust-future-tracing] No poll function found for future struct: {safe_DIE_name(future_struct_die, '')}")
         return None
+    def dieToFullName(self, die: DIE) -> str:
+        """
+        Convert a DIE to its full name, including namespace.
+        
+        Args:
+            die (DIE type): The DIE object to convert
+            
+        Returns:
+            str: Full name of the DIE with namespace
+        """
+        if not die:
+            return ""
+        
+        # Get the name of the current DIE
+        current_name = safe_DIE_name(die, "")
+        if not current_name:
+            return ""
+        
+        # Build the full name by traversing up the parent hierarchy
+        name_parts = []
+        current_die = die
+        
+        while current_die:
+            current_die_name = safe_DIE_name(current_die, "")
+            if current_die_name:
+                # Only include meaningful names (skip empty names and compilation unit names)
+                current_tag = current_die.tag if hasattr(current_die, 'tag') else ""
+                
+                # Skip compilation unit names as they're usually file paths
+                if current_tag != 'DW_TAG_compile_unit':
+                    name_parts.append(current_die_name)
+            
+            # Move to parent DIE
+            if hasattr(current_die, '_parent') and current_die._parent:
+                current_die = current_die._parent
+            else:
+                break
+        
+        # Reverse the list since we built it from child to parent
+        name_parts.reverse()
+        
+        # Join with "::" to create the full qualified name
+        if name_parts:
+            return "::".join(name_parts)
+        else:
+            return current_name
 
     def _build_poll_function_name(self, poll_die, future_struct_name):
         """
@@ -710,7 +758,12 @@ class StartAsyncDebugCommand(gdb.Command):
             print(f"[rust-future-tracing] No future structs found for poll function: {poll_fn_name}")
             return None
         
-        # Return the full name of the first future struct found
+        # Return the full name of the first future struct found return others if any
+        if len(future_structs) > 1:
+            print(f"[rust-future-tracing] Warning: Multiple future structs found for poll function {poll_fn_name}, the following are ignored:")
+            for future_die, future_offset in future_structs[1:]:
+                print(f"  - {safe_DIE_name(future_die, '')} (DIE offset: {future_offset})")
+        # Use the first match as the primary result
         future_die, future_offset = future_structs[0]
         future_name = self._build_future_struct_name(future_die, poll_fn_name)
         print(f"[rust-future-tracing] Mapped {poll_fn_name} -> {future_name} (DIE offset: {future_offset})")
@@ -817,7 +870,12 @@ class StartAsyncDebugCommand(gdb.Command):
             print(f"[rust-future-tracing] No poll functions found for future struct: {future_struct_name}")
             return None
         
-        # Return the first poll function found
+        # Return the first poll function foundreport others if any
+        if len(poll_functions) > 1:
+            print(f"[rust-future-tracing] Warning: Multiple poll functions found for future struct {future_struct_name}, the following are ignored:")
+            for poll_die, poll_offset in poll_functions[1:]:
+                print(f"  - {safe_DIE_name(poll_die, '')} (DIE offset: {poll_offset})")
+        # Use the first match as the primary result
         poll_die, poll_offset = poll_functions[0]
         poll_name = self._build_poll_function_name(poll_die, future_struct_name)
         print(f"[rust-future-tracing] Mapped {future_struct_name} -> {poll_name} (DIE offset: {poll_offset})")
@@ -941,8 +999,21 @@ class StartAsyncDebugCommand(gdb.Command):
             future_matches = self.find_future_struct_in_dwarf_tree(future_name)
             
             if future_matches:
-                # Take the first match and get its offset
-                future_die, future_offset = future_matches[0]
+                future_offsets = []
+                for die, offset in future_matches:
+                    poll_function = self._find_sibling_poll_function(die)
+                    if poll_function:
+                        future_offsets.append(offset)
+                if not future_offsets:
+                    print(f"[rust-future-tracing] WARNING: No poll function found for future: {future_name}")
+                    continue
+                # Return the first found offset as the representative DIE offset, report others if any
+                future_offset = future_offsets[0]
+                if len(future_offsets) > 1:
+                    print(f"[rust-future-tracing] Warning: Multiple poll functions found for future {future_name}, the following are ignored:")
+                    for offset in future_offsets[1:]:
+                        print(f"  - DIE offset: {offset}")
+                # Append the first found offset to the list
                 die_offsets.append(future_offset)
                 print(f"[rust-future-tracing] Mapped {future_name} -> DIE offset: {future_offset}")
             else:
@@ -1216,7 +1287,10 @@ class StartAsyncDebugCommand(gdb.Command):
         for future_info in future_structs:
             future_offset = future_info["offset"]
             future_die = future_info["die"]
-            future_name = future_info["name"]
+            
+            # future_name = future_info["name"] # this is the shortened version of the future struct name that only contains the last part
+            future_name = safe_DIE_name(future_die, f"<unknown_future_{future_offset}>")
+
             
             print(f"[rust-future-tracing] Converting future to poll function: {future_name} (offset: {future_offset})")
             
@@ -1225,8 +1299,11 @@ class StartAsyncDebugCommand(gdb.Command):
             
             if poll_result:
                 poll_die, poll_offset = poll_result
-                # Build the full poll function name using the existing method
-                poll_name = self._build_poll_function_name(poll_die, future_name)
+                # poll_name = self._build_poll_function_name(poll_die, future_name)
+                poll_name = self.dieToFullName(poll_die)
+                if not poll_name:
+                    print(f"[rust-future-tracing] WARNING: Could not build poll function name for future: {future_name}")
+                    continue
                 
                 if poll_name:
                     poll_functions.append(poll_name)
@@ -1314,14 +1391,8 @@ class StartAsyncDebugCommand(gdb.Command):
             entry_tracers = point.get("entry_tracers", [])
             exit_tracers = point.get("exit_tracers", [])
             
-            FinishBreakpoint(
-                spec,
-                entry_tracers,
-                exit_tracers,
-                traced_data[spec],
-                internal=True
-            )
-        
+            # Use EntryBreakpoint which handles both entry and exit tracers correctly
+            EntryBreakpoint(spec, entry_tracers, exit_tracers)        
         print("[rust-future-tracing] All steps complete. Instrumentation is active.")
         print("Hint: Use 'continue' or 'run' to start the program, then 'inspect-async' to see results.")
 
@@ -1390,3 +1461,6 @@ class DumpAsyncData(gdb.Command):
         
         print("[gdb_debugger] Processing collected data...")
         plugin.process_data(traced_data)
+
+StartAsyncDebugCommand()
+InspectAsync()
