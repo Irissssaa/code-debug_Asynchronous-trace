@@ -277,7 +277,7 @@ debug = 2
       ▾ structure_type: {async_fn_env#0}
       ▾ subprogram: {async_fn#0}
     ▾ namespace: test3
-      ▾ structure_type: {async_fn#0}
+      ▾ structure_type: {async_fn_env#0}
       ▾ subprogram: {async_fn#0}
     ▾ subprogram: spawn<future_executor_test::test1::{async_fn_env#0}>
     ▾ subprogram: spawn<future_executor_test::test2::{async_fn_env#0}>
@@ -609,19 +609,393 @@ async 依赖树的每一项都是 "函数名<DIE offset>" 的格式，这个格�
 1. async 依赖树只保留 DIE offset，这样 python 读取 json 之后可以直接把 DIE offset 当作 Dict 的 key 访问到某个元素的 future 依赖关系。这样做代码简单且高效。
 2. async_functions 和 state_machines 中的每一项的 key 都改为 DIE offset。这么做的目的是：第一个解决手段导致 async 依赖树里只有 DIE offset 了，而**我们还是需要读取 future 名的（这里又又多出来一个工作，future 名和 DIE offset 转换变成了一个需要反复被用到的功能，而且和前面关于为什么不把 DIE 树直接拼接出全名然后全部打印的讨论一样， future-die_offset的索引文件会非常巨大且生成时间过长。因此需要将 future <-> DIE offset 的功能保留在内存里面随时准备被调用。所以 async_dependencies.py 不可以是一个终端命令了，要重新改成 GDB 内部的命令）** 这样需要读取每一个 DIE offset 对应的future名的时候就很方便     
 
-在解决了这个问题后，我继续编写运行状态获取层。第一步 - 第四步的代码都应该实现在 StartAsyncDebugCommand 的 invoke 方法里，第五步应该要实现一个 runtime plugin （其中包含了存储插桩数据的数据结构的实现,还要保证这个数据结构能被 inspect-async 命令访问到），这个 runtime plugin 调用的插桩代码是一个单独的新tracer. 
+在解决了这个问题后，我继续编写运行状态获取层。第一步 - 第四步的代码都应该实现在 StartAsyncDebugCommand 的 invoke 方法里（插在现有代码之前，插件加载代码要放在 invoke 方法的最后），第五和第六步应该要实现一个 runtime plugin（src/core/runtime_plugins 新建一个.py） （其中包含了存储插桩数据的数据结构的实现,还要保证这个数据结构能被 inspect-async 命令访问到），这个 runtime plugin 调用的插桩代码是一个单独的新 tracer（src/core/tracers 新建一个 .py）. 
 
 第一步是读取 poll_map.json 中用户勾选的“感兴趣函数”，并且利用 pollToFuture 方法转换为 "感兴趣future"
 
-第二步是获取 读取 async_dependencies.json 中的 DIE 依赖关系，并且对“感兴趣 future”进行 "future 扩展". 往长辈方向"扩展"可以知道异步调用栈的底部和协程的划分（一个最底层的 future 就是一个协程），往子孙方向"扩展"可以知道异步调用栈的顶部。
+第二步是，利用之前编写的 DIE 树和几个相关方法，实现查询 poll 和 future 的 DIE offset 的功能。查询功能的做法是，解耦之前的 pollToFuture 和 futureToPoll 方法，将每个方法分别拆分成 “在 DIE 树中找到 poll/future” 和 “在找到的 poll/future 附近找到 future/poll” 两个方法，这样的话我们修改一下 “在 DIE 树中找到 poll/future” 方法，就能让它们额外提供找到的 poll/future 的 DIE offset。 顺便我们也修改一下 “在找到的 poll/future 附近找到 future/poll” 方法，让它们也额外提供找到的 future/poll 的 DIE offset 供后续调用。这样做提高代码复用率，提升代码抽象层次，降低后续维护难度。 
 
-第三步是利用 pollToFuture 和 FutureToPoll 功能，获得扩展后的 future 列表对应的 poll 函数
+第二步的实现步骤：1. 搜索源代码并给 pollToFuture 和 futureToPoll 方法添加一些 type annotation，从而知道有了 DIE 数据结构之后怎么获取 DIE offset. 2. 修改 pollToFuture 方法 3. 修改 futureToPoll 方法
 
-第四步是利用之前编写的插桩框架对这些 poll 函数插桩。
+第三步是读取 async_dependencies.json 中的 DIE 依赖关系，并且对“感兴趣 future”进行 "future 扩展". 往长辈方向"扩展"可以知道异步调用栈的底部和协程的划分（一个最底层的 future 就是一个协程），往子孙方向"扩展"可以知道异步调用栈的顶部。注意，在扩展的过程中不要使用 async_dependencies.json 内部的 DIE offset - 函数/结构体名 对照表（`offset_to_name`）那个对照表是从 objdump 的输出中提取出来的，所以函数名/结构体名不一定和 elftools 的解析结果一致，因此仅供 async_deps.py 内部使用。我们只能使用 DIE 树的数据结构和方法。具体代码实现我建议这么做：在 `StartAsyncDebugCommand` 类中，写一个 `offsetToDIE` 方法，参考 `src/core/dwarf/__main__.py`的 `on_byoffset` 方法，利用 DIE 树的现有 API 找到 DIE offset 对应的 DIE ，然后利用 `is_async_function_die` 和 `is_future_struct_die` 方法判断是哪个类型的 DIE，并返回 DIE + DIE 类型。
 
-第五步是利用之前编写的插桩框架获取异步调用栈信息。第一部分的工作是设计和编写用于给插桩代码存储数据的数据结构。数据结构是一个多级字典`dict[process][thread][coroutine]`. 第二部分的工作是编写插桩代码本身（即放在tracers/文件夹里的一个tracer），插桩代码获取的数据有：进程id，线程id，协程id（通过我们之前的分析，future依赖树最顶层的那个future就等于一个协程）。函数进入时，和函数退出时都要运行这段插桩代码，这样做的目的是：函数退出时，调用栈也会对应地更新（调用栈里最顶层的函数调用被去除）
+在实现第三步时会遇到一个困难，我们用来测试的 `reqwest::get::{async_fn#0}` 函数（对应 future `reqwest::get::{async_fn_env#0}` ）在 async_dependencies.json 中不显示全名，只显示最后一部分（`{async_fn#0}`、`{async_fn_env#0}`），而最后一部分偏偏是编译器生成的占位符，这些占位符只在当前命名空间下是唯一的，在当前命名空间以外会有非常多的重名. 因此我们需要改用 DIE offset 进行 future 依赖关系的查询。具体做法是在“第一步”后添加一个小步骤：把“感兴趣future”转换为 DIE offset 供第二步查询。特别需要注意的是 `Pin<&mut reqwest::get::{async_fn_env#0}<&str>>` 的 DIE 是 `Pin` 这个智能指针的 DIE，不是 `reqwest::get::{async_fn_env#0}` 的 DIE。 想获得 `reqwest::get::{async_fn_env#0}` 的 DIE 只能利用第二步的改写成果，获取`reqwest::get::{async_fn_env#0}`的 DIE offset，然后在 async_dependencies.json 里查询这 DIE offset。  
 
-第六步是编写 inspect-async 命令，读取并显示第五步中存储的数据结构。
+第四步是利用 pollToFuture 和 FutureToPoll 功能，获得扩展后的 future 列表对应的 poll 函数
+
+第五步是利用之前编写的插桩框架对这些 poll 函数插桩。
+
+第六步是利用之前编写的插桩框架获取异步调用栈信息。第一部分的工作是设计和编写用于给插桩代码存储数据的数据结构。该数据结构存储在一个 runtime plugin 里（放在 runtime_plugins 文件夹下的 runtime plugin），是一个多级字典`dict[process][thread][coroutine]`. 第二部分的工作是编写插桩代码本身（即放在tracers/文件夹里的一个tracer），插桩代码获取的数据有：进程id，线程id，协程id（通过我们之前的分析，future依赖树最顶层的那个future就等于一个协程）。函数进入时，和函数退出时都要运行这段插桩代码，这样做的目的是：函数退出时，调用栈也会对应地更新（调用栈里最顶层的函数调用被去除）
+
+第七步是编写 inspect-async 命令，读取并显示第五步中存储的数据结构。
+
+代码框架基本搭建完成，但是有两个问题：
+
+0. ~~没有子节点~~（看了一下`reqwest.get`的源代码，发现这个函数中会自动生成一个新future（没有赋值到变量上）然后直接.await，换句话说这个函数里 await 的 future 是动态生成的，所以我们的 future 依赖搜索工具没有检测到 `reqwest.get` 的子 future. 这种情况现在可以先不管，等后面有时间了再解决）
+1. 搜索不到这个 future 本身的 poll 函数
+2. 明明找到2个长辈节点，却不去搜索它们的 poll 函数
+
+
+```
+(gdb) init-dwarf-analysis tests/tokio_test_project/target/debug/tokio_test_project
+Loading DWARF information from: tests/tokio_test_project/target/debug/tokio_test_project
+Successfully initialized DWARF analysis for: tests/tokio_test_project/target/debug/tokio_test_project
+Found 315 compilation units
+You can now access the tree with: python tree = gdb.dwarf_tree
+Or access DWARF info with: python info = gdb.dwarf_info
+(gdb) start-async-debug 
+[rust-future-tracing] Step 1: Reading user-selected interesting functions...
+[rust-future-tracing] Found interesting poll function: static fn reqwest::get::{async_fn#0}<&str>(*mut core::task::wake::Context)
+[rust-future-tracing] Mapped static fn reqwest::get::{async_fn#0}<&str>(*mut core::task::wake::Context) -> reqwest::get::{async_fn_env#0}<&str> (DIE offset: 93698)
+[rust-future-tracing] Found 1 interesting futures:
+  - reqwest::get::{async_fn_env#0}<&str>
+[rust-future-tracing] === Step 3: Performing future expansion ===
+[rust-future-tracing] Converting interesting futures to DIE offsets...
+[rust-future-tracing] Converting future to DIE offset: reqwest::get::{async_fn_env#0}<&str>
+[rust-future-tracing] Mapped reqwest::get::{async_fn_env#0}<&str> -> DIE offset: 49751
+[rust-future-tracing] Expanding future dependencies...
+[rust-future-tracing] Loaded async dependencies from /home/oslab/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Expanding dependencies for DIE offset: 0xc257
+[rust-future-tracing] Expansion complete:
+  - Total expanded DIE offsets: 2
+  - Coroutines (bottom-level): 1
+  - Call stack tops: 2
+[rust-future-tracing] Validating expanded futures with DIE tree...
+[rust-future-tracing] Validation complete:
+--Type <RET> for more, q to quit, c to continue without paging--c
+  - Async functions: 0
+  - Future structs: 1
+  - Other DIEs: 1
+  - Invalid offsets: 0
+[rust-future-tracing] === Step 3 complete ===
+[rust-future-tracing] Step 3 complete. Expanded to 2 total futures
+[rust-future-tracing] === Step 4: Converting expanded futures to poll functions ===
+[rust-future-tracing] Converting future to poll function: {async_fn_env#0}<&str> (offset: 49751)
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct at offset: 49751
+[rust-future-tracing] WARNING: No poll function found for future: {async_fn_env#0}<&str>
+[rust-future-tracing] Step 4 complete. Found 0 unique poll functions:
+[rust-future-tracing] No poll functions found from expanded futures, cannot continue
+(gdb) 
+```
+
+先解决问题1. 根据 log 我们发现我们在检索 `49751` 这个 DIE offset，然而我用 dwex 看了下这个 DIE offset，它是之前讨论过的只有 async_fn_env 没有 async_fn 的情况。因此我推测某处搜索 DIE 并返回 DIE offset 的代码有误. 很有可能是因为之前简单地只区各种搜索结果的第一个. 于是在源代码中搜索 `[0]` 得到如下结果：
+
+```python
+        for future_name in interesting_futures:
+            print(f"[rust-future-tracing] Converting future to DIE offset: {future_name}")
+            
+            # Use our decomposed method from Step 2 to find the future struct DIE
+            future_matches = self.find_future_struct_in_dwarf_tree(future_name)
+            
+            if future_matches:
+                # Take the first match and get its offset
+                future_die, future_offset = future_matches[0]
+                die_offsets.append(future_offset)
+                print(f"[rust-future-tracing] Mapped {future_name} -> DIE offset: {future_offset}")
+            else:
+                print(f"[rust-future-tracing] WARNING: Could not find DIE offset for future: {future_name}")
+‵‵‵
+我们要的 DIE 实际上是 future_matches[1,2,3,4.....] 中的一个 ，而 future_matches[0] 是我们之前提到的只有 async_fn_env 没有 async_fn 的情况。解决办法是对每个 future_match 做检验，使用第一个包含 async_fn 兄弟的 DIE 的 DIE offset.
+
+修改后的代码：
+
+```python
+            if future_matches:
+                future_offsets = []
+                for die, offset in future_matches:
+                    poll_function = self._find_sibling_poll_function(die)
+                    if poll_function:
+                        future_offsets.append(poll_function.offset)
+                if not future_offsets:
+                    print(f"[rust-future-tracing] WARNING: No poll function found for future: {future_name}")
+                    continue
+                # Return the first found offset as the representative DIE offset, report others if any
+                future_offset = future_offsets[0]
+                if len(future_offsets) > 1:
+                    print(f"[rust-future-tracing] Warning: Multiple poll functions found for future {future_name}, the following are ignored:")
+                    for offset in future_offsets[1:]:
+                        print(f"  - DIE offset: {offset}")
+                # Append the first found offset to the list
+                die_offsets.append(future_offset)
+                print(f"[rust-future-tracing] Mapped {future_name} -> DIE offset: {future_offset}")
+            else:
+                print(f"[rust-future-tracing] WARNING: Could not find DIE offset for future: {future_name}")
+```
+蚌埠住了，刚才写错了， poll_function 变量的值本身是没用的，我们要用的是 DIE 本身的 offset 而不是 poll 函数的 offset
+
+
+```python
+            if future_matches:
+                future_offsets = []
+                for die, offset in future_matches:
+                    poll_function = self._find_sibling_poll_function(die)
+                    if poll_function:
+                        future_offsets.append(offset)
+                if not future_offsets:
+                    print(f"[rust-future-tracing] WARNING: No poll function found for future: {future_name}")
+                    continue
+                # Return the first found offset as the representative DIE offset, report others if any
+                future_offset = future_offsets[0]
+                if len(future_offsets) > 1:
+                    print(f"[rust-future-tracing] Warning: Multiple poll functions found for future {future_name}, the following are ignored:")
+                    for offset in future_offsets[1:]:
+                        print(f"  - DIE offset: {offset}")
+                # Append the first found offset to the list
+                die_offsets.append(future_offset)
+                print(f"[rust-future-tracing] Mapped {future_name} -> DIE offset: {future_offset}")
+            else:
+                print(f"[rust-future-tracing] WARNING: Could not find DIE offset for future: {future_name}")
+        
+        return die_offsets
+
+```
+
+搜索`[0]`时找到另外两个取搜索结果的第一个的代码，在终端中报告忽略掉的搜索结果，以便后续改进：
+
+```python
+        # Return the full name of the first future struct found, return others if any
+        if len(future_structs) > 1:
+            print(f"[rust-future-tracing] Warning: Multiple future structs found for poll function {poll_fn_name}, the following are ignored:")
+            for future_die, future_offset in future_structs[1:]:
+                print(f"  - {safe_DIE_name(future_die, '')} (DIE offset: {future_offset})")
+        # Use the first match as the primary result
+        future_die, future_offset = future_structs[0]
+        future_name = self._build_future_struct_name(future_die, poll_fn_name)
+        print(f"[rust-future-tracing] Mapped {poll_fn_name} -> {future_name} (DIE offset: {future_offset})")
+        return future_name
+```
+
+```python
+        # Return the first poll function found, report others if any
+        if len(poll_functions) > 1:
+            print(f"[rust-future-tracing] Warning: Multiple poll functions found for future struct {future_struct_name}, the following are ignored:")
+            for poll_die, poll_offset in poll_functions[1:]:
+                print(f"  - {safe_DIE_name(poll_die, '')} (DIE offset: {poll_offset})")
+        # Use the first match as the primary result
+        poll_die, poll_offset = poll_functions[0]
+        poll_name = self._build_poll_function_name(poll_die, future_struct_name)
+        print(f"[rust-future-tracing] Mapped {future_struct_name} -> {poll_name} (DIE offset: {poll_offset})")
+        return poll_name
+```
+
+问题 1 解决了。问题2暂时无法验证是否仍会出现，因为问题1解决后，本工具报告的结果是 `reqwest.get` 没有长辈节点. 后面我会写一个新的测例来验证是否仍会出现这个问题。
+
+插桩代码似乎没有还原函数名：
+
+```
+oslab@oslab-VMware-Virtual-Platform:~/rust-future-tracing$ make test-gdb
+GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from tests/tokio_test_project/target/debug/tokio_test_project...
+warning: Missing auto-load script at offset 0 in section .debug_gdb_scripts
+of file /home/oslab/rust-future-tracing/tests/tokio_test_project/target/debug/tokio_test_project.
+Use `info auto-load python-scripts [REGEXP]' to list them.
+[rust-future-tracing] Loaded runtime plugin: tokio (currently does nothing)
+(gdb) init-dwarf-analysis tests/tokio_test_project/target/debug/tokio_test_project
+Loading DWARF information from: tests/tokio_test_project/target/debug/tokio_test_project
+Successfully initialized DWARF analysis for: tests/tokio_test_project/target/debug/tokio_test_project
+Found 315 compilation units
+You can now access the tree with: python tree = gdb.dwarf_tree
+Or access DWARF info with: python info = gdb.dwarf_info
+(gdb) start-async-debug 
+[rust-future-tracing] Step 1: Reading user-selected interesting functions...
+[rust-future-tracing] Found interesting poll function: static fn reqwest::get::{async_fn#0}<&str>(*mut core::task::wake::Context)
+[rust-future-tracing] Mapped static fn reqwest::get::{async_fn#0}<&str>(*mut core::task::wake::Context) -> reqwest::get::{async_fn_env#0}<&str> (DIE offset: 93698)
+[rust-future-tracing] Found 1 interesting futures:
+  - reqwest::get::{async_fn_env#0}<&str>
+[rust-future-tracing] === Step 3: Performing future expansion ===
+[rust-future-tracing] Converting interesting futures to DIE offsets...
+[rust-future-tracing] Converting future to DIE offset: reqwest::get::{async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+--Type <RET> for more, q to quit, c to continue without paging--c
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
+[rust-future-tracing] Mapped reqwest::get::{async_fn_env#0}<&str> -> DIE offset: 93698
+[rust-future-tracing] Expanding future dependencies...
+[rust-future-tracing] Loaded async dependencies from /home/oslab/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Expanding dependencies for DIE offset: 0x16e02
+[rust-future-tracing] Expansion complete:
+  - Total expanded DIE offsets: 1
+  - Coroutines (bottom-level): 1
+  - Call stack tops: 1
+[rust-future-tracing] Validating expanded futures with DIE tree...
+[rust-future-tracing] Validation complete:
+  - Async functions: 0
+  - Future structs: 1
+  - Other DIEs: 0
+  - Invalid offsets: 0
+[rust-future-tracing] === Step 3 complete ===
+[rust-future-tracing] Step 3 complete. Expanded to 1 total futures
+[rust-future-tracing] === Step 4: Converting expanded futures to poll functions ===
+[rust-future-tracing] Converting future to poll function: {async_fn_env#0}<&str> (offset: 93698)
+[rust-future-tracing] Mapped future -> poll: {async_fn_env#0}<&str> -> {async_fn#0}<&str> (DIE offset: 93436)
+[rust-future-tracing] Step 4 complete. Found 1 unique poll functions:
+  1. {async_fn#0}<&str>
+[rust-future-tracing] Step 4 complete. Ready to instrument 1 poll functions
+[rust-future-tracing] Initialized AsyncBacktracePlugin for 1 poll functions.
+[rust-future-tracing] === Step 5: Setting up instrumentation for poll functions ===
+  - Will instrument: {async_fn#0}<&str>
+[rust-future-tracing] === Step 5 complete ===
+Function "{async_fn#0}<&str>" not defined.
+[rust-future-tracing] All steps complete. Instrumentation is active.
+Hint: Use 'continue' or 'run' to start the program, then 'inspect-async' to see results.
+(gdb) 
+```
+
+排查结果：（目前代码库的）Step 4 中存了应该插桩的函数列表，然后 Step 5 读取了这个列表，所以是 Step 4 中调用 convert_expanded_futures_to_poll_functions 方法的问题. 在这个方法中，我调用了 _build_poll_function_name 方法两次，其中有这么个逻辑：
+
+
+
+```python
+        if len(hierarchy) >= 2:
+            # Replace the last component ({async_fn_env#0}) with the poll function name
+            namespace_parts = hierarchy[:-1]  # Everything except the last part
+            
+            # Build the full poll function name
+            full_name = "::".join(namespace_parts) + "::" + poll_name
+            return full_name
+        else:
+            # If the hierarchy is too short, just return the poll name
+            # This can happen if the future struct name was not fully qualified
+            print(f"[rust-future-tracing] Warning: Hierarchy too short for future struct: {future_struct_name}")
+        
+        return poll_name
+```
+
+~~其中 else 部分是我刚刚加上去的，也打印出来了. 所以把 `if len(hierarchy) >= 2:` 删掉就好了.~~ `if len(hierarchy) >= 2:` 是正确的，因为如果这个条件不满足的话 hierarchy 列表里只有一个或0个元素
+
+删掉之后还是不对，发现这个函数的参数 future_struct_name 应该是完整的名字（比如`reqwest::get::{async_fn_env#0}`而不是`{async_fn_env#0}`）但所我们却把简略版名字（只包含最后一部分）传入进去了. 因此这个地方是不适合使用 _build_poll_function_name 的，我们要另外写一个 dieToFullName 方法:
+
+
+```python
+
+            if poll_result:
+                poll_die, poll_offset = poll_result
+
+                # poll_name = self._build_poll_function_name(poll_die, future_name)
+                poll_name = self.dieToFullName(poll_die)
+                if not poll_name:
+                    print(f"[rust-future-tracing] WARNING: Could not build poll function name for future: {future_name}")
+                    continue
+
+```
+
+```python
+
+    def dieToFullName(self, die: DIE) -> str:
+        """
+        Convert a DIE to its full name, including namespace.
+        
+        Args:
+            die (DIE type): The DIE object to convert
+            
+        Returns:
+            str: Full name of the DIE with namespace
+        """
+        if not die:
+            return ""
+        
+        # Get the name of the current DIE
+        current_name = safe_DIE_name(die, "")
+        if not current_name:
+            return ""
+        
+        # Build the full name by traversing up the parent hierarchy
+        name_parts = []
+        current_die = die
+        
+        while current_die:
+            current_die_name = safe_DIE_name(current_die, "")
+            if current_die_name:
+                # Only include meaningful names (skip empty names and compilation unit names)
+                current_tag = current_die.tag if hasattr(current_die, 'tag') else ""
+                
+                # Skip compilation unit names as they're usually file paths
+                if current_tag != 'DW_TAG_compile_unit':
+                    name_parts.append(current_die_name)
+            
+            # Move to parent DIE
+            if hasattr(current_die, '_parent') and current_die._parent:
+                current_die = current_die._parent
+            else:
+                break
+        
+        # Reverse the list since we built it from child to parent
+        name_parts.reverse()
+        
+        # Join with "::" to create the full qualified name
+        if name_parts:
+            return "::".join(name_parts)
+        else:
+            return current_name
+
+
+```
+
+至此这个错误修复完毕了，我们遇到了插桩阶段的新错误：
+
+
+```python
+[New Thread 0x7ffff65f86c0 (LWP 22045)]
+[ThreadId(1)] Main async block START
+[ThreadId(1)] Loop iteration START for URL: https://config.net.cn/tools/ProvinceCityCountry.html
+[ThreadId(1)] INFO start to add a spider on: https://config.net.cn/tools/ProvinceCityCountry.html
+[ThreadId(1)] before reqwest::get time: SystemTime { tv_sec: 1754322615, tv_nsec: 152539030 }
+[ThreadId(1)] PRE-AWAIT reqwest::get for URL: https://config.net.cn/tools/ProvinceCityCountry.html
+[New Thread 0x7ffff63f76c0 (LWP 22046)]
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libnss_mdns4_minimal.so.2
+
+Thread 1 "tokio_test_proj" hit Temporary breakpoint -11, reqwest::get::{async_fn#0}<&str> ()
+    at /home/oslab/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/lib.rs:323
+323     pub async fn get<T: IntoUrl>(url: T) -> crate::Result<Response> {
+Python Exception <class 'NameError'>: name 'bp_commands' is not defined
+Error occurred in Python: name 'bp_commands' is not defined
+(gdb) 
+```
+
+造成这个错误的原因是，本工具执行的入口是 `src/main.py`，但是 bp_commands 是定义在 `src/__init__.py` 里的，然而 GDB 的 `python python_statements` 命令只能访问 `src/main.py` 的全局命名空间，（默认处于全局命名空间内）访问不到处于 `src/__init__.py` 命名空间的 `bp_commands`. 解决办法是将 `bp_commands` 和 `run_tracers` 函数显式地添加到 GDB 的全局命名空间 `__main__` 中，这样插桩框架就能够访问到这些变量和函数了。
+
+具体的修改是在 `src/core/__init__.py` 中添加：
+
+```python
+# Make bp_commands available in GDB's global namespace
+import __main__
+__main__.bp_commands = bp_commands
+
+# Make run_tracers available in GDB's global namespace since it's called by the instrumentation framework
+__main__.run_tracers = run_tracers
+```
+
+这样修改后，当插桩框架执行 `python bp_commands[{cmd_index}]()` 命令时，就能在全局命名空间中找到 `bp_commands` 列表了。`run_tracers`也需要添加到全局命名空间中，因为插桩框架会通过调用这个函数来执行插桩代码.
+
+此外，我把各个命令的初始化语句（比如 `StartAsyncDebugCommand()`）和它们的定义放到同一个文件内，main.py 里面 import 这些文件的时候会自动执行命令类的定义语句和初始化语句，这样更符合 GDB Python 项目的惯例.
 
 下一步工作：
 1. 编写 benchmark 测试我们这个方法的准确性
