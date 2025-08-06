@@ -55,6 +55,9 @@ class AsyncBacktracePlugin(RuntimePlugin):
             future_name = future_info["name"]
             
             # Find the coroutine ID for this future (root future in dependency tree)
+            # ancestors might wrong, print it
+            print(f"[rust-future-tracing] Processing future struct: {future_name} at offset {future_offset}")
+            print(f"[rust-future-tracing] Ancestors: {expansion_info.get('ancestors', {})}")
             coroutine_id = self._find_coroutine_id(future_offset, expansion_info.get("ancestors", {}))
             
             # We need the debug command to convert future to poll
@@ -109,12 +112,22 @@ class AsyncBacktracePlugin(RuntimePlugin):
     def _find_coroutine_id(self, future_offset: int, ancestors_map: Dict[int, List[int]]) -> int:
         """
         Finds the root future (coroutine) for a given future offset by
-        traversing the ancestors map. The root's offset is the coroutine ID.
+        traversing the ancestors map to find the topmost future in the dependency chain.
+        
+        The ancestors_map structure is: child_offset -> [parent_offsets]
+        where parent futures depend on (await) the child future.
+        
+        We traverse upward through parents until we find a future that no one depends on.
+
         """
         current_offset = future_offset
+        visited = set()  # Prevent infinite loops
+        
         # Keep going up the ancestor chain until we find the root
-        while current_offset in ancestors_map and ancestors_map[current_offset]:
-            # Take the first ancestor (there might be multiple in complex cases)
+        while current_offset in ancestors_map and ancestors_map[current_offset] and current_offset not in visited:
+            visited.add(current_offset)
+            # Take the first ancestor (parent) - in most cases there should be only one
+            # but complex futures might have multiple parents
             current_offset = ancestors_map[current_offset][0]
         return current_offset
 
