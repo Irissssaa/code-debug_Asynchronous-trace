@@ -54,7 +54,10 @@ class AsyncBacktraceTracer(Tracer):
                     "future_offset": self.future_offset, 
                     "stack_depth": len(async_stack)
                 }
-
+            # Print the new async stack for debugging
+            print(f"[rust-future-tracing] Updated async stack for coroutine {self.coroutine_id}: {async_stack}")
+            # Print current backtrace for comparison with async stack
+            print(f"[rust-future-tracing] Current backtrace for coroutine {self.coroutine_id}: \n{gdb.execute('bt', to_string=True)}\n\n\n\n\n")
         except Exception as e:
             self.data = f"Error: {e}"
             # This can be noisy, so only print if necessary for debugging
