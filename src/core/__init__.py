@@ -1078,7 +1078,7 @@ class StartAsyncDebugCommand(gdb.Command):
         interesting_hex_offsets = [hex(offset)[2:] for offset in interesting_die_offsets]
         
         expanded_offsets = set(interesting_die_offsets)
-        ancestors = {}
+        ancestors = {} # Will store: offset -> [what this offset depends on] (to traverse up to root)
         descendants = {}
         
         # Helper function to perform DFS expansion
@@ -1106,15 +1106,22 @@ class StartAsyncDebugCommand(gdb.Command):
                     expand_dependencies(hex(related_offset)[2:], direction, visited.copy())
                     
             elif direction == "descendants":
-                # Find all DIEs that this one depends on
+                # Find all DIEs that this one depends on and store the REVERSE relationship
+                # So ancestors[current] = what current depends on (to traverse up to root)
                 deps = dependency_tree.get(current_hex_offset, [])
                 descendant_offsets = [int(dep, 16) for dep in deps]
                 
                 if current_offset not in descendants:
                     descendants[current_offset] = []
                 
+                if current_offset not in ancestors:
+                    ancestors[current_offset] = []
+
                 for desc_offset in descendant_offsets:
                     descendants[current_offset].append(desc_offset)
+                    # IMPORTANT: Store the reverse relationship for coroutine ID computation
+                    # ancestors[current] = what current depends on (children in dependency tree)
+                    ancestors[current_offset].append(desc_offset)
                     expanded_offsets.add(desc_offset)
                     # Recursively expand descendants
                     expand_dependencies(hex(desc_offset)[2:], direction, visited.copy())
@@ -1128,32 +1135,44 @@ class StartAsyncDebugCommand(gdb.Command):
             
             # Expand descendants (find what this future depends on)
             expand_dependencies(hex_offset, "descendants", set())
+
+	# Identify leaf futures (no dependencies - bottom of async call stack)
+        leaf_futures = []
         
-        # Identify coroutines (futures with no ancestors - bottom of call stack)
-        coroutines = []
         for offset in expanded_offsets:
             if offset not in ancestors or not ancestors[offset]:
-                coroutines.append(offset)
-        
-        # Identify call stack tops (futures with no descendants)
-        call_stack_tops = []
+                leaf_futures.append(offset)        
+        # Identify root futures (no one depends on them - top of async call stack)
+        root_futures = []
         for offset in expanded_offsets:
             if offset not in descendants or not descendants[offset]:
-                call_stack_tops.append(offset)
+                root_futures.append(offset)
+        
+        # Now build a proper ancestors map for coroutine ID computation
+        # ancestors[child] = [parents] where parents depend on child
+        coroutine_ancestors = {}
+        for die_hex, deps in dependency_tree.items():
+            current_offset = int(die_hex, 16)
+            if current_offset in expanded_offsets:
+                for dep_hex in deps:
+                    dep_offset = int(dep_hex, 16)
+                    if dep_offset in expanded_offsets:
+                        if dep_offset not in coroutine_ancestors:
+                            coroutine_ancestors[dep_offset] = []
+                        coroutine_ancestors[dep_offset].append(current_offset)
         
         result = {
             "expanded_offsets": list(expanded_offsets),
-            "ancestors": ancestors,
+            "ancestors": coroutine_ancestors,  # Use the corrected ancestors map
             "descendants": descendants,
-            "coroutines": coroutines,
-            "call_stack_tops": call_stack_tops
+            "coroutines": root_futures,  # Root futures are the coroutines
+            "call_stack_tops": root_futures  # Same as coroutines
         }
         
         print(f"[rust-future-tracing] Expansion complete:")
         print(f"  - Total expanded DIE offsets: {len(expanded_offsets)}")
-        print(f"  - Coroutines (bottom-level): {len(coroutines)}")
-        print(f"  - Call stack tops: {len(call_stack_tops)}")
-        
+        print(f"  - Leaf futures (no dependencies): {len(leaf_futures)}")
+        print(f"  - Root futures (coroutines): {len(root_futures)}")        
         return result
 
     def validate_expanded_futures_with_die_tree(self, expanded_info: dict) -> dict:
