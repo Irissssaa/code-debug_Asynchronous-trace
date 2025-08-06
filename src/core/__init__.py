@@ -1378,7 +1378,7 @@ class StartAsyncDebugCommand(gdb.Command):
         
         # === STEP 5 & 6: Set up instrumentation using the async backtrace plugin ===
         # This plugin will use the tracer to collect data into async_backtrace_store
-        plugin = AsyncBacktracePlugin(poll_functions_to_instrument, expansion_results)
+        plugin = AsyncBacktracePlugin(poll_functions_to_instrument, expansion_results, self)
         
         # The original instrumentation logic from gdb-debugger
         # This will set the breakpoints and run the tracers
