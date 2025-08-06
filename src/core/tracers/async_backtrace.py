@@ -54,14 +54,48 @@ class AsyncBacktraceTracer(Tracer):
                     "future_offset": self.future_offset, 
                     "stack_depth": len(async_stack)
                 }
-            # Print the new async stack for debugging
-            print(f"[rust-future-tracing] Updated async stack for coroutine {self.coroutine_id}: {async_stack}")
+
+            self.show_coroutine_lists()
             # Print current backtrace for comparison with async stack
-            print(f"[rust-future-tracing] Current backtrace for coroutine {self.coroutine_id}: \n{gdb.execute('bt', to_string=True)}\n\n\n\n\n")
+            #print(f"[rust-future-tracing] Current backtrace for coroutine {self.coroutine_id}: \n{gdb.execute('bt', to_string=True)}\n\n\n\n\n")
         except Exception as e:
             self.data = f"Error: {e}"
             # This can be noisy, so only print if necessary for debugging
             # print(f"[rust-future-tracing] tracer warning: {e}")
+    def show_coroutine_lists(self):
+        offset_to_name = async_backtrace_store.get_offset_to_name_map()
+
+        if not self.backtraces:
+            print("[rust-future-tracing] No asynchronous backtrace data collected.")
+            print("Hint: Run the 'start-async-debug' command and then 'continue' or 'run' the program.")
+            return
+
+        print("=" * 80)
+        print(" " * 28 + "Asynchronous Backtraces")
+        print("=" * 80)
+
+        for pid, thread_map in self.backtraces.items():
+            print(f"Process {pid}:")
+            for tid, coroutine_map in thread_map.items():
+                print(f"  Thread {tid}:")
+                if not coroutine_map:
+                    print("    No coroutines found.")
+                    continue
+                
+                for coroutine_id, stack in coroutine_map.items():
+                    coroutine_name = offset_to_name.get(coroutine_id, f"Coroutine<{coroutine_id}>")
+                    print(f"    Coroutine '{coroutine_name}' (ID: {coroutine_id}):")
+                    
+                    if not stack:
+                        print("      Stack is empty.")
+                    else:
+                        # Print stack from top to bottom
+                        for i, future_name in enumerate(stack):
+                            indent = "      " + "  " * i
+                            arrow = "->" if i > 0 else "  "
+                            print(f"{indent}{arrow} {future_name}")
+        
+        print("=" * 80)
 
     def stop(self):
         """This is a single-shot tracer, so stop is a no-op."""
@@ -69,3 +103,4 @@ class AsyncBacktraceTracer(Tracer):
 
     def __str__(self) -> str:
         return "AsyncBacktraceTracer"
+
