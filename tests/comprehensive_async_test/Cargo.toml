@@ -1,0 +1,13 @@
+[package]
+name = "comprehensive_async_test"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+async-trait = "0.1"
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+
+[profile.dev]
+debug = 2
+opt-level = 0
