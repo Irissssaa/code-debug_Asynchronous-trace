@@ -72,6 +72,7 @@ def run_tracers(symbol_name, entry_tracers, exit_tracers):
 # Make run_tracers available in GDB's global namespace since it's called by the instrumentation framework
 __main__.run_tracers = run_tracers
 
+
 # --- Load Plugin (Plugin loaders load tracers)---
 
 # todo: 自动搜索/加载多个插件，这个工作比较次要，所以暂时先不做：
@@ -133,7 +134,7 @@ class EntryBreakpoint(gdb.Breakpoint):
         # index to call it from the breakpoint's command string.
         cmd_index = len(bp_commands)
         bp_commands.append(lambda: run_tracers(self.symbol_name, self.entry_tracers, self.exit_tracers))
-        
+
         # The command string for the temporary breakpoint. It calls our Python
         # function, then tells GDB to continue automatically.
         t_break.commands = f"""
@@ -355,43 +356,63 @@ class StartAsyncDebugCommand(gdb.Command):
         return (tag == 'DW_TAG_subprogram' and 
                 '{async_fn#0}' in name)
     
+    # --- 在 StartAsyncDebugCommand 类中找到并替换这两个函数 ---
+
     def is_async_function_die(self, die) -> bool:
         """
-        Check if DIE represents an async function.
+        全面地检查一个 DIE 节点是否代表一个 async fn 的 poll 函数实现。
+        
+        这个增强版本使用正则表达式来匹配多种由编译器生成的轮询函数模式，
+        包括：
+        - {async_fn#...}   (由 `async fn` 生成)
+        - {async_block#...} (由 `async {}` 块生成)
+        - {impl#...}        (由 `impl` 块或 `async_trait` 中的 async fn 生成)
         
         Args:
-            die: DWARF DIE object with .offset attribute for getting DIE offset
+            die: DWARF DIE 对象
             
         Returns:
-            bool: True if this is an async function DIE
-            
-        Note:
-            DIE offset can be accessed via: die.offset (returns int)
+            bool: 如果是异步轮询函数则返回 True
         """
+        import re
         name = safe_DIE_name(die, "")
         tag = die.tag if hasattr(die, 'tag') else ""
         
-        return (tag == 'DW_TAG_subprogram' and 
-                '{async_fn#' in name)  # TODO: 1. handle {impl#?} 2. in rare cases this might not strict enough, should use regex to match {async_fn#\d+} or {impl#\d+}
+        if tag != 'DW_TAG_subprogram':
+            return False
+
+        # 正则表达式，匹配一个花括号内以特定关键字开头，后跟'#'和数字的模式
+        # 例如: {async_fn#0}, {async_block#1}, {impl#25}
+        poll_function_pattern = re.compile(r'\{(?:async_fn|async_block|impl)#\d+\}')
+        
+        return bool(poll_function_pattern.search(name))
 
     def is_future_struct_die(self, die) -> bool:
         """
-        Check if DIE represents a future structure.
-        
+        全面地检查一个 DIE 节点是否代表一个由 async/await 生成的 Future 状态机结构体。
+
+        这个增强版本能够识别由以下方式生成的 Future 状态机：
+        - `async fn` (`...{async_fn_env#...}`)
+        - `async {}` 块 (`...{async_block_env#...}`)
+
         Args:
-            die: DWARF DIE object with .offset attribute for getting DIE offset
+            die: DWARF DIE 对象
             
         Returns:
-            bool: True if this is a future struct DIE
-            
-        Note:
-            DIE offset can be accessed via: die.offset (returns int)
+            bool: 如果是 Future 状态机结构体则返回 True
         """
+        import re
         name = safe_DIE_name(die, "")
         tag = die.tag if hasattr(die, 'tag') else ""
+
+        if tag != 'DW_TAG_structure_type':
+            return False
+            
+        # 正则表达式，匹配一个花括号内以 _env# 和数字结尾的模式
+        # 这能同时捕获 {async_fn_env#0} 和 {async_block_env#1} 等
+        future_struct_pattern = re.compile(r'\{.*_env#\d+\}')
         
-        return (tag == 'DW_TAG_structure_type' and 
-                ('{async_fn_env#' in name)) # TODO: 1. handle {impl#?} 2. in rare cases this might not strict enough, should use regex to match {async_fn_env#\d+} or {impl#\d+}
+        return bool(future_struct_pattern.search(name))
 
     def is_namespace_die(die):
         """Check if DIE is a namespace"""
@@ -488,87 +509,72 @@ class StartAsyncDebugCommand(gdb.Command):
                 matches.extend(sub_matches)
         
         return matches
-
     def _find_sibling_future_struct(self, async_fn_die):
         """
-        Find the corresponding future struct for an async function DIE.
-        
-        According to dwarf_analyzer.md line 512, we need to look for sibling
-        structures with names like {async_fn_env#0} that represent the future.
-        
-        Args:
-            async_fn_die (DIE): The async function DIE to find the future struct for
-            
-        Returns:
-            DIE or None: The future struct DIE, or None if not found
+        为一个 async function DIE 查找其对应的 Future 结构体兄弟节点。
+        这个健壮的版本能够正确处理 async_fn 和 async_block。
         """
+        import re
         if not async_fn_die or not hasattr(async_fn_die, '_parent') or not async_fn_die._parent:
             return None
         
         parent_die = async_fn_die._parent
-        
-        # Load parent's children to search for siblings
-        load_children(parent_die, True)
-        
-        # Look for sibling structures that could be the future
-        for sibling in parent_die._children:
-            sibling_name = safe_DIE_name(sibling, "")
-            sibling_counter = None # the number after async_fn_env#
-            sibling_counter_result = re.search(r'\{async_fn_env#(\d+)\}', sibling_name)
-            if sibling_counter_result:
-                sibling_counter = sibling_counter_result.group(1)
-            sibling_tag = sibling.tag if hasattr(sibling, 'tag') else ""
-            
-            # Check if this sibling is a future struct
-            # the sibling counter should match the async_fn_env# counter too
-            if (sibling_tag == 'DW_TAG_structure_type' and
-                '{async_fn_env#' + sibling_counter + '}' in sibling_name):
-                    return sibling
+        fn_name = safe_DIE_name(async_fn_die, "")
 
-        print(f"[rust-future-tracing] No future struct found for function: {safe_DIE_name(async_fn_die, '')}")
+        # 1. 从 poll 函数名中提取基础部分和编号
+        #    例如：从 "...{async_block#0}" 提取 "async_block" 和 "0"
+        source_match = re.search(r'\{(async_fn|async_block)#(\d+)\}', fn_name)
+        if not source_match:
+            return None
+        
+        base_name, counter = source_match.groups()
+        
+        # 2. 构造我们想要寻找的目标 Future 结构体的名字模式
+        target_struct_pattern = f"{{{base_name}_env#{counter}}}"
+        
+        # 3. 遍历兄弟节点，寻找匹配的结构体
+        load_children(parent_die, True)
+        for sibling in parent_die._children:
+            if (sibling.tag == 'DW_TAG_structure_type' and
+                target_struct_pattern in safe_DIE_name(sibling, "")):
+                return sibling
+
+        # print(f"[rust-future-tracing] No future struct found for function: {fn_name}")
         return None
-    
+
     def _find_sibling_poll_function(self, future_struct_die):
         """
-        Find the corresponding poll function for a future struct DIE.
-        
-        According to dwarf_analyzer.md, we need to look for sibling
-        subprograms with names like {async_fn#0} that represent the poll function.
-        
-        Args:
-            future_struct_die (DIE): The future struct DIE to find the poll function for
-            
-        Returns:
-            DIE or None: The poll function DIE, or None if not found
+        为一个 Future 结构体 DIE 查找其对应的 poll 函数兄弟节点。
+        这个健壮的版本能够正确处理 async_fn_env 和 async_block_env。
         """
+        import re
         if not future_struct_die or not hasattr(future_struct_die, '_parent') or not future_struct_die._parent:
             return None
         
         parent_die = future_struct_die._parent
-        
-        # Load parent's children to search for siblings
-        load_children(parent_die, True)
-        
-        # Look for sibling subprograms that could be the poll function
-        for sibling in parent_die._children:
-            sibling_name = safe_DIE_name(sibling, "")
-            sibling_counter = None # the number after async_fn#0
-            sibling_counter_result = re.search(r'\{async_fn#(\d+)\}', sibling_name)
-            if sibling_counter_result:
-                sibling_counter = sibling_counter_result.group(1)
-            sibling_tag = sibling.tag if hasattr(sibling, 'tag') else ""
-            
-            # Check if this sibling is a poll function
-            # the sibling counter should match the async_fn# counter too
-            # TODO: we assume the poll function is always a subprogram
-            # and has a name like {async_fn#0} or {impl#N}
-            # This is a simplification, but it matches the common patterns in Rust async code.
-            if (sibling_tag == 'DW_TAG_subprogram' and
-                ('{async_fn#' + sibling_counter + '}' in sibling_name)):
-                return sibling
+        struct_name = safe_DIE_name(future_struct_die, "")
 
-        print(f"[rust-future-tracing] No poll function found for future struct: {safe_DIE_name(future_struct_die, '')}")
-        return None
+        # 1. 从 Future 结构体名中提取基础部分和编号
+        #    例如：从 "...{async_block_env#0}" 提取 "async_block" 和 "0"
+        source_match = re.search(r'\{(async_fn|async_block)_env#(\d+)\}', struct_name)
+        if not source_match:
+            return None
+
+        base_name, counter = source_match.groups()
+
+        # 2. 构造我们想要寻找的目标 poll 函数的名字模式
+        target_fn_pattern = f"{{{base_name}#{counter}}}"
+
+        # 3. 遍历兄弟节点，寻找匹配的 poll 函数
+        load_children(parent_die, True)
+        for sibling in parent_die._children:
+            if (sibling.tag == 'DW_TAG_subprogram' and
+                target_fn_pattern in safe_DIE_name(sibling, "")):
+                return sibling
+        
+        # print(f"[rust-future-tracing] No poll function found for future struct: {struct_name}")
+        return None    
+
     def dieToFullName(self, die: DIE) -> str:
         """
         Convert a DIE to its full name, including namespace.
@@ -615,6 +621,7 @@ class StartAsyncDebugCommand(gdb.Command):
             return "::".join(name_parts)
         else:
             return current_name
+
 
     def _build_poll_function_name(self, poll_die, future_struct_name):
         """
@@ -758,7 +765,7 @@ class StartAsyncDebugCommand(gdb.Command):
             print(f"[rust-future-tracing] No future structs found for poll function: {poll_fn_name}")
             return None
         
-        # Return the full name of the first future struct found return others if any
+        # Return the full name of the first future struct found, return others if any
         if len(future_structs) > 1:
             print(f"[rust-future-tracing] Warning: Multiple future structs found for poll function {poll_fn_name}, the following are ignored:")
             for future_die, future_offset in future_structs[1:]:
@@ -782,15 +789,20 @@ class StartAsyncDebugCommand(gdb.Command):
         Returns:
             List[Tuple[DIE, int]]: List of (DIE object, DIE offset) tuples for found future structs
         """
+        # 导入 re 模块以进行正则表达式匹配
+        import re
+
         # Parse future struct name into hierarchy
         components = self.parse_future_struct_hierarchy(future_struct_name)
         if not components:
             print(f"[rust-future-tracing] ERROR: Unable to parse future struct name: {future_struct_name}")
             return []
         
-        # Validate that this looks like a future struct (should end with {async_fn_env#0})
-        if not any('{async_fn_env#0}' in comp for comp in components):
-            print(f"[rust-future-tracing] ERROR: Not a valid future struct name (missing async_fn_env): {future_struct_name}")
+        # FIXED: 使用健壮的正则表达式来验证它是否是已知的 future 结构体模式。
+        # 这个检查现在可以同时接受 async_fn_env 和 async_block_env。
+        future_struct_pattern = re.compile(r'\{(?:async_fn_env|async_block_env)#\d+\}')
+        if not any(future_struct_pattern.search(comp) for comp in components):
+            print(f"[rust-future-tracing] ERROR: Not a valid future struct name pattern: {future_struct_name}")
             return []
         
         # Get the DWARF tree
@@ -870,7 +882,7 @@ class StartAsyncDebugCommand(gdb.Command):
             print(f"[rust-future-tracing] No poll functions found for future struct: {future_struct_name}")
             return None
         
-        # Return the first poll function foundreport others if any
+        # Return the first poll function found, report others if any
         if len(poll_functions) > 1:
             print(f"[rust-future-tracing] Warning: Multiple poll functions found for future struct {future_struct_name}, the following are ignored:")
             for poll_die, poll_offset in poll_functions[1:]:
@@ -1078,7 +1090,7 @@ class StartAsyncDebugCommand(gdb.Command):
         interesting_hex_offsets = [hex(offset)[2:] for offset in interesting_die_offsets]
         
         expanded_offsets = set(interesting_die_offsets)
-        ancestors = {} # Will store: offset -> [what this offset depends on] (to traverse up to root)
+        ancestors = {}  # Will store: offset -> [what this offset depends on] (to traverse up to root)
         descendants = {}
         
         # Helper function to perform DFS expansion
@@ -1113,10 +1125,9 @@ class StartAsyncDebugCommand(gdb.Command):
                 
                 if current_offset not in descendants:
                     descendants[current_offset] = []
-                
                 if current_offset not in ancestors:
                     ancestors[current_offset] = []
-
+                
                 for desc_offset in descendant_offsets:
                     descendants[current_offset].append(desc_offset)
                     # IMPORTANT: Store the reverse relationship for coroutine ID computation
@@ -1135,13 +1146,13 @@ class StartAsyncDebugCommand(gdb.Command):
             
             # Expand descendants (find what this future depends on)
             expand_dependencies(hex_offset, "descendants", set())
-
-	# Identify leaf futures (no dependencies - bottom of async call stack)
-        leaf_futures = []
         
+        # Identify leaf futures (no dependencies - bottom of async call stack)
+        leaf_futures = []
         for offset in expanded_offsets:
             if offset not in ancestors or not ancestors[offset]:
-                leaf_futures.append(offset)        
+                leaf_futures.append(offset)
+        
         # Identify root futures (no one depends on them - top of async call stack)
         root_futures = []
         for offset in expanded_offsets:
@@ -1172,7 +1183,8 @@ class StartAsyncDebugCommand(gdb.Command):
         print(f"[rust-future-tracing] Expansion complete:")
         print(f"  - Total expanded DIE offsets: {len(expanded_offsets)}")
         print(f"  - Leaf futures (no dependencies): {len(leaf_futures)}")
-        print(f"  - Root futures (coroutines): {len(root_futures)}")        
+        print(f"  - Root futures (coroutines): {len(root_futures)}")
+        
         return result
 
     def validate_expanded_futures_with_die_tree(self, expanded_info: dict) -> dict:
@@ -1306,11 +1318,9 @@ class StartAsyncDebugCommand(gdb.Command):
         for future_info in future_structs:
             future_offset = future_info["offset"]
             future_die = future_info["die"]
-            
             # future_name = future_info["name"] # this is the shortened version of the future struct name that only contains the last part
             future_name = safe_DIE_name(future_die, f"<unknown_future_{future_offset}>")
 
-            
             print(f"[rust-future-tracing] Converting future to poll function: {future_name} (offset: {future_offset})")
             
             # Use our decomposed method from Step 2 to find the corresponding poll function
@@ -1318,12 +1328,13 @@ class StartAsyncDebugCommand(gdb.Command):
             
             if poll_result:
                 poll_die, poll_offset = poll_result
+
                 # poll_name = self._build_poll_function_name(poll_die, future_name)
                 poll_name = self.dieToFullName(poll_die)
                 if not poll_name:
                     print(f"[rust-future-tracing] WARNING: Could not build poll function name for future: {future_name}")
                     continue
-                
+
                 if poll_name:
                     poll_functions.append(poll_name)
                     print(f"[rust-future-tracing] Mapped future -> poll: {future_name} -> {poll_name} (DIE offset: {poll_offset})")
@@ -1411,7 +1422,8 @@ class StartAsyncDebugCommand(gdb.Command):
             exit_tracers = point.get("exit_tracers", [])
             
             # Use EntryBreakpoint which handles both entry and exit tracers correctly
-            EntryBreakpoint(spec, entry_tracers, exit_tracers)        
+            EntryBreakpoint(spec, entry_tracers, exit_tracers)
+        
         print("[rust-future-tracing] All steps complete. Instrumentation is active.")
         print("Hint: Use 'continue' or 'run' to start the program, then 'inspect-async' to see results.")
 

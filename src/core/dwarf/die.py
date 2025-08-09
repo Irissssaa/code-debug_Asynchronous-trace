@@ -447,3 +447,5 @@ def on_details_row_dclick(index, o, win):
         ExpressionDlg(win, 'Nested expression', o.args[0], win.expr_formatter()).exec()
     elif isinstance(o, Sequence) and is_parsed_expression(o[-1]):
         ExpressionDlg(win, 'Expression', o[-1], win.expr_formatter()).exec()
+
+

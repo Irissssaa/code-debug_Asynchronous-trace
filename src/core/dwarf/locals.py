@@ -251,3 +251,4 @@ class LocalsDlg(LoadedModuleDlgBase):
     @classmethod
     def reset(cl):
         cl._last_address = ''
+

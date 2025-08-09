@@ -38,9 +38,9 @@ if script_dir not in sys.path:
 # define core utilities and register all GDB commands
 # 注意，即使只 import 一个方法/函数/常量，整个模块都会被执行（执行的入口是 __init__.py）
 
-
 # 0. 利用 `init-dwarf-analysis` 命令，初始化 Dwarf 分析器（包括 future 和 poll 函数之间转换的功能）
 from core.init_dwarf_analysis import initDwarfAnalysisCommand # import will execute the whole module
+
 # 1. 调用 core/dwarf.py 提供的终端命令，生成 async_dependencies.json
 
 # 2. 利用 find-poll-fn 命令，找到所有 poll 函数
@@ -64,10 +64,13 @@ from core import InspectAsync # NOTE: 这个语句实际上是没有必要的，
 # 6. 利用 `dump-async-data` 命令，dump 异步数据
 # 这个功能先不做，不知道要dump什么
 
+
+
 # 用户手动调用 future analyzer 获得 json
 # 命令行：
 # python3 -m dwarf_analyzer.main tests/tokio_test_project/target/debug/tokio_test_project --json > results/async_dependencies.json
 # 在 GDB dwarf 解析模块做好之后，再做自动调用 future 解析器的功能。
+
 
 
 
