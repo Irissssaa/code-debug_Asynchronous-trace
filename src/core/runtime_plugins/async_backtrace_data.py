@@ -46,4 +46,3 @@ class _AsyncBacktraceDataStore:
 
 # Singleton instance to be imported by other modules
 async_backtrace_store = _AsyncBacktraceDataStore()
-

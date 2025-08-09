@@ -119,5 +119,5 @@ def get_dwarf_info():
     """
     return getattr(gdb, 'dwarf_info', None)
 
-initDwarfAnalysisCommand()
 
+initDwarfAnalysisCommand()

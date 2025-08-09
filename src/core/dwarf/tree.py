@@ -391,3 +391,4 @@ class DWARFTreeModel:
             pass
         i = bisect_right(cu._diemap, offset)
         return self.index_for_die(cu._dielist[i - 1])
+

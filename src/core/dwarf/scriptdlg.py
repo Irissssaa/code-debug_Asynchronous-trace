@@ -81,3 +81,8 @@ def make_execution_environment(die):
     for k, a in die.attributes.items():
         d['user_%X' % (k,) if isinstance(k, int) else k[6:]] = a.value
     return d
+            
+
+
+    
+        

@@ -22,7 +22,7 @@ class AsyncBacktraceTracer(Tracer):
     def start(self, inferior_thread: gdb.Thread):
         """
         Called on both entry and exit of a poll function to update the async stack.
-	Uses pre-computed future information instead of trying to extract it at runtime.
+        Uses pre-computed future information instead of trying to extract it at runtime.
         """
         try:
             pid = gdb.selected_inferior().pid
@@ -57,11 +57,13 @@ class AsyncBacktraceTracer(Tracer):
 
             self.show_coroutine_lists()
             # Print current backtrace for comparison with async stack
-            #print(f"[rust-future-tracing] Current backtrace for coroutine {self.coroutine_id}: \n{gdb.execute('bt', to_string=True)}\n\n\n\n\n")
+            # print(f"[rust-future-tracing] Current backtrace for coroutine {self.coroutine_id}: \n{gdb.execute('bt', to_string=True)}\n\n\n\n\n")
+
         except Exception as e:
             self.data = f"Error: {e}"
             # This can be noisy, so only print if necessary for debugging
             # print(f"[rust-future-tracing] tracer warning: {e}")
+
     def show_coroutine_lists(self):
         offset_to_name = async_backtrace_store.get_offset_to_name_map()
 
@@ -103,4 +105,3 @@ class AsyncBacktraceTracer(Tracer):
 
     def __str__(self) -> str:
         return "AsyncBacktraceTracer"
-

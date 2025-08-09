@@ -16,11 +16,11 @@ def submit_report(subj, body):
         h = hashlib.sha1()
         h.update((id + secret).encode('utf-8'))
         reqdata = {'to': "support@yarxi.ru",
-                        'from': "\"DWEX\"<support@yarxi.ru>",
-                        'subj': subj,
-                        'body': body,
-                        'id': id,
-                        'hash': h.digest().hex()}
+		        'from': "\"DWEX\"<support@yarxi.ru>",
+		        'subj': subj,
+		        'body': body,
+		        'id': id,
+		        'hash': h.digest().hex()}
         reqdata = urllib.parse.urlencode(reqdata).encode('utf-8')
         urlopen('http://yarxi.ru/mobile/mail.php', reqdata).info()
     except Exception as exc:

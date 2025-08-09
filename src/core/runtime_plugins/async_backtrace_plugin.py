@@ -20,8 +20,8 @@ class AsyncBacktracePlugin(RuntimePlugin):
         """
         self._poll_functions = poll_functions_to_instrument
         self._expansion_results = expansion_results
-        self._debug_command = debug_command        
-
+        self._debug_command = debug_command
+        
         # Clear any previous data and build the offset-to-name map
         async_backtrace_store.clear()
         validated_futures = self._expansion_results.get("validated_futures", {})
@@ -80,8 +80,9 @@ class AsyncBacktracePlugin(RuntimePlugin):
                 else:
                     print(f"[rust-future-tracing] Warning: No debug command available for future {future_name}")
             except Exception as e:
-                print(f"[rust-future-tracing] Warning: Could not map future {future_name} to poll function: {e}")        
-	for func_name in self._poll_functions:
+                print(f"[rust-future-tracing] Warning: Could not map future {future_name} to poll function: {e}")
+
+        for func_name in self._poll_functions:
             future_info = poll_to_future_map.get(func_name)
             if future_info:
                 # Create tracer factory with pre-computed information
@@ -118,7 +119,6 @@ class AsyncBacktracePlugin(RuntimePlugin):
         where parent futures depend on (await) the child future.
         
         We traverse upward through parents until we find a future that no one depends on.
-
         """
         current_offset = future_offset
         visited = set()  # Prevent infinite loops
@@ -129,6 +129,7 @@ class AsyncBacktracePlugin(RuntimePlugin):
             # Take the first ancestor (parent) - in most cases there should be only one
             # but complex futures might have multiple parents
             current_offset = ancestors_map[current_offset][0]
+        
         return current_offset
 
     def process_data(self, all_traced_data: Dict[str, Any]):

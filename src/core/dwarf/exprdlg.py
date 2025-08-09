@@ -81,3 +81,4 @@ class ExpressionDlg(QDialog):
         if op_has_nested_expression(op):
             title = f'Nested expression in {op.op} at 0x{op.offset:x}'
             ExpressionDlg(self, title, op.args[0], self.formatter).exec()
+
