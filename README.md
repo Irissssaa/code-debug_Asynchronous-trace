@@ -42,7 +42,7 @@
 
 ```
 
-### 初赛文档
+### 参赛文档
 我们的参赛文档在[这里](https://gitlab.eduxiji.net/T202510011995491/project2721707-300492/-/blob/master/docs/Proj158_%E6%94%AF%E6%8C%81Rust%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7.pdf)
 
 ### 工作日志
