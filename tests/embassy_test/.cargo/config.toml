@@ -1,7 +1,4 @@
-# 针对您项目实际的编译目标 thumbv6m-none-eabi 进行配置
 [target.thumbv7m-none-eabi]
-
-# 当我们运行 `cargo run` 时，执行这个命令来启动 QEMU 并等待调试
 runner = "./qemu-runner.sh"
 
 [build]

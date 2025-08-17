@@ -1,37 +1,22 @@
 {
-  "src/bin/blinky.rs:12": {
-    "fn_name": "static fn blinky::____embassy_main_task::{async_fn#0}(*mut core::task::wake::Context)",
+  "src/bin/tick.rs:23": {
+    "fn_name": "static fn tick::____embassy_main_task::{async_fn#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<()>",
     "async_backtrace": true
   },
-  "src/bin/blinky.rs:31": {
-    "fn_name": "static fn blinky::__task_one_task::{async_fn#0}(*mut core::task::wake::Context)",
+  "src/bin/tick.rs:7": {
+    "fn_name": "static fn tick::__tick_task_task::{async_fn#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<()>",
     "async_backtrace": true
   },
-  "src/bin/blinky.rs:39": {
-    "fn_name": "static fn blinky::__task_two_task::{async_fn#0}(*mut core::task::wake::Context)",
+  "src/bin/tick.rs:16": {
+    "fn_name": "static fn tick::__tock_task_task::{async_fn#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<()>",
     "async_backtrace": true
   },
-  "src/gpiote.rs:340": {
-    "fn_name": "fn embassy_nrf::gpiote::{impl#8}::poll(core::pin::Pin<&mut embassy_nrf::gpiote::PortInputFuture>, *mut core::task::wake::Context)",
+  "src/timer.rs:179": {
+    "fn_name": "fn embassy_time::timer::{impl#5}::poll(core::pin::Pin<&mut embassy_time::timer::Timer>, *mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<()>",
-    "async_backtrace": false
-  },
-  "src/timer.rs:156": {
-    "fn_name": "fn embassy_time::timer::{impl#3}::poll(core::pin::Pin<&mut embassy_time::timer::Timer>, *mut core::task::wake::Context)",
-    "return_type": "core::task::poll::Poll<()>",
-    "async_backtrace": false
-  },
-  "src/timer.rs:252": {
-    "fn_name": "fn embassy_time::timer::{impl#6}::poll_next(core::pin::Pin<&mut embassy_time::timer::Ticker>, *mut core::task::wake::Context)",
-    "return_type": "core::task::poll::Poll<core::option::Option<()>>",
-    "async_backtrace": false
-  },
-  "src/yield_now.rs:34": {
-    "fn_name": "fn embassy_futures::yield_now::{impl#0}::poll(core::pin::Pin<&mut embassy_futures::yield_now::YieldNowFuture>, *mut core::task::wake::Context)",
-    "return_type": "core::task::poll::Poll<()>",
-    "async_backtrace": false
+    "async_backtrace": true
   }
 }
