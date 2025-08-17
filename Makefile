@@ -17,10 +17,10 @@ build-future-executor-test:
 
 test-gdb: 
 	@if [ -d "venv/lib/python3.12/site-packages" ]; then \
-		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb -x src/main.py --args tests/embassy_test/target/thumbv7m-none-eabi/debug/blinky; \
+		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb -x src/main.py --args ../embassy/examples/std/target/debug/tick; \
 	else \
 		VENV_SITE_PACKAGES=$$(find venv/lib -name "site-packages" -type d | head -1); \
-		PYTHONPATH="$$VENV_SITE_PACKAGES:$$PYTHONPATH" gdb -x src/main.py --args tests/embassy_test/target/thumbv7m-none-eabi/debug/blinky; \
+		PYTHONPATH="$$VENV_SITE_PACKAGES:$$PYTHONPATH" gdb -x src/main.py --args ../embassy/examples/std/target/debug/tick; \
 	fi
 
 test-dwarf-analyzer: 
