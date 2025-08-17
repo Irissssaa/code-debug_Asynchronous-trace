@@ -46,7 +46,7 @@
 
 我们团队的工作日志在[这里](https://github.com/Irissssaa/code-debug_Asynchronous-trace/discussions)
 
-Note：由于美观、便捷等原因，我们的日志维护在远仓库的discussion板块，而非文件，不方便搬运。所以此处我们的工作日志外链到了github中。
+Note：由于美观、便捷等原因，我们的日志维护在原仓库的discussion板块，而非文件，不方便搬运。所以此处我们的工作日志外链到了github中。
 
 ### 项目进度
 
