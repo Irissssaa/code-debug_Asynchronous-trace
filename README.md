@@ -40,7 +40,7 @@
 通过实现以上目标，能够解决当前 Rust 异步程序动态跟踪工具的普遍性问题。
 
 ### 参赛文档
-我们的参赛项目决赛文档在[这里](https://gitlab.eduxiji.net/T202510011995491/project2721707-300492/-/blob/master/docs/Proj158_%E6%94%AF%E6%8C%81Rust%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BA%A7%E5%86%85%E6%A0%B8%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E5%86%B3%E8%B5%9B%E6%96%87%E6%A1%A3.pdf)，请老师下载pdf格式文档阅读项目详细说明。
+我们的参赛项目决赛文档在[这里](https://gitlab.eduxiji.net/T202510011995491/project2721707-300492/-/blob/master/docs/%E5%9F%BA%E4%BA%8EGDB%E7%9A%84Rust_%E5%BC%82%E6%AD%A5%E5%87%BD%E6%95%B0%E8%B0%83%E8%AF%95%E6%96%B9%E6%B3%95%E5%86%B3%E8%B5%9B%E6%96%87%E6%A1%A3.pdf)，请老师下载pdf格式文档阅读项目详细说明。
 
 ### 工作日志
 
