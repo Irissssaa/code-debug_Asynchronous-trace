@@ -80,3 +80,40 @@ Note：由于美观、便捷等原因，我们的日志维护在原仓库的disc
 └── README.md                 # 项目的顶层说明文档
 
 ```
+
+### 参考项目
+
+1. CAT: Context Aware Tracing for Rust Asynchronous Programs 论文的工作（利用符号表进行异步函数跟踪）
+
+这篇论文所作的工作是: 论文的作者发现被拆分出的常规异步函数的函数名是有规律的（这个规律简单来说就是至少包含 future, poll, closure 三个关键字中的一个）, 因此他们对函数名符合这个规律的函数都进行插桩, 记录这些函数的调用和返回时间，进而画出异步任务的火焰图.
+
+有一些和异步任务无关的函数恰巧也符合上述规律, 作者们采用了一个算法将这种函数过滤掉.
+
+这个算法在论文里没有说明, 论文附带的代码中有。
+
+
+
+2. 利用dwarf调试信息进行异步函数跟踪
+链接： https://cubele.github.io/probe-docs/async-probe/
+
+该工作是分析了编译后生成的dwarf调试信息, 发现一个异步函数在dwarf调试信息里被表示为一个结构体, 且结构体内明确写出了这个异步函数对应的future会调用哪些future. 但是用户自己实现的 future 并不会被记录在这些结构体里, 因此作者建议先静态分析 dwarf 调试信息, 得到 future 依赖树. 该树的叶子节点很可能包含用户自定义的 future, 因此对叶子 future 的 poll 函数和 closure 函数进行动态插桩, 从而获得足够多的异步函数执行信息（因为对用户debug有用的阻塞发生在叶子future里）.
+
+但是作者没有用代码完整实现这个思路, 原因是zCore内没有 jprobe 插桩工具：
+
+如果真的要做到完整的动态插桩，加入编译器支持以后使用jprobe应该是最可行的做法。具体来说我们要知道async函数生成的Future里面的poll函数的地址以及具体的参数类型（状态机对应的struct结构），然后在对应的地址插入jprobe直接访问这个struct，从而每次poll以后struct更新的状态都可以直接看到。
+
+现在不能实现的原因是：
+
+- 目前这个struct的结构只有在编译后才可以看到，可能要用别的手段实现jprobe的handler
+
+- async函数生成的poll函数的地址在debuginfo里面不太好找，需要编译器支持
+
+- rust想要实现jprobe可能会比较复杂。
+但是我想到我们可以用 gdb 代替 jprobe 插桩工具.
+
+3. lilos async rust debugger
+链接：https://cliffle.com/blog/async-decl-coords/
+
+在 dwarf 调试信息中, 异步函数被表示成形如 {async_fn_env#0} 的形式. 该博客解释了如何将它对应回源代码文件名和行号.
+
+
