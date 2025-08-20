@@ -109,7 +109,7 @@ Note：由于美观、便捷等原因，我们的日志维护在原仓库的disc
 - async函数生成的poll函数的地址在debuginfo里面不太好找，需要编译器支持
 
 - rust想要实现jprobe可能会比较复杂。
-但是我想到我们可以用 gdb 代替 jprobe 插桩工具.
+但是我们想到可以用 gdb 代替 jprobe 插桩工具.
 
 3. lilos async rust debugger
 链接：https://cliffle.com/blog/async-decl-coords/
