@@ -24,8 +24,6 @@ class Struct:
     members: Dict[str, StructMember]
     is_async_fn: bool
     state_machine: bool
-    filename: Optional[str] = None
-    line: Optional[int] = None
 
 class RustFutureAnalyzer:
     def __init__(self):
@@ -92,7 +90,7 @@ class RustFutureAnalyzer:
                     if field.is_base_class or field.name is None:
                         continue
                     
-                    member_type = field.type.strip_td()
+                    member_type = field.type.strip_typedefs()
                     members[field.name] = StructMember(
                         name=field.name,
                         type_tag=getattr(member_type, 'tag', str(member_type)),
@@ -108,9 +106,7 @@ class RustFutureAnalyzer:
                     align=getattr(typ, "alignof", "unknown"),
                     members=members,
                     is_async_fn=is_async_fn,
-                    state_machine=state_machine,
-                    filename=typ.filename,
-                    line=typ.line
+                    state_machine=state_machine
                 )
                 self.structs[type_tag] = struct
                 self.tag_to_name[type_tag] = name # 建立 tag -> name 映射
@@ -161,7 +157,7 @@ class RustFutureAnalyzer:
             "alignment": struct.align,
             "is_async_fn": struct.is_async_fn,
             "state_machine": struct.state_machine,
-            "locations": [{'file': struct.filename, 'line': struct.line}] if struct.filename else [],
+            # "locations": [{'file': struct.filename, 'line': struct.line}] if struct.filename else [],
             "members": [
                 {
                     "name": m.name,
@@ -214,4 +210,4 @@ class AnalyzeRustFuturesCommand(gdb.Command):
         analyzer.analyze()
 
 # 注册命令
-AnalyzeRustFuturesCommand()AnalyzeRustFuturesCommand() 
+AnalyzeRustFuturesCommand()

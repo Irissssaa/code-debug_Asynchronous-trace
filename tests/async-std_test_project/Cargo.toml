@@ -1,0 +1,10 @@
+[package]
+name = "async-std_test_project"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+async-std = { version = "1.12", features = ["attributes", "unstable"] }
+futures = "0.3"
+log = "0.4"
+env_logger = "0.10"

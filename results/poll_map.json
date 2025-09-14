@@ -1,22 +1,467 @@
 {
-  "src/bin/tick.rs:23": {
-    "fn_name": "static fn tick::____embassy_main_task::{async_fn#0}(*mut core::task::wake::Context)",
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-channel-2.5.0/src/lib.rs:1238": {
+    "fn_name": "static fn async_channel::{impl#29}::poll_with_strategy<(), event_listener_strategy::NonBlocking>(core::pin::Pin<&mut async_channel::SendInner<()>>, *mut event_listener_strategy::NonBlocking, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), async_channel::SendError<()>>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-channel-2.5.0/src/lib.rs:1294": {
+    "fn_name": "static fn async_channel::{impl#30}::poll_with_strategy<(), event_listener_strategy::NonBlocking>(core::pin::Pin<&mut async_channel::RecvInner<()>>, *mut event_listener_strategy::NonBlocking, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), async_channel::RecvError>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:648": {
+    "fn_name": "static fn async_executor::{impl#11}::run::{async_fn#0}<(), async_std::task::builder::SupportTaskLocals<async_std_test_project::main::{async_block_env#0}>>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:629": {
+    "fn_name": "static fn async_executor::{impl#11}::tick::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:747": {
+    "fn_name": "static fn async_executor::{impl#13}::run::{async_fn#0}::{async_block#0}<(), core::future::pending::Pending<()>>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:742": {
+    "fn_name": "static fn async_executor::{impl#13}::run::{async_fn#0}<(), core::future::pending::Pending<()>>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:737": {
+    "fn_name": "static fn async_executor::{impl#13}::tick::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:905": {
+    "fn_name": "static fn async_executor::{impl#15}::runnable::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<async_task::runnable::Runnable<()>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:911": {
+    "fn_name": "static fn async_executor::{impl#15}::runnable_with::{async_fn#0}::{closure#0}<async_executor::{impl#17}::runnable::{async_fn#0}::{closure_env#0}>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<async_task::runnable::Runnable<()>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:910": {
+    "fn_name": "static fn async_executor::{impl#15}::runnable_with::{async_fn#0}<async_executor::{impl#17}::runnable::{async_fn#0}::{closure_env#0}>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<async_task::runnable::Runnable<()>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:997": {
+    "fn_name": "static fn async_executor::{impl#17}::runnable::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<async_task::runnable::Runnable<()>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:1196": {
+    "fn_name": "static fn async_executor::{impl#21}::poll<async_std::task::builder::SupportTaskLocals<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>, async_executor::{impl#5}::spawn_inner::{closure_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::task::builder::SupportTaskLocals<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>>>(core::pin::Pin<&mut async_executor::AsyncCallOnDrop<async_std::task::builder::SupportTaskLocals<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>, async_executor::{impl#5}::spawn_inner::{closure_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::task::builder::SupportTaskLocals<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:343": {
+    "fn_name": "static fn async_executor::{impl#5}::run::{async_fn#0}<(), core::future::pending::Pending<()>>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-executor-1.13.3/src/lib.rs:324": {
+    "fn_name": "static fn async_executor::{impl#5}::tick::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/lib.rs:969": {
+    "fn_name": "static fn async_io::Async<std::net::tcp::TcpStream>::poll_readable<std::net::tcp::TcpStream>(*mut async_io::Async<std::net::tcp::TcpStream>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/lib.rs:1001": {
+    "fn_name": "static fn async_io::Async<std::net::tcp::TcpStream>::poll_writable<std::net::tcp::TcpStream>(*mut async_io::Async<std::net::tcp::TcpStream>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/lib.rs:2054": {
+    "fn_name": "static fn async_io::optimistic::{async_fn#0}::{closure#0}<async_io::reactor::Readable<std::net::tcp::TcpListener>>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/lib.rs:2050": {
+    "fn_name": "static fn async_io::optimistic::{async_fn#0}<async_io::reactor::Readable<std::net::tcp::TcpListener>>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/lib.rs:1027": {
+    "fn_name": "static fn async_io::{impl#10}::read_with::{async_fn#0}<std::net::tcp::TcpListener, (std::net::tcp::TcpStream, core::net::socket_addr::SocketAddr), async_io::{impl#36}::accept::{async_fn#0}::{closure_env#0}>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(std::net::tcp::TcpStream, core::net::socket_addr::SocketAddr), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/lib.rs:1298": {
+    "fn_name": "static fn async_io::{impl#33}::poll_read<std::net::tcp::TcpStream>(core::pin::Pin<&mut &async_io::Async<std::net::tcp::TcpStream>>, *mut core::task::wake::Context, &mut [u8])",
+    "return_type": "core::task::poll::Poll<core::result::Result<usize, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/lib.rs:1375": {
+    "fn_name": "static fn async_io::{impl#35}::poll_write<std::net::tcp::TcpStream>(core::pin::Pin<&mut &async_io::Async<std::net::tcp::TcpStream>>, *mut core::task::wake::Context, &[u8])",
+    "return_type": "core::task::poll::Poll<core::result::Result<usize, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/lib.rs:1456": {
+    "fn_name": "static fn async_io::{impl#36}::accept::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(async_io::Async<std::net::tcp::TcpStream>, core::net::socket_addr::SocketAddr), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/lib.rs:1484": {
+    "fn_name": "static fn async_io::{impl#36}::incoming::{closure#0}::{async_block#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::option::Option<(core::result::Result<async_io::Async<std::net::tcp::TcpStream>, std::io::error::Error>, &async_io::Async<std::net::tcp::TcpListener>)>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/reactor.rs:615": {
+    "fn_name": "static fn async_io::reactor::{impl#13}::poll<&async_io::Async<std::net::tcp::TcpListener>, std::net::tcp::TcpListener>(core::pin::Pin<&mut async_io::reactor::Ready<&async_io::Async<std::net::tcp::TcpListener>, std::net::tcp::TcpListener>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-io-2.5.0/src/reactor.rs:525": {
+    "fn_name": "static fn async_io::reactor::{impl#4}::poll<std::net::tcp::TcpListener>(core::pin::Pin<&mut async_io::reactor::Readable<std::net::tcp::TcpListener>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-lock-3.4.1/src/mutex.rs:354": {
+    "fn_name": "static fn async_lock::mutex::{impl#11}::poll_with_strategy<usize, event_listener_strategy::NonBlocking>(core::pin::Pin<&mut async_lock::mutex::LockInner<usize>>, *mut event_listener_strategy::NonBlocking, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<async_lock::mutex::MutexGuard<usize>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-lock-3.4.1/src/mutex.rs:520": {
+    "fn_name": "static fn async_lock::mutex::{impl#17}::poll_with_strategy<usize, &async_lock::mutex::Mutex<usize>, event_listener_strategy::NonBlocking>(core::pin::Pin<&mut async_lock::mutex::AcquireSlow<&async_lock::mutex::Mutex<usize>, usize>>, *mut event_listener_strategy::NonBlocking, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<&async_lock::mutex::Mutex<usize>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-lock-3.4.1/src/once_cell.rs:608": {
+    "fn_name": "static fn async_lock::once_cell::{impl#4}::initialize_or_wait::{async_fn#0}<parking::Unparker, core::convert::Infallible, core::future::ready::Ready<core::result::Result<parking::Unparker, core::convert::Infallible>>, async_lock::once_cell::{impl#4}::get_or_try_init_blocking::{closure_env#0}<parking::Unparker, core::convert::Infallible, async_lock::once_cell::{impl#4}::get_or_init_blocking::{closure_env#0}<parking::Unparker, async_io::driver::unparker::{closure_env#0}>>, event_listener_strategy::Blocking>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), core::convert::Infallible>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/future/pending.rs:27": {
+    "fn_name": "static fn async_std::future::pending::pending::{async_fn#0}<core::result::Result<(), std::io::error::Error>>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/future/pending.rs:41": {
+    "fn_name": "static fn async_std::future::pending::{impl#0}::poll<core::result::Result<(), std::io::error::Error>>(core::pin::Pin<&mut async_std::future::pending::Pending<core::result::Result<(), std::io::error::Error>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/io/buf_read/lines.rs:57": {
+    "fn_name": "static fn async_std::io::buf_read::lines::read_line_internal<async_std::io::buf_reader::BufReader<&async_std::net::tcp::stream::TcpStream>>(core::pin::Pin<&mut async_std::io::buf_reader::BufReader<&async_std::net::tcp::stream::TcpStream>>, *mut core::task::wake::Context, *mut alloc::string::String, *mut alloc::vec::Vec<u8, alloc::alloc::Global>, *mut usize)",
+    "return_type": "core::task::poll::Poll<core::result::Result<usize, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/io/buf_read/lines.rs:35": {
+    "fn_name": "static fn async_std::io::buf_read::lines::{impl#0}::poll_next<async_std::io::buf_reader::BufReader<&async_std::net::tcp::stream::TcpStream>>(core::pin::Pin<&mut async_std::io::buf_read::lines::Lines<async_std::io::buf_reader::BufReader<&async_std::net::tcp::stream::TcpStream>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::option::Option<core::result::Result<alloc::string::String, std::io::error::Error>>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/io/buf_read/mod.rs:242": {
+    "fn_name": "static fn async_std::io::buf_read::read_until_internal<async_std::io::buf_reader::BufReader<&async_std::net::tcp::stream::TcpStream>>(core::pin::Pin<&mut async_std::io::buf_reader::BufReader<&async_std::net::tcp::stream::TcpStream>>, *mut core::task::wake::Context, u8, *mut alloc::vec::Vec<u8, alloc::alloc::Global>, *mut usize)",
+    "return_type": "core::task::poll::Poll<core::result::Result<usize, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/io/buf_reader.rs:241": {
+    "fn_name": "static fn async_std::io::buf_reader::{impl#3}::poll_fill_buf<&async_std::net::tcp::stream::TcpStream>(core::pin::Pin<&mut async_std::io::buf_reader::BufReader<&async_std::net::tcp::stream::TcpStream>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<&[u8], std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/io/timeout.rs:38": {
+    "fn_name": "static fn async_std::io::timeout::timeout::{async_fn#0}<async_std::future::pending::pending::{async_fn_env#0}<core::result::Result<(), std::io::error::Error>>, ()>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/io/timeout.rs:66": {
+    "fn_name": "static fn async_std::io::timeout::{impl#0}::poll<async_std::future::pending::pending::{async_fn_env#0}<core::result::Result<(), std::io::error::Error>>, ()>(core::pin::Pin<&mut async_std::io::timeout::Timeout<async_std::future::pending::pending::{async_fn_env#0}<core::result::Result<(), std::io::error::Error>>, ()>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/io/write/write_all.rs:18": {
+    "fn_name": "static fn async_std::io::write::write_all::{impl#0}::poll<async_std::net::tcp::stream::TcpStream>(core::pin::Pin<&mut async_std::io::write::write_all::WriteAllFuture<async_std::net::tcp::stream::TcpStream>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/net/addr.rs:89": {
+    "fn_name": "static fn async_std::net::addr::{impl#2}::poll<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>>(core::pin::Pin<&mut async_std::net::addr::ToSocketAddrsFuture<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/net/tcp/listener.rs:78": {
+    "fn_name": "static fn async_std::net::tcp::listener::{impl#0}::bind::{async_fn#0}<&str>(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<async_std::net::tcp::listener::TcpListener, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/stream/stream/next.rs:16": {
+    "fn_name": "static fn async_std::stream::stream::next::{impl#0}::poll<async_std::net::tcp::listener::Incoming>(core::pin::Pin<&mut async_std::stream::stream::next::NextFuture<async_std::net::tcp::listener::Incoming>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::option::Option<core::result::Result<async_std::net::tcp::stream::TcpStream, std::io::error::Error>>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/task/builder.rs:197": {
+    "fn_name": "static fn async_std::task::builder::{impl#1}::poll::{closure#0}<async_std_test_project::main::{async_block_env#0}>()",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/task/builder.rs:195": {
+    "fn_name": "static fn async_std::task::builder::{impl#1}::poll<async_std_test_project::main::{async_block_env#0}>(core::pin::Pin<&mut async_std::task::builder::SupportTaskLocals<async_std_test_project::main::{async_block_env#0}>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/task/join_handle.rs:82": {
+    "fn_name": "static fn async_std::task::join_handle::{impl#2}::poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>(core::pin::Pin<&mut async_std::task::join_handle::JoinHandle<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/task/sleep.rs:31": {
+    "fn_name": "static fn async_std::task::sleep::sleep::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/task/task_locals_wrapper.rs:51": {
+    "fn_name": "static fn async_std::task::task_locals_wrapper::TaskLocalsWrapper::set_current<async_std::task::builder::{impl#1}::poll::{closure_env#0}<async_std_test_project::main::{async_block_env#0}>, core::task::poll::Poll<()>>(*mut async_std::task::task_locals_wrapper::TaskLocalsWrapper, async_std::task::builder::{impl#1}::poll::{closure_env#0}<async_std_test_project::main::{async_block_env#0}>)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-std-1.13.2/src/task/task_locals_wrapper.rs:55": {
+    "fn_name": "static fn async_std::task::task_locals_wrapper::{impl#0}::set_current::{closure#0}<async_std::task::builder::{impl#1}::poll::{closure_env#0}<async_std_test_project::main::{async_block_env#0}>, core::task::poll::Poll<()>>(*mut core::cell::Cell<*const async_std::task::task_locals_wrapper::TaskLocalsWrapper>)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-task-4.7.1/src/raw.rs:549": {
+    "fn_name": "static fn async_task::raw::{impl#3}::run::{closure#1}<core::pin::Pin<alloc::boxed::Box<blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>, alloc::alloc::Global>>, core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::{impl#1}::spawn::{closure_env#1}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>>, ()>()",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-task-4.7.1/src/task.rs:321": {
+    "fn_name": "static fn async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>::poll_task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>(*mut async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::option::Option<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-task-4.7.1/src/task.rs:450": {
+    "fn_name": "static fn async_task::task::{impl#7}::poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>(core::pin::Pin<&mut async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/blocking-1.6.2/src/lib.rs:386": {
+    "fn_name": "static fn blocking::unblock::{async_block#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>()",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/event-listener-5.4.1/src/lib.rs:1184": {
+    "fn_name": "static fn event_listener::InnerListener<(), alloc::sync::Arc<event_listener::Inner<()>, alloc::alloc::Global>>::poll_internal<(), alloc::sync::Arc<event_listener::Inner<()>, alloc::alloc::Global>>(core::pin::Pin<&mut event_listener::InnerListener<(), alloc::sync::Arc<event_listener::Inner<()>, alloc::alloc::Global>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/event-listener-5.4.1/src/lib.rs:899": {
+    "fn_name": "static fn event_listener::{impl#27}::poll<()>(core::pin::Pin<&mut event_listener::EventListener<()>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/event-listener-strategy-0.5.4/src/lib.rs:260": {
+    "fn_name": "static fn async_lock::mutex::{impl#35}::poll<usize>(core::pin::Pin<&mut async_lock::mutex::Lock<usize>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<async_lock::mutex::MutexGuard<usize>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/event-listener-strategy-0.5.4/src/lib.rs:385": {
+    "fn_name": "static fn event_listener_strategy::{impl#3}::poll<async_lock::mutex::LockInner<usize>>(core::pin::Pin<&mut event_listener_strategy::FutureWrapper<async_lock::mutex::LockInner<usize>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<async_lock::mutex::MutexGuard<usize>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/event-listener-strategy-0.5.4/src/lib.rs:469": {
+    "fn_name": "static fn event_listener_strategy::{impl#4}::poll<(), event_listener::EventListener<()>>(*mut event_listener_strategy::NonBlocking, *mut core::option::Option<event_listener::EventListener<()>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/event-listener-strategy-0.5.4/src/lib.rs:532": {
+    "fn_name": "static fn event_listener_strategy::{impl#6}::poll(core::pin::Pin<&mut event_listener_strategy::Ready>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-core-0.3.31/src/stream.rs:129": {
+    "fn_name": "static fn futures_core::stream::{impl#1}::poll_next<alloc::boxed::Box<(dyn futures_core::stream::Stream<Item=core::result::Result<async_io::Async<std::net::tcp::TcpStream>, std::io::error::Error>> + core::marker::Send + core::marker::Sync), alloc::alloc::Global>>(core::pin::Pin<&mut core::pin::Pin<alloc::boxed::Box<(dyn futures_core::stream::Stream<Item=core::result::Result<async_io::Async<std::net::tcp::TcpStream>, std::io::error::Error>> + core::marker::Send + core::marker::Sync), alloc::alloc::Global>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::option::Option<core::result::Result<async_io::Async<std::net::tcp::TcpStream>, std::io::error::Error>>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-lite-2.6.1/src/future.rs:195": {
+    "fn_name": "static fn futures_lite::future::{impl#3}::poll<core::result::Result<(), std::io::error::Error>, async_io::optimistic::{async_fn#0}::{closure_env#0}<async_io::reactor::Readable<std::net::tcp::TcpListener>>>(core::pin::Pin<&mut futures_lite::future::PollFn<async_io::optimistic::{async_fn#0}::{closure_env#0}<async_io::reactor::Readable<std::net::tcp::TcpListener>>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-lite-2.6.1/src/future.rs:448": {
+    "fn_name": "static fn futures_lite::future::{impl#7}::poll<(), core::future::pending::Pending<()>, async_executor::{impl#13}::run::{async_fn#0}::{async_block_env#0}<(), core::future::pending::Pending<()>>>(core::pin::Pin<&mut futures_lite::future::Or<core::future::pending::Pending<()>, async_executor::{impl#13}::run::{async_fn#0}::{async_block_env#0}<(), core::future::pending::Pending<()>>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-lite-2.6.1/src/stream.rs:498": {
+    "fn_name": "static fn futures_lite::stream::{impl#16}::poll_next<&async_io::Async<std::net::tcp::TcpListener>, async_io::{impl#36}::incoming::{closure_env#0}, async_io::{impl#36}::incoming::{closure#0}::{async_block_env#0}, core::result::Result<async_io::Async<std::net::tcp::TcpStream>, std::io::error::Error>>(core::pin::Pin<&mut futures_lite::stream::Unfold<&async_io::Async<std::net::tcp::TcpListener>, async_io::{impl#36}::incoming::{closure_env#0}, async_io::{impl#36}::incoming::{closure#0}::{async_block_env#0}>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::option::Option<core::result::Result<async_io::Async<std::net::tcp::TcpStream>, std::io::error::Error>>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:111": {
+    "fn_name": "static fn core::future::future::{impl#0}::poll<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>(core::pin::Pin<&mut &mut async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/future.rs:123": {
+    "fn_name": "static fn core::future::future::{impl#1}::poll<alloc::boxed::Box<blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>, alloc::alloc::Global>>(core::pin::Pin<&mut core::pin::Pin<alloc::boxed::Box<blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>, alloc::alloc::Global>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/pending.rs:41": {
+    "fn_name": "static fn core::future::pending::{impl#0}::poll<()>(core::pin::Pin<&mut core::future::pending::Pending<()>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/future/ready.rs:22": {
+    "fn_name": "static fn core::future::ready::{impl#1}::poll<core::result::Result<parking::Unparker, core::convert::Infallible>>(core::pin::Pin<&mut core::future::ready::Ready<core::result::Result<parking::Unparker, core::convert::Infallible>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<parking::Unparker, core::convert::Infallible>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:250": {
+    "fn_name": "static fn core::ops::function::FnOnce::call_once<async_task::raw::{impl#3}::run::{closure_env#1}<core::pin::Pin<alloc::boxed::Box<blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>, alloc::alloc::Global>>, core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::{impl#1}::spawn::{closure_env#1}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>>, ()>, ()>(async_task::raw::{impl#3}::run::{closure_env#1}<core::pin::Pin<alloc::boxed::Box<blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>, alloc::alloc::Global>>, core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::{impl#1}::spawn::{closure_env#1}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>>, ()>, ())",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/panic/unwind_safe.rs:271": {
+    "fn_name": "static fn core::panic::unwind_safe::{impl#23}::call_once<core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>, async_task::raw::{impl#3}::run::{closure_env#1}<core::pin::Pin<alloc::boxed::Box<blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>, alloc::alloc::Global>>, core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::{impl#1}::spawn::{closure_env#1}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>>, ()>>(core::panic::unwind_safe::AssertUnwindSafe<async_task::raw::{impl#3}::run::{closure_env#1}<core::pin::Pin<alloc::boxed::Box<blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>, alloc::alloc::Global>>, core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::{impl#1}::spawn::{closure_env#1}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, blocking::unblock::{async_block_env#0}<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, async_std::net::addr::{impl#10}::to_socket_addrs::{closure_env#0}>>, ()>>, ())",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/task/poll.rs:49": {
+    "fn_name": "static fn core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>::map<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, core::result::Result<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, alloc::boxed::Box<(dyn core::any::Any + core::marker::Send), alloc::alloc::Global>>, fn(core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>) -> core::result::Result<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, alloc::boxed::Box<(dyn core::any::Any + core::marker::Send), alloc::alloc::Global>>>(core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>, *mut fn (core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>) -> core::result::Result<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, alloc::boxed::Box<(dyn core::any::Any + core::marker::Send), alloc::alloc::Global>>)",
+    "return_type": "core::task::poll::Poll<core::result::Result<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, alloc::boxed::Box<(dyn core::any::Any + core::marker::Send), alloc::alloc::Global>>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/task/poll.rs:255": {
+    "fn_name": "static fn core::task::poll::{impl#5}::from_residual<usize, std::io::error::Error, std::io::error::Error>(core::result::Result<core::convert::Infallible, std::io::error::Error>)",
+    "return_type": "core::task::poll::Poll<core::result::Result<usize, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/task/poll.rs:288": {
+    "fn_name": "static fn core::task::poll::{impl#7}::from_residual<alloc::string::String, std::io::error::Error, std::io::error::Error>(core::result::Result<core::convert::Infallible, std::io::error::Error>)",
+    "return_type": "core::task::poll::Poll<core::option::Option<core::result::Result<alloc::string::String, std::io::error::Error>>>",
+    "async_backtrace": false
+  },
+  "/home/iristseng/.rustup/toolchains/nightly-2025-04-22-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/thread/local.rs:275": {
+    "fn_name": "static fn std::thread::local::LocalKey<core::cell::Cell<*const async_std::task::task_locals_wrapper::TaskLocalsWrapper>>::with<core::cell::Cell<*const async_std::task::task_locals_wrapper::TaskLocalsWrapper>, async_std::task::task_locals_wrapper::{impl#0}::set_current::{closure_env#0}<async_std::task::builder::{impl#1}::poll::{closure_env#0}<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>, core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>>, core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>>(*mut std::thread::local::LocalKey<core::cell::Cell<*const async_std::task::task_locals_wrapper::TaskLocalsWrapper>>, async_std::task::task_locals_wrapper::{impl#0}::set_current::{closure_env#0}<async_std::task::builder::{impl#1}::poll::{closure_env#0}<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>, core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>>)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/future.rs:228": {
+    "fn_name": "fn futures_lite::future::{impl#4}::poll(core::pin::Pin<&mut futures_lite::future::YieldNow>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "src/init.rs:36": {
+    "fn_name": "static fn async_global_executor::init::init::{async_block#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "src/lib.rs:467": {
+    "fn_name": "fn async_io::{impl#2}::poll(core::pin::Pin<&mut async_io::Timer>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<std::time::Instant>",
+    "async_backtrace": false
+  },
+  "src/lib.rs:479": {
+    "fn_name": "fn async_io::{impl#3}::poll_next(core::pin::Pin<&mut async_io::Timer>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::option::Option<std::time::Instant>>",
+    "async_backtrace": false
+  },
+  "src/main.rs:28": {
+    "fn_name": "static fn async_std_test_project::handle_connection::{async_fn#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<()>",
     "async_backtrace": true
   },
-  "src/bin/tick.rs:7": {
-    "fn_name": "static fn tick::__tick_task_task::{async_fn#0}(*mut core::task::wake::Context)",
+  "src/main.rs:63": {
+    "fn_name": "static fn async_std_test_project::heartbeat_task::{async_fn#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<()>",
     "async_backtrace": true
   },
-  "src/bin/tick.rs:16": {
-    "fn_name": "static fn tick::__tock_task_task::{async_fn#0}(*mut core::task::wake::Context)",
+  "src/main.rs:70": {
+    "fn_name": "static fn async_std_test_project::main::{async_block#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<()>",
     "async_backtrace": true
   },
-  "src/timer.rs:179": {
-    "fn_name": "fn embassy_time::timer::{impl#5}::poll(core::pin::Pin<&mut embassy_time::timer::Timer>, *mut core::task::wake::Context)",
+  "src/main.rs:12": {
+    "fn_name": "static fn async_std_test_project::process_and_echo::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/net/tcp/listener.rs:234": {
+    "fn_name": "fn async_std::net::tcp::listener::{impl#1}::poll_next(core::pin::Pin<&mut async_std::net::tcp::listener::Incoming>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::option::Option<core::result::Result<async_std::net::tcp::stream::TcpStream, std::io::error::Error>>>",
+    "async_backtrace": false
+  },
+  "src/net/tcp/stream.rs:303": {
+    "fn_name": "fn async_std::net::tcp::stream::{impl#2}::poll_read(core::pin::Pin<&mut &async_std::net::tcp::stream::TcpStream>, *mut core::task::wake::Context, &mut [u8])",
+    "return_type": "core::task::poll::Poll<core::result::Result<usize, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/net/tcp/stream.rs:321": {
+    "fn_name": "fn async_std::net::tcp::stream::{impl#3}::poll_write(core::pin::Pin<&mut async_std::net::tcp::stream::TcpStream>, *mut core::task::wake::Context, &[u8])",
+    "return_type": "core::task::poll::Poll<core::result::Result<usize, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/net/tcp/stream.rs:347": {
+    "fn_name": "fn async_std::net::tcp::stream::{impl#4}::poll_write(core::pin::Pin<&mut &async_std::net::tcp::stream::TcpStream>, *mut core::task::wake::Context, &[u8])",
+    "return_type": "core::task::poll::Poll<core::result::Result<usize, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/reactor.rs:430": {
+    "fn_name": "fn async_io::reactor::Source::poll_readable(*mut async_io::reactor::Source, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/reactor.rs:435": {
+    "fn_name": "fn async_io::reactor::Source::poll_writable(*mut async_io::reactor::Source, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/reactor.rs:442": {
+    "fn_name": "static fn async_io::reactor::Source::poll_ready(*mut async_io::reactor::Source, usize, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<(), std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/task/builder.rs:197": {
+    "fn_name": "static fn async_std::task::builder::{impl#1}::poll::{closure#0}<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>()",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/task/builder.rs:195": {
+    "fn_name": "static fn async_std::task::builder::{impl#1}::poll<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>(core::pin::Pin<&mut async_std::task::builder::SupportTaskLocals<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>>, *mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/task/task_locals_wrapper.rs:51": {
+    "fn_name": "static fn async_std::task::task_locals_wrapper::TaskLocalsWrapper::set_current<async_std::task::builder::{impl#1}::poll::{closure_env#0}<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>, core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>>(*mut async_std::task::task_locals_wrapper::TaskLocalsWrapper, async_std::task::builder::{impl#1}::poll::{closure_env#0}<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/task/task_locals_wrapper.rs:55": {
+    "fn_name": "static fn async_std::task::task_locals_wrapper::{impl#0}::set_current::{closure#0}<async_std::task::builder::{impl#1}::poll::{closure_env#0}<async_task::task::Task<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>, ()>>, core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>>(*mut core::cell::Cell<*const async_std::task::task_locals_wrapper::TaskLocalsWrapper>)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::vec::into_iter::IntoIter<core::net::socket_addr::SocketAddr, alloc::alloc::Global>, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/threading.rs:28": {
+    "fn_name": "static fn async_global_executor::threading::spawn_more_threads::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<usize, std::io::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/threading.rs:107": {
+    "fn_name": "static fn async_global_executor::threading::thread_main_loop::{async_block#2}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<()>",
-    "async_backtrace": true
+    "async_backtrace": false
+  },
+  "src/threading.rs:90": {
+    "fn_name": "static fn async_global_executor::threading::thread_main_loop::{closure#1}::{closure#0}::{async_block#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
+  },
+  "src/threading.rs:117": {
+    "fn_name": "static fn async_global_executor::threading::wait_for_local_executor_completion::{closure#0}::{closure#0}::{async_block#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<()>",
+    "async_backtrace": false
   }
 }
