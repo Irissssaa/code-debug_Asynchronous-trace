@@ -1502,7 +1502,7 @@
   "src/main.rs:42": {
     "fn_name": "static fn tokio_test_project::async_function_one::{async_fn#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<core::result::Result<alloc::string::String, reqwest::error::Error>>",
-    "async_backtrace": false
+    "async_backtrace": true
   },
   "src/main.rs:77": {
     "fn_name": "static fn tokio_test_project::async_function_three::{async_fn#0}(*mut core::task::wake::Context)",

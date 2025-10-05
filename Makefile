@@ -1,6 +1,6 @@
 .SHELLFLAGS := -c
 SHELL := /bin/bash
-.PHONY: test-gdb venv clean-venv callgraph-tokio
+.PHONY: test-gdb venv clean-venv callgraph-tokio subgraph-two
 
 venv: 
 	python3 -m venv venv
@@ -24,6 +24,20 @@ callgraph-tokio: build-tokio-test
 	/usr/lib/llvm-20/bin/opt -p=dot-callgraph "$$BITCODE_FILE" -disable-output; \
 	echo "[callgraph-tokio] call graph generated: $$BITCODE_FILE.callgraph.dot"
 
+subgraph-two: callgraph-tokio
+	@set -euo pipefail; \
+	DOT_FILE=$$(find tests/tokio_test_project/target/debug/deps -maxdepth 1 -name 'tokio_test_project-*.bc.callgraph.dot' | head -n 1); \
+	OUT=tests/tokio_test_project/target/debug/deps/tokio_test_project_async_function_two_subgraph.dot; \
+	python3 tools/dot_subgraph.py --input "$$DOT_FILE" --pattern async_function_two --depth 3 --output "$$OUT"; \
+	echo "[subgraph-two] wrote: $$OUT"
+
+subgraph-three: callgraph-tokio
+	@set -euo pipefail; \
+	DOT_FILE=$$(find tests/tokio_test_project/target/debug/deps -maxdepth 1 -name 'tokio_test_project-*.bc.callgraph.dot' | head -n 1); \
+	OUT=tests/tokio_test_project/target/debug/deps/tokio_test_project_async_function_three_subgraph.dot; \
+	python3 tools/dot_subgraph.py --input "$$DOT_FILE" --pattern async_function_three --depth 3 --output "$$OUT"; \
+	echo "[subgraph-three] wrote: $$OUT"
+
 build-future-executor-test:
 	cargo build --manifest-path tests/future_executor_test/Cargo.toml
 
@@ -36,6 +50,14 @@ test-gdb:
 	fi
 
 test-tokio_test_project: callgraph-tokio
+	@if [ -d "venv/lib/python3.12/site-packages" ]; then \
+		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb-multiarch -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
+	else \
+		VENV_SITE_PACKAGES=$$(find venv/lib -name "site-packages" -type d | head -1); \
+		PYTHONPATH="$$VENV_SITE_PACKAGES:$$PYTHONPATH" gdb-multiarch -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
+	fi
+
+test-tokio_test_project-no-recompile: 
 	@if [ -d "venv/lib/python3.12/site-packages" ]; then \
 		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb-multiarch -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
 	else \
