@@ -61,8 +61,7 @@ from core import StartAsyncDebugCommand
 # 当用户调用这个命令的时候，会显示所有线程的stacktrace信息，并标注出每个线程的当前状态（running, blocked, waiting, etc.）
 from core import InspectAsync # NOTE: 这个语句实际上是没有必要的，因为上一个 from import 语句已经执行了整个文件，所以已经注册了 InspectAsync 命令。这个语句实际上什么都不做
 
-# 6. 利用 `dump-async-data` 命令，dump 异步数据
-# 这个功能先不做，不知道要dump什么
+# 6. 利用 `dump-async-data` 命令，dump 异步数据为火焰图
 
 
 

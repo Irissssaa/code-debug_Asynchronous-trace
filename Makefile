@@ -1,6 +1,6 @@
 .SHELLFLAGS := -c
 SHELL := /bin/bash
-.PHONY: test-gdb venv clean-venv callgraph-tokio subgraph-two
+.PHONY: test-gdb venv clean-venv callgraph-tokio
 
 venv: 
 	python3 -m venv venv
@@ -14,29 +14,19 @@ clean-venv:
 build-tokio-test:
 	cargo build --manifest-path tests/tokio_test_project/Cargo.toml
 
-callgraph-tokio: build-tokio-test
+callgraph-tokio:
 	@set -euo pipefail; \
+	mkdir -p results; \
+	find tests/tokio_test_project/target -name '*.callgraph.dot' -delete || true; \
+	rm -f results/tokio_test_project.callgraph.dot; \
 	BITCODE_FILE=$$(find tests/tokio_test_project/target/debug/deps -maxdepth 1 -name 'tokio_test_project-*.bc' | head -n 1); \
 	if [ -z "$$BITCODE_FILE" ]; then \
 		echo "[callgraph-tokio] error: no bitcode file found. ensure cargo build succeeded." >&2; \
 		exit 1; \
 	fi; \
-	/usr/lib/llvm-20/bin/opt -p=dot-callgraph "$$BITCODE_FILE" -disable-output; \
-	echo "[callgraph-tokio] call graph generated: $$BITCODE_FILE.callgraph.dot"
-
-subgraph-two: callgraph-tokio
-	@set -euo pipefail; \
-	DOT_FILE=$$(find tests/tokio_test_project/target/debug/deps -maxdepth 1 -name 'tokio_test_project-*.bc.callgraph.dot' | head -n 1); \
-	OUT=tests/tokio_test_project/target/debug/deps/tokio_test_project_async_function_two_subgraph.dot; \
-	python3 tools/dot_subgraph.py --input "$$DOT_FILE" --pattern async_function_two --depth 3 --output "$$OUT"; \
-	echo "[subgraph-two] wrote: $$OUT"
-
-subgraph-three: callgraph-tokio
-	@set -euo pipefail; \
-	DOT_FILE=$$(find tests/tokio_test_project/target/debug/deps -maxdepth 1 -name 'tokio_test_project-*.bc.callgraph.dot' | head -n 1); \
-	OUT=tests/tokio_test_project/target/debug/deps/tokio_test_project_async_function_three_subgraph.dot; \
-	python3 tools/dot_subgraph.py --input "$$DOT_FILE" --pattern async_function_three --depth 3 --output "$$OUT"; \
-	echo "[subgraph-three] wrote: $$OUT"
+	/usr/lib/llvm-20/bin/opt -p=dot-callgraph --callgraph-dot-filename-prefix=results/tokio_test_project "$$BITCODE_FILE" -disable-output; \
+	OUTPUT_DOT="results/tokio_test_project.callgraph.dot"; \
+	echo "[callgraph-tokio] call graph generated: $$OUTPUT_DOT"
 
 build-future-executor-test:
 	cargo build --manifest-path tests/future_executor_test/Cargo.toml
@@ -49,7 +39,7 @@ test-gdb:
 		PYTHONPATH="$$VENV_SITE_PACKAGES:$$PYTHONPATH" gdb-multiarch -x src/main.py tests/async-std_test_project/target/debug/async-std_test_project; \
 	fi
 
-test-tokio_test_project: callgraph-tokio
+test-tokio_test_project: build-tokio-test callgraph-tokio generate-async_dependencies-tokio_test_project
 	@if [ -d "venv/lib/python3.12/site-packages" ]; then \
 		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb-multiarch -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
 	else \
@@ -68,6 +58,11 @@ test-tokio_test_project-no-recompile:
 
 test-dwarf-analyzer: 
 	venv/bin/python src/core/dwarf/async_deps.py tests/async-std_test_project/target/debug/async-std_test_project --json > results/async_dependencies.json
+
+generate-async_dependencies-tokio_test_project: 
+	venv/bin/python src/core/dwarf/async_deps.py tests/tokio_test_project/target/debug/tokio_test_project --json > results/async_dependencies.json
+
+
 
 # 新增目标，专门用于调试 QEMU 中运行的远程 Embassy 程序
 test-gdb-embassy:

@@ -15,6 +15,17 @@ This document walks you through generating a **future map**, collecting **async-
 
 ---
 
+## 0.5 Configuring descendant instrumentation
+
+The debugger now exposes two toggles in `src/core/config.py` that control how aggressively poll functions are instrumented:
+
+- `ENABLE_ASYNC_DESCENDANTS` – when `True` (default) the tool instruments futures discovered through dependency expansion ("子孙方向扩展"). Set to `False` to restrict tracing to the futures you explicitly marked plus their ancestors.
+- `ENABLE_SYNC_DESCENDANTS` – when `True` (default) additional synchronous functions from the LLVM call graph are instrumented up to `SYNC_DESCENDANT_DEPTH`. Disable this if the call graph is noisy or unavailable.
+
+Adjust these flags before launching GDB to tailor the amount of instrumentation without editing other scripts.
+
+---
+
 ## 1. Build a Rust binary with DWARF symbols
 
 The tools require full debuginfo so that DWARF contains all state-machine structs.

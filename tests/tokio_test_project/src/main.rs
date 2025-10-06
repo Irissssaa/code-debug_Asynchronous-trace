@@ -1,4 +1,4 @@
-mod sync_helpers {
+// mod sync_helpers {
     use std::sync::atomic::{AtomicUsize, Ordering};
     use std::thread;
     use std::time::{Duration, Instant};
@@ -37,74 +37,60 @@ mod sync_helpers {
     pub fn report_body_length(len: usize) {
         println!("[SYNC] Response body length: {len} bytes");
     }
-}
+//}
 
 async fn async_function_one(base_url: &str) -> Result<String, reqwest::Error> {
-    let log: fn(&str) = sync_helpers::log_stage;
-    log("async_function_one:start");
+    log_stage("async_function_one:start");
 
-    let cpu: fn(&str) = sync_helpers::simulate_cpu_work;
-    cpu("async_function_one:cpu");
+    simulate_cpu_work("async_function_one:cpu");
 
-    let builder: fn(&str) -> String = sync_helpers::next_url;
-    let derived_url = builder(base_url);
+    let derived_url = next_url(base_url);
 
-    log("async_function_one:handoff_to_two");
+    log_stage("async_function_one:handoff_to_two");
     let text = async_function_two(derived_url).await?;
-    log("async_function_one:end");
+    log_stage("async_function_one:end");
     Ok(text)
 }
 
 async fn async_function_two(url: String) -> Result<String, reqwest::Error> {
-    let log: fn(&str) = sync_helpers::log_stage;
-    log("async_function_two:start");
+    log_stage("async_function_two:start");
 
-    let pause: fn() = sync_helpers::jitter_delay;
-    pause();
+    jitter_delay();
 
-    let cpu: fn(&str) = sync_helpers::simulate_cpu_work;
-    cpu("async_function_two:cpu");
+    simulate_cpu_work("async_function_two:cpu");
 
-    let decorator: fn(&str) -> String = sync_helpers::append_stage_marker;
-    let decorated_url = decorator(&url);
+    let decorated_url = append_stage_marker(&url);
 
-    log("async_function_two:handoff_to_three");
+    log_stage("async_function_two:handoff_to_three");
     let text = async_function_three(decorated_url).await?;
-    log("async_function_two:end");
+    log_stage("async_function_two:end");
     Ok(text)
 }
 
 async fn async_function_three(url: String) -> Result<String, reqwest::Error> {
-    let log: fn(&str) = sync_helpers::log_stage;
-    log("async_function_three:start");
+    log_stage("async_function_three:start");
 
-    let pause: fn() = sync_helpers::jitter_delay;
-    pause();
+    jitter_delay();
 
-    let cpu: fn(&str) = sync_helpers::simulate_cpu_work;
-    cpu("async_function_three:cpu");
+    simulate_cpu_work("async_function_three:cpu");
 
     let response = reqwest::get(&url).await?;
     let body = response.text().await?;
 
-    let reporter: fn(usize) = sync_helpers::report_body_length;
-    reporter(body.len());
+    report_body_length(body.len());
 
-    log("async_function_three:end");
+    log_stage("async_function_three:end");
     Ok(body)
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let log: fn(&str) = sync_helpers::log_stage;
-    log("main:start");
+    log_stage("main:start");
 
     let base_url = "https://config.net.cn/tools/ProvinceCityCountry.html";
     let body = async_function_one(base_url).await?;
+    report_body_length(body.len());
 
-    let reporter: fn(usize) = sync_helpers::report_body_length;
-    reporter(body.len());
-
-    log("main:end");
+    log_stage("main:end");
     Ok(())
 }

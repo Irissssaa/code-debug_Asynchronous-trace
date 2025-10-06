@@ -4,9 +4,16 @@ It uses a singleton pattern to ensure that all parts of the debugger
 (plugins, tracers, commands) access the same data instance.
 """
 from collections import defaultdict
+import itertools
+import time
+from typing import Optional, Dict, Any
 
 class _AsyncBacktraceDataStore:
     _instance = None
+    backtraces: Dict[int, Dict[int, Dict[int, list]]]
+    offset_to_name_map: Dict[int, str]
+    thread_recency: Dict[int, Dict[int, Dict[str, Any]]]
+    _update_counter: itertools.count
 
     def __new__(cls):
         if cls._instance is None:
@@ -16,6 +23,9 @@ class _AsyncBacktraceDataStore:
             cls._instance.backtraces = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
             # Helper to map future offsets to names for quick lookups
             cls._instance.offset_to_name_map = {}
+            # Track recency information per thread per process
+            cls._instance.thread_recency = defaultdict(lambda: defaultdict(dict))
+            cls._instance._update_counter = itertools.count()
         return cls._instance
 
     def get_backtraces(self):
@@ -25,6 +35,22 @@ class _AsyncBacktraceDataStore:
     def get_offset_to_name_map(self):
         """Returns the offset-to-name map."""
         return self.offset_to_name_map
+
+    def get_thread_recency(self):
+        """Returns metadata describing the last update for each thread."""
+        return self.thread_recency
+
+    def record_thread_update(self, pid: int, tid: int, coroutine_id: int, timestamp: Optional[float] = None):
+        """Record that a given thread just updated its async stack."""
+        if timestamp is None:
+            timestamp = time.time()
+
+        sequence = next(self._update_counter)
+        metadata = self.thread_recency[pid][tid]
+        metadata["sequence"] = sequence
+        metadata["timestamp"] = timestamp
+        metadata["coroutine_id"] = coroutine_id
+        return metadata
         
     def build_offset_to_name_map(self, validated_futures: dict):
         """
@@ -43,6 +69,8 @@ class _AsyncBacktraceDataStore:
         """Clears all stored data."""
         self.backtraces.clear()
         self.offset_to_name_map.clear()
+        self.thread_recency.clear()
+        self._update_counter = itertools.count()
 
 # Singleton instance to be imported by other modules
 async_backtrace_store = _AsyncBacktraceDataStore()

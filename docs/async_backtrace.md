@@ -96,4 +96,4 @@ Since `async_dependencies.json` is already generated, you can proceed directly w
     (gdb) inspect-async
     ```
 
-You should now see a beautifully formatted output showing the asynchronous call stacks for each coroutine that was traced, similar to the structure we designed. This will validate that the entire pipeline is working correctly.
+You should now see a beautifully formatted output showing the asynchronous call stacks for each coroutine that was traced, similar to the structure we designed. Threads are annotated with a "most recent thread" marker so you can quickly spot which one received the latest poll update. This will validate that the entire pipeline is working correctly.

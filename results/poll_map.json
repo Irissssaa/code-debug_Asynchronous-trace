@@ -932,7 +932,7 @@
   "/home/oslab/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.23/src/lib.rs:323": {
     "fn_name": "static fn reqwest::get::{async_fn#0}<&alloc::string::String>(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<core::result::Result<reqwest::async_impl::response::Response, reqwest::error::Error>>",
-    "async_backtrace": false
+    "async_backtrace": true
   },
   "/home/oslab/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tokio-1.47.1/src/io/async_write.rs:158": {
     "fn_name": "static fn tokio::io::async_write::AsyncWrite::poll_write_vectored<tokio_native_tls::TlsStream<hyper_util::rt::tokio::TokioIo<hyper_util::rt::tokio::TokioIo<tokio::net::unix::stream::UnixStream>>>>(core::pin::Pin<&mut tokio_native_tls::TlsStream<hyper_util::rt::tokio::TokioIo<hyper_util::rt::tokio::TokioIo<tokio::net::unix::stream::UnixStream>>>>, *mut core::task::wake::Context, &[std::io::IoSlice])",
@@ -1502,7 +1502,7 @@
   "src/main.rs:42": {
     "fn_name": "static fn tokio_test_project::async_function_one::{async_fn#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<core::result::Result<alloc::string::String, reqwest::error::Error>>",
-    "async_backtrace": true
+    "async_backtrace": false
   },
   "src/main.rs:77": {
     "fn_name": "static fn tokio_test_project::async_function_three::{async_fn#0}(*mut core::task::wake::Context)",
@@ -1512,7 +1512,7 @@
   "src/main.rs:58": {
     "fn_name": "static fn tokio_test_project::async_function_two::{async_fn#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<core::result::Result<alloc::string::String, reqwest::error::Error>>",
-    "async_backtrace": false
+    "async_backtrace": true
   },
   "src/main.rs:97": {
     "fn_name": "static fn tokio_test_project::main::{async_block#0}(*mut core::task::wake::Context)",

@@ -3,13 +3,22 @@ import os
 import sys
 import importlib
 import re
-from typing import Optional, List, Tuple, Union
+import time
+from typing import Dict, Iterable, Optional, List, Tuple, Union, Set
 
 # --- Setup ---
 
 # import plugin name from config.py
 # currently we only allow 1 plugin at a time
-from core.config import PLUGIN_NAME
+from core.config import (
+    PLUGIN_NAME,
+    CALL_GRAPH_DOT_PATH,
+    ENABLE_SYNC_DESCENDANTS,
+    ENABLE_ASYNC_DESCENDANTS,
+    SYNC_DESCENDANT_DEPTH,
+    SYNC_DESCENDANT_EXCLUDE_PREFIXES,
+)
+from core.callgraph import find_call_graph, CallGraph
 if not PLUGIN_NAME:
     print("[rust-future-tracing] No plugin name specified in config.py. Please set PLUGIN_NAME.")
     sys.exit(1)
@@ -150,6 +159,71 @@ class StartAsyncDebugCommand(gdb.Command):
     """GDB command to start the async debugger and set breakpoints."""
     def __init__(self):
         super().__init__("start-async-debug", gdb.COMMAND_USER)
+        self._call_graph: Optional[CallGraph] = None
+
+    def _ensure_call_graph(self) -> Optional[CallGraph]:
+        """Load and cache the LLVM call graph if synchronous descendants are enabled."""
+        if SYNC_DESCENDANT_DEPTH <= 0 or not ENABLE_SYNC_DESCENDANTS:
+            return None
+
+        if self._call_graph is None:
+            self._call_graph = find_call_graph(CALL_GRAPH_DOT_PATH)
+
+        return self._call_graph
+
+    def _call_graph_seed_aliases(self, poll_names: Iterable[str], call_graph: CallGraph) -> Dict[str, Set[str]]:
+        """Map poll function names to call-graph node aliases found in the graph."""
+
+        def strip_signature(name: str) -> str:
+            return name.split("(", 1)[0].strip()
+
+        def remove_generics(name: str) -> str:
+            result = []
+            depth = 0
+            for ch in name:
+                if ch == "<":
+                    depth += 1
+                    continue
+                if ch == ">":
+                    if depth:
+                        depth -= 1
+                    continue
+                if depth == 0:
+                    result.append(ch)
+            return "".join(result)
+
+        alias_map: Dict[str, Set[str]] = {}
+
+        for raw_name in poll_names:
+            normalized = re.sub(r"^static\\s+fn\\s+", "", raw_name).strip()
+            if not normalized:
+                alias_map[raw_name] = set()
+                continue
+
+            candidates = {
+                normalized,
+                strip_signature(normalized),
+            }
+
+            expanded_candidates = set()
+            for cand in candidates:
+                if not cand:
+                    continue
+                no_generics = remove_generics(cand)
+                expanded_candidates.add(cand)
+                expanded_candidates.add(no_generics)
+                expanded_candidates.add(re.sub(r"::\{async[^}]+\}", "::{{closure}}", no_generics))
+                expanded_candidates.add(re.sub(r"::\{async[^}]+\}", "", no_generics))
+
+            matched = set()
+            for cand in expanded_candidates:
+                candidate = cand.strip(":")
+                if candidate and call_graph.has_node(candidate):
+                    matched.add(candidate)
+
+            alias_map[raw_name] = matched
+
+        return alias_map
 
     def parse_poll_function_hierarchy(self, poll_fn_name):
         """
@@ -1306,71 +1380,150 @@ class StartAsyncDebugCommand(gdb.Command):
         print("[rust-future-tracing] === Step 4: Converting expanded futures to poll functions ===")
         
         validated_futures = expansion_results.get("validated_futures", {})
+        expansion_info = expansion_results.get("expansion_info", {})
+
         future_structs = validated_futures.get("future_structs", [])
-        
-        if not future_structs:
-            print("[rust-future-tracing] No future structs found in expansion results")
-            return []
-        
-        poll_functions = []
-        
-        # Convert each expanded future struct to its corresponding poll function
-        for future_info in future_structs:
-            future_offset = future_info["offset"]
-            future_die = future_info["die"]
-            # future_name = future_info["name"] # this is the shortened version of the future struct name that only contains the last part
-            future_name = safe_DIE_name(future_die, f"<unknown_future_{future_offset}>")
-
-            print(f"[rust-future-tracing] Converting future to poll function: {future_name} (offset: {future_offset})")
-            
-            # Use our decomposed method from Step 2 to find the corresponding poll function
-            poll_result = self.find_poll_function_for_future_struct(future_die, future_offset)
-            
-            if poll_result:
-                poll_die, poll_offset = poll_result
-
-                # poll_name = self._build_poll_function_name(poll_die, future_name)
-                poll_name = self.dieToFullName(poll_die)
-                if not poll_name:
-                    print(f"[rust-future-tracing] WARNING: Could not build poll function name for future: {future_name}")
-                    continue
-
-                if poll_name:
-                    poll_functions.append(poll_name)
-                    print(f"[rust-future-tracing] Mapped future -> poll: {future_name} -> {poll_name} (DIE offset: {poll_offset})")
-                else:
-                    print(f"[rust-future-tracing] WARNING: Could not build poll function name for future: {future_name}")
-            else:
-                print(f"[rust-future-tracing] WARNING: No poll function found for future: {future_name}")
-        
-        # Also handle async functions that were expanded (convert them to function names)
         async_functions = validated_futures.get("async_functions", [])
-        for async_info in async_functions:
-            async_offset = async_info["offset"]
-            async_die = async_info["die"]
-            async_name = async_info["name"]
-            
-            print(f"[rust-future-tracing] Including async function: {async_name} (offset: {async_offset})")
-            
-            # Build the full async function name
-            full_async_name = self._build_poll_function_name(async_die, async_name)
-            if full_async_name:
-                poll_functions.append(full_async_name)
-                print(f"[rust-future-tracing] Added async function: {full_async_name}")
-        
-        # Remove duplicates while preserving order
-        unique_poll_functions = []
+        other_dies = validated_futures.get("other_dies", [])
+
+        if not (future_structs or async_functions):
+            print("[rust-future-tracing] No async-related DIEs found in expansion results")
+            return []
+
+        future_structs_by_offset = {info["offset"]: info for info in future_structs}
+        async_functions_by_offset = {info["offset"]: info for info in async_functions}
+
+        descendant_offsets = set()
+        for deps in expansion_info.get("descendants", {}).values():
+            descendant_offsets.update(deps)
+
+        poll_functions = []
         seen = set()
-        for func in poll_functions:
-            if func not in seen:
-                unique_poll_functions.append(func)
-                seen.add(func)
-        
-        print(f"[rust-future-tracing] Step 4 complete. Found {len(unique_poll_functions)} unique poll functions:")
-        for i, func in enumerate(unique_poll_functions, 1):
+
+        def add_poll_function(name: str, context: str):
+            if not name:
+                return
+            if name in seen:
+                return
+            seen.add(name)
+            poll_functions.append(name)
+            print(f"[rust-future-tracing] Added poll function for {context}: {name}")
+
+        def handle_future_struct(info, context: str):
+            future_offset = info["offset"]
+            future_die = info["die"]
+            future_display_name = self.dieToFullName(future_die) or safe_DIE_name(future_die, f"<future@{future_offset}>")
+
+            print(f"[rust-future-tracing] Converting future to poll function ({context}): {future_display_name} (offset: {future_offset})")
+
+            poll_result = self.find_poll_function_for_future_struct(future_die, future_offset)
+            if not poll_result:
+                print(f"[rust-future-tracing] WARNING: No poll function found for future: {future_display_name}")
+                return
+
+            poll_die, poll_offset = poll_result
+            poll_name = self.dieToFullName(poll_die)
+            if not poll_name:
+                print(f"[rust-future-tracing] WARNING: Could not build poll function name for future: {future_display_name}")
+                return
+
+            print(f"[rust-future-tracing] Mapped future -> poll: {future_display_name} -> {poll_name} (DIE offset: {poll_offset})")
+            add_poll_function(poll_name, context)
+
+        def handle_async_function(info, context: str):
+            async_offset = info["offset"]
+            async_die = info["die"]
+            async_name = self.dieToFullName(async_die) or safe_DIE_name(async_die, f"<async_fn@{async_offset}>")
+
+            print(f"[rust-future-tracing] Including async function ({context}): {async_name} (offset: {async_offset})")
+            add_poll_function(async_name, context)
+
+        # First convert all descendant futures/async functions so the user gets the expanded coverage they expect
+        async_descendant_added = 0
+        if ENABLE_ASYNC_DESCENDANTS and descendant_offsets:
+            before_count = len(poll_functions)
+            for offset in sorted(descendant_offsets):
+                if offset in future_structs_by_offset:
+                    handle_future_struct(future_structs_by_offset[offset], "descendant future")
+                elif offset in async_functions_by_offset:
+                    handle_async_function(async_functions_by_offset[offset], "descendant async function")
+                else:
+                    die_result = self.offsetToDIE(offset)
+                    if not die_result:
+                        print(f"[rust-future-tracing] WARNING: Descendant offset 0x{offset:x} not found in DWARF tree")
+                        continue
+                    die, die_type = die_result
+                    if die_type == "future_struct":
+                        handle_future_struct({"offset": offset, "die": die}, "descendant future (resolved)")
+                    elif die_type == "async_function":
+                        handle_async_function({"offset": offset, "die": die}, "descendant async function (resolved)")
+                    else:
+                        print(f"[rust-future-tracing] INFO: Descendant offset 0x{offset:x} is not an async future/function (type: {die_type})")
+            async_descendant_added = len(poll_functions) - before_count
+            if async_descendant_added:
+                print(
+                    f"[rust-future-tracing] Added {async_descendant_added} asynchronous descendants from dependency expansion"
+                )
+        elif descendant_offsets:
+            print(
+                f"[rust-future-tracing] Async descendant instrumentation disabled; skipping {len(descendant_offsets)} descendant futures"
+            )
+
+        # Then include the original interesting futures and their ancestors (anything not already handled)
+        for future_info in future_structs:
+            if future_info["offset"] in descendant_offsets:
+                continue
+            handle_future_struct(future_info, "ancestor/interesting future")
+
+        for async_info in async_functions:
+            if async_info["offset"] in descendant_offsets:
+                continue
+            handle_async_function(async_info, "ancestor/interesting async function")
+
+        if not poll_functions:
+            print("[rust-future-tracing] WARNING: No poll functions discovered during conversion")
+
+        sync_descendant_count = 0
+        if poll_functions and ENABLE_SYNC_DESCENDANTS and SYNC_DESCENDANT_DEPTH > 0:
+            call_graph = self._ensure_call_graph()
+            if call_graph:
+                alias_map = self._call_graph_seed_aliases(poll_functions, call_graph)
+                alias_seeds = set().union(*alias_map.values()) if alias_map else set()
+
+                if alias_seeds:
+                    for poll_name, aliases in alias_map.items():
+                        if aliases:
+                            alias_list = ", ".join(sorted(aliases))
+                            print(f"[rust-future-tracing] Call graph seeds for {poll_name}: {alias_list}")
+
+                    descendants = call_graph.descendants(alias_seeds, SYNC_DESCENDANT_DEPTH)
+                    exclude_prefixes = SYNC_DESCENDANT_EXCLUDE_PREFIXES
+
+                    for name in sorted(descendants):
+                        top_level = name.split("::", 1)[0]
+                        if top_level in exclude_prefixes:
+                            continue
+                        if name in seen:
+                            continue
+                        add_poll_function(name, "synchronous descendant via call graph")
+                        sync_descendant_count += 1
+
+                    if sync_descendant_count:
+                        print(f"[rust-future-tracing] Added {sync_descendant_count} synchronous descendants from call graph")
+                else:
+                    print("[rust-future-tracing] INFO: No call graph nodes matched poll functions; skipping synchronous descendants")
+            else:
+                print("[rust-future-tracing] WARNING: Call graph not available; skipping synchronous descendants")
+        elif poll_functions and not ENABLE_SYNC_DESCENDANTS and SYNC_DESCENDANT_DEPTH > 0:
+            print(
+                f"[rust-future-tracing] Synchronous descendant instrumentation disabled; skipping call graph traversal (depth={SYNC_DESCENDANT_DEPTH})"
+            )
+
+        print(f"[rust-future-tracing] Step 4 complete. Found {len(poll_functions)} unique poll functions:")
+        for i, func in enumerate(poll_functions, 1):
             print(f"  {i}. {func}")
-        
-        return unique_poll_functions
+
+        return poll_functions
 
     def invoke(self, arg, from_tty):
         # === STEP 1: Read poll_map.json and convert interesting poll functions to futures ===
@@ -1443,9 +1596,10 @@ class InspectAsync(gdb.Command):
 
     def invoke(self, arg, from_tty):
         self.dont_repeat()
-        
         backtraces = async_backtrace_store.get_backtraces()
         offset_to_name = async_backtrace_store.get_offset_to_name_map()
+        thread_recency = async_backtrace_store.get_thread_recency()
+        now = time.time()
 
         if not backtraces:
             print("[rust-future-tracing] No asynchronous backtrace data collected.")
@@ -1457,17 +1611,39 @@ class InspectAsync(gdb.Command):
         print("=" * 80)
 
         for pid, thread_map in backtraces.items():
+            pid_recency = thread_recency.get(pid, {})
+            latest_tid = None
+            latest_sequence = -1
+            for tid, meta in pid_recency.items():
+                seq = meta.get("sequence", -1)
+                if seq > latest_sequence:
+                    latest_sequence = seq
+                    latest_tid = tid
+
             print(f"Process {pid}:")
             for tid, coroutine_map in thread_map.items():
-                print(f"  Thread {tid}:")
+                meta = pid_recency.get(tid)
+                marker = ""
+                if meta and tid == latest_tid:
+                    marker = " (most recent thread)"
+
+                print(f"  Thread {tid}{marker}:")
+                if meta:
+                    updated_delta = max(0.0, now - meta.get("timestamp", now))
+                    coroutine_hint = meta.get("coroutine_id")
+                    hint_parts = []
+                    if coroutine_hint is not None:
+                        hint_parts.append(f"coroutine {coroutine_hint}")
+                    hint_parts.append(f"updated {updated_delta:.2f}s ago")
+                    print(f"    Last update: {', '.join(hint_parts)}")
                 if not coroutine_map:
                     print("    No coroutines found.")
                     continue
-                
+
                 for coroutine_id, stack in coroutine_map.items():
                     coroutine_name = offset_to_name.get(coroutine_id, f"Coroutine<{coroutine_id}>")
                     print(f"    Coroutine '{coroutine_name}' (ID: {coroutine_id}):")
-                    
+
                     if not stack:
                         print("      Stack is empty.")
                     else:
@@ -1476,7 +1652,7 @@ class InspectAsync(gdb.Command):
                             indent = "      " + "  " * i
                             arrow = "->" if i > 0 else "  "
                             print(f"{indent}{arrow} {future_name}")
-        
+
         print("=" * 80)
 
 
