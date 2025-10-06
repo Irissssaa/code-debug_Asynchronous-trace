@@ -5,6 +5,8 @@
 ## Prerequisites
 
 - Rust toolchain with `cargo` (the bundled `tests/tokio_test_project` compiles in debug mode).
+- A `.cargo/config.toml` in your workspace matching the sample at `tests/tokio_test_project/.cargo/config.toml`. Copy or adapt the `[build]` and `[target.*]` settings there so `cargo` emits the expected LLVM bitcode and DWARF info for analysis.
+- LLVM tools that match your `rustc` build. Run `rustc --version --verbose` and copy the reported `LLVM version`. Install that version of `llvm`/`llvm-tools` (e.g., on Ubuntu `sudo apt-get install llvm-20 llvm-20-tools`) so the `opt` binary can generate call graphs from the emitted IR.
 - Python 3.10+ virtualenv with the dependencies in `src/requirements.txt` (run `make venv` once from the repo root).
 - GDB with Python support (Ubuntu `sudo apt install gdb` is sufficient).
 - From the repo root, activate the virtualenv before launching the workflow: `source venv/bin/activate`.
