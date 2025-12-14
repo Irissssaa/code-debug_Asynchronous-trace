@@ -978,7 +978,7 @@ class StartAsyncDebugCommand(gdb.Command):
         import os
         
         # Look for poll_map.json in results directory
-        poll_map_path = os.path.join(os.getcwd(), "results", "poll_map.json")
+        poll_map_path = os.path.join(os.getcwd(), "async_trace_results", "poll_map.json")
         if not os.path.exists(poll_map_path):
             print(f"[rust-future-tracing] Error: poll_map.json not found at {poll_map_path}")
             return []

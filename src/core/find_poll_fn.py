@@ -11,6 +11,7 @@
 import gdb
 import re
 import json
+import os
 
 from core.config import poll_type,result_path
 
@@ -43,6 +44,7 @@ class FindPollFnCommand(gdb.Command):
             
             # Write the map to a JSON file
             out_path = result_path + "poll_map.json"
+            os.makedirs(os.path.dirname(out_path), exist_ok=True)
             with open(out_path, "w") as f:
                 json.dump(poll_map, f, indent=2)
             

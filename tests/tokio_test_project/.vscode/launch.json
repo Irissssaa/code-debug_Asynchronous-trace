@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "rust-async-debug",  // 这里的 type 必须对应 package.json 里的 debugger
+            "request": "launch",
+            "name": "Debug Async (Manual)",
+            "program": "${workspaceFolder}/target/debug/tokio_test_project",
+            "cwd": "${workspaceFolder}",  
+            "traceMode": "whitelist"
+        }
+    ]
+}
