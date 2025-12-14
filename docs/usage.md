@@ -24,7 +24,7 @@ make test-tokio_test_project
 This target does the following:
 
 1. Builds `tests/tokio_test_project` (debug profile) so that the binary at `tests/tokio_test_project/target/debug/tokio_test_project` is up to date.
-2. Regenerates `results/tokio_test_project.callgraph.dot` and `results/async_dependencies.json`.
+2. Regenerates `results/tokio_test_project.callgraph.dot` and `results/async_deps.json`.
 3. Starts `gdb-multiarch` with `src/main.py` preloaded and runs the freshly built binary.
 
 Leave the GDB session open for the remaining steps. If you only need to rerun GDB without rebuilding, the fallback target `make test-tokio_test_project-no-recompile` skips the compilation and artifact refresh.

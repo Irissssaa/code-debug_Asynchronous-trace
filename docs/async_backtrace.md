@@ -1,4 +1,4 @@
-Excellent! With all the pieces in place and `async_dependencies.json` generated, you are ready to test the full asynchronous backtracing functionality.
+Excellent! With all the pieces in place and `async_deps.json` generated, you are ready to test the full asynchronous backtracing functionality.
 
 Here is a step-by-step guide to run a test:
 
@@ -35,7 +35,7 @@ In your terminal, run:
 
  Excellent! Now that all the pieces are in place, here is a step-by-step guide to test the full async debugging workflow inside GDB.
 
-Since `async_dependencies.json` is already generated, you can proceed directly with the debugging commands.
+Since `async_deps.json` is already generated, you can proceed directly with the debugging commands.
 
 ### Step-by-Step Testing Guide
 
@@ -71,7 +71,7 @@ Since `async_dependencies.json` is already generated, you can proceed directly w
     Now, run the main command `start-async-debug`. This will execute all the steps we've built:
     *   Read `poll_map.json` (Step 1)
     *   Convert poll functions to futures and get their DIE offsets (Step 2)
-    *   Expand dependencies using `async_dependencies.json` (Step 3)
+    *   Expand dependencies using `async_deps.json` (Step 3)
     *   Convert the expanded futures back to poll functions (Step 4)
     *   Set up the `AsyncBacktracePlugin` and `AsyncBacktraceTracer` (Steps 5 & 6)
     *   Set all the necessary breakpoints.

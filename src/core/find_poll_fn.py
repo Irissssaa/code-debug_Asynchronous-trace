@@ -13,7 +13,7 @@ import re
 import json
 import os
 
-from core.config import poll_type,result_path
+from core.config import poll_type
 
 class FindPollFnCommand(gdb.Command):
     """
@@ -43,6 +43,9 @@ class FindPollFnCommand(gdb.Command):
             poll_map = self._parse_poll_functions(output)
             
             # Write the map to a JSON file
+            target_path = gdb.current_progspace().filename
+            project_root = os.path.abspath(os.path.join(os.path.dirname(target_path), "../../"))
+            result_path = os.path.join(project_root, "async_trace_results/")
             out_path = result_path + "poll_map.json"
             os.makedirs(os.path.dirname(out_path), exist_ok=True)
             with open(out_path, "w") as f:

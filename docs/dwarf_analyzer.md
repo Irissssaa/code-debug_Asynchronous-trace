@@ -600,7 +600,7 @@ Python Exception <class 'AttributeError'>: type object 'Callable' has no attribu
 
 有了 poll->future 和 future->poll 的功能后，dwarf 解析层的任务就基本完成了，接下来需要编写处理运行状态获取层。
 
-在此之前我需要修改以下 async_dependencies.json 的格式. 因为这个 json 里的内容是要被反复读取的（被用于搜索 future依赖）而它的格式其实会降低搜索效率。主要的问题是：
+在此之前我需要修改以下 async_deps.json 的格式. 因为这个 json 里的内容是要被反复读取的（被用于搜索 future依赖）而它的格式其实会降低搜索效率。主要的问题是：
 
 async 依赖树的每一项都是 "函数名<DIE offset>" 的格式，这个格式虽然保留了函数名便于阅读，又添加了唯一的 DIE offset 防止重名，但是每一次读取这种字符串都需要用正则表达式解析出 函数名和 DIE offset. 
 
@@ -617,9 +617,9 @@ async 依赖树的每一项都是 "函数名<DIE offset>" 的格式，这个格�
 
 第二步的实现步骤：1. 搜索源代码并给 pollToFuture 和 futureToPoll 方法添加一些 type annotation，从而知道有了 DIE 数据结构之后怎么获取 DIE offset. 2. 修改 pollToFuture 方法 3. 修改 futureToPoll 方法
 
-第三步是读取 async_dependencies.json 中的 DIE 依赖关系，并且对“感兴趣 future”进行 "future 扩展". 往长辈方向"扩展"可以知道异步调用栈的底部和协程的划分（一个最底层的 future 就是一个协程），往子孙方向"扩展"可以知道异步调用栈的顶部。注意，在扩展的过程中不要使用 async_dependencies.json 内部的 DIE offset - 函数/结构体名 对照表（`offset_to_name`）那个对照表是从 objdump 的输出中提取出来的，所以函数名/结构体名不一定和 elftools 的解析结果一致，因此仅供 async_deps.py 内部使用。我们只能使用 DIE 树的数据结构和方法。具体代码实现我建议这么做：在 `StartAsyncDebugCommand` 类中，写一个 `offsetToDIE` 方法，参考 `src/core/dwarf/__main__.py`的 `on_byoffset` 方法，利用 DIE 树的现有 API 找到 DIE offset 对应的 DIE ，然后利用 `is_async_function_die` 和 `is_future_struct_die` 方法判断是哪个类型的 DIE，并返回 DIE + DIE 类型。
+第三步是读取 async_deps.json 中的 DIE 依赖关系，并且对“感兴趣 future”进行 "future 扩展". 往长辈方向"扩展"可以知道异步调用栈的底部和协程的划分（一个最底层的 future 就是一个协程），往子孙方向"扩展"可以知道异步调用栈的顶部。注意，在扩展的过程中不要使用 async_deps.json 内部的 DIE offset - 函数/结构体名 对照表（`offset_to_name`）那个对照表是从 objdump 的输出中提取出来的，所以函数名/结构体名不一定和 elftools 的解析结果一致，因此仅供 async_deps.py 内部使用。我们只能使用 DIE 树的数据结构和方法。具体代码实现我建议这么做：在 `StartAsyncDebugCommand` 类中，写一个 `offsetToDIE` 方法，参考 `src/core/dwarf/__main__.py`的 `on_byoffset` 方法，利用 DIE 树的现有 API 找到 DIE offset 对应的 DIE ，然后利用 `is_async_function_die` 和 `is_future_struct_die` 方法判断是哪个类型的 DIE，并返回 DIE + DIE 类型。
 
-在实现第三步时会遇到一个困难，我们用来测试的 `reqwest::get::{async_fn#0}` 函数（对应 future `reqwest::get::{async_fn_env#0}` ）在 async_dependencies.json 中不显示全名，只显示最后一部分（`{async_fn#0}`、`{async_fn_env#0}`），而最后一部分偏偏是编译器生成的占位符，这些占位符只在当前命名空间下是唯一的，在当前命名空间以外会有非常多的重名. 因此我们需要改用 DIE offset 进行 future 依赖关系的查询。具体做法是在“第一步”后添加一个小步骤：把“感兴趣future”转换为 DIE offset 供第二步查询。特别需要注意的是 `Pin<&mut reqwest::get::{async_fn_env#0}<&str>>` 的 DIE 是 `Pin` 这个智能指针的 DIE，不是 `reqwest::get::{async_fn_env#0}` 的 DIE。 想获得 `reqwest::get::{async_fn_env#0}` 的 DIE 只能利用第二步的改写成果，获取`reqwest::get::{async_fn_env#0}`的 DIE offset，然后在 async_dependencies.json 里查询这 DIE offset。  
+在实现第三步时会遇到一个困难，我们用来测试的 `reqwest::get::{async_fn#0}` 函数（对应 future `reqwest::get::{async_fn_env#0}` ）在 async_deps.json 中不显示全名，只显示最后一部分（`{async_fn#0}`、`{async_fn_env#0}`），而最后一部分偏偏是编译器生成的占位符，这些占位符只在当前命名空间下是唯一的，在当前命名空间以外会有非常多的重名. 因此我们需要改用 DIE offset 进行 future 依赖关系的查询。具体做法是在“第一步”后添加一个小步骤：把“感兴趣future”转换为 DIE offset 供第二步查询。特别需要注意的是 `Pin<&mut reqwest::get::{async_fn_env#0}<&str>>` 的 DIE 是 `Pin` 这个智能指针的 DIE，不是 `reqwest::get::{async_fn_env#0}` 的 DIE。 想获得 `reqwest::get::{async_fn_env#0}` 的 DIE 只能利用第二步的改写成果，获取`reqwest::get::{async_fn_env#0}`的 DIE offset，然后在 async_deps.json 里查询这 DIE offset。  
 
 第四步是利用 pollToFuture 和 FutureToPoll 功能，获得扩展后的 future 列表对应的 poll 函数
 
@@ -654,7 +654,7 @@ Or access DWARF info with: python info = gdb.dwarf_info
 [rust-future-tracing] Converting future to DIE offset: reqwest::get::{async_fn_env#0}<&str>
 [rust-future-tracing] Mapped reqwest::get::{async_fn_env#0}<&str> -> DIE offset: 49751
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/oslab/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/oslab/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0xc257
 [rust-future-tracing] Expansion complete:
   - Total expanded DIE offsets: 2
@@ -839,7 +839,7 @@ Or access DWARF info with: python info = gdb.dwarf_info
 [rust-future-tracing] No poll function found for future struct: {async_fn_env#0}<&str>
 [rust-future-tracing] Mapped reqwest::get::{async_fn_env#0}<&str> -> DIE offset: 93698
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/oslab/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/oslab/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0x16e02
 [rust-future-tracing] Expansion complete:
   - Total expanded DIE offsets: 1

@@ -1,74 +1,45 @@
-.SHELLFLAGS := -c
-SHELL := /bin/bash
-.PHONY: test-gdb venv clean-venv callgraph-tokio
+TARGET ?= tests/tokio_test_project/target/debug/tokio_test_project
 
-venv: 
-	python3 -m venv venv
-	. venv/bin/activate && pip3 install -r src/requirements.txt
+# 被调试项目根目录
+PROJECT_DIR := $(abspath $(dir $(TARGET))/../..)
 
-# Clean and recreate virtual environment (useful if typing conflicts occur)
-clean-venv:
-	rm -rf venv
-	$(MAKE) venv
+# 所有调试产物统一目录
+RESULT_DIR := $(PROJECT_DIR)/async_trace_results
 
-build-tokio-test:
-	cargo build --manifest-path tests/tokio_test_project/Cargo.toml
+GDB ?= gdb
+PYTHON ?= python3
+PYTHONPATH := $(shell pwd)/venv/lib/python3.12/site-packages
 
-callgraph-tokio:
-	@set -euo pipefail; \
-	mkdir -p results; \
-	find tests/tokio_test_project/target -name '*.callgraph.dot' -delete || true; \
-	rm -f results/tokio_test_project.callgraph.dot; \
-	BITCODE_FILE=$$(find tests/tokio_test_project/target/debug/deps -maxdepth 1 -name 'tokio_test_project-*.bc' | head -n 1); \
-	if [ -z "$$BITCODE_FILE" ]; then \
-		echo "[callgraph-tokio] error: no bitcode file found. ensure cargo build succeeded." >&2; \
-		exit 1; \
-	fi; \
-	/usr/lib/llvm-20/bin/opt -p=dot-callgraph --callgraph-dot-filename-prefix=results/tokio_test_project "$$BITCODE_FILE" -disable-output; \
-	OUTPUT_DOT="results/tokio_test_project.callgraph.dot"; \
-	echo "[callgraph-tokio] call graph generated: $$OUTPUT_DOT"
+.PHONY: all deps gdb run clean help
 
-build-future-executor-test:
-	cargo build --manifest-path tests/future_executor_test/Cargo.toml
+all: help
 
-test-gdb: 
-	@if [ -d "venv/lib/python3.12/site-packages" ]; then \
-		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb-multiarch -x src/main.py --args tests/async-std_test_project/target/debug/async-std_test_project; \
-	else \
-		VENV_SITE_PACKAGES=$$(find venv/lib -name "site-packages" -type d | head -1); \
-		PYTHONPATH="$$VENV_SITE_PACKAGES:$$PYTHONPATH" gdb-multiarch -x src/main.py tests/async-std_test_project/target/debug/async-std_test_project; \
-	fi
+## Step 1: 生成 async_deps.json
+deps:
+	@echo "输出目录：$(RESULT_DIR)"
+	@mkdir -p $(RESULT_DIR)
+	@echo "生成 async_deps.json"
+	$(PYTHON) src/core/dwarf/async_deps.py $(TARGET) --json > $(RESULT_DIR)/async_deps.json
 
-test-tokio_test_project: build-tokio-test callgraph-tokio generate-async_dependencies-tokio_test_project
-	@if [ -d "venv/lib/python3.12/site-packages" ]; then \
-		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb-multiarch -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
-	else \
-		VENV_SITE_PACKAGES=$$(find venv/lib -name "site-packages" -type d | head -1); \
-		PYTHONPATH="$$VENV_SITE_PACKAGES:$$PYTHONPATH" gdb-multiarch -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
-	fi
+## Step 2: 启动 GDB 并加载调试器命令
+gdb:
+	@echo "启动 GDB 并加载 Python 命令..."
+	PYTHONPATH=$(PYTHONPATH) $(GDB) -q $(TARGET) -ex "source src/main.py"
 
-test-tokio_test_project-no-recompile: 
-	@if [ -d "venv/lib/python3.12/site-packages" ]; then \
-		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb-multiarch -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
-	else \
-		VENV_SITE_PACKAGES=$$(find venv/lib -name "site-packages" -type d | head -1); \
-		PYTHONPATH="$$VENV_SITE_PACKAGES:$$PYTHONPATH" gdb-multiarch -x src/main.py --args tests/tokio_test_project/target/debug/tokio_test_project; \
-	fi
+## Step 3: 一键流程
+run: deps gdb
 
+## 清理调试产物
+clean:
+	@echo "清理调试输出 ($(RESULT_DIR))"
+	rm -rf $(RESULT_DIR)
 
-test-dwarf-analyzer: 
-	venv/bin/python src/core/dwarf/async_deps.py tests/async-std_test_project/target/debug/async-std_test_project --json > results/async_dependencies.json
-
-generate-async_dependencies-tokio_test_project: 
-	venv/bin/python src/core/dwarf/async_deps.py tests/tokio_test_project/target/debug/tokio_test_project --json > results/async_dependencies.json
-
-
-
-# 新增目标，专门用于调试 QEMU 中运行的远程 Embassy 程序
-test-gdb-embassy:
-	@if [ -d "venv/lib/python3.12/site-packages" ]; then \
-		PYTHONPATH="venv/lib/python3.12/site-packages:$$PYTHONPATH" gdb -ex "target remote localhost:1234" -x src/main.py --args tests/embassy_test/target/thumbv7m-none-eabi/debug/blinky; \
-	else \
-		VENV_SITE_PACKAGES=$$(find venv/lib -name "site-packages" -type d | head -1); \
-		PYTHONPATH="$$VENV_SITE_PACKAGES:$$PYTHONPATH" gdb -ex "target remote localhost:1234" -x src/main.py --args tests/embassy_test/target/thumbv7m-none-eabi/debug/blinky; \
-	fi
+## 帮助
+help:
+	@echo "可用命令："
+	@echo "  make deps   - 生成 async_deps.json"
+	@echo "  make gdb    - 启动 GDB"
+	@echo "  make run    - deps + gdb"
+	@echo "  make clean  - 删除 async_trace_results"
+	@echo ""
+	@echo "调试输出目录：$(RESULT_DIR)"

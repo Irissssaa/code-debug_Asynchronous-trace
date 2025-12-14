@@ -95,14 +95,14 @@ To better understand the relationships between futures, you can generate and vis
 
 First, run the `dwarf_analyzer` to produce a JSON file containing the dependency tree:
 ```bash
-python3 -m dwarf_analyzer.main tests/tokio_test_project/target/debug/tokio_test_project --json > results/async_dependencies.json
+python3 -m dwarf_analyzer.main tests/tokio_test_project/target/debug/tokio_test_project --json > results/async_deps.json
 ```
 
 **2. Generate the DOT Graph File**
 
 Next, use the `visualize_deps.py` script to convert the JSON into a DOT file:
 ```bash
-python3 -m dwarf_analyzer.visualize_deps results/async_dependencies.json
+python3 -m dwarf_analyzer.visualize_deps results/async_deps.json
 ```
 This will create `results/async_dependencies.dot`.
 

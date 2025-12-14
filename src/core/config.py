@@ -1,8 +1,8 @@
 # different compilers may produce different poll types
 poll_type = "core::task::poll::Poll"
 PLUGIN_NAME = "tokio"
-# with / 
-result_path = "async_trace_results/"
+# with 
+# result_path = "results/"
 
 # Path (or glob) to the LLVM call graph DOT file used to discover synchronous descendants.
 # When empty, the debugger will attempt to auto-discover the most recent *.callgraph.dot file.

@@ -4,6 +4,8 @@ import sys
 import importlib
 import re
 import time
+import json
+import os
 from typing import Dict, Iterable, Optional, List, Tuple, Union, Set
 
 # --- Setup ---
@@ -974,11 +976,12 @@ class StartAsyncDebugCommand(gdb.Command):
         Returns:
             list: List of interesting future struct names converted from poll functions
         """
-        import json
-        import os
-        
-        # Look for poll_map.json in results directory
-        poll_map_path = os.path.join(os.getcwd(), "async_trace_results", "poll_map.json")
+
+        # 动态获取 poll_map.json 的位置
+        target_path = gdb.current_progspace().filename
+        project_root = os.path.abspath(os.path.join(os.path.dirname(target_path), "../../"))
+        poll_map_path = os.path.join(project_root, "async_trace_results", "poll_map.json")
+
         if not os.path.exists(poll_map_path):
             print(f"[rust-future-tracing] Error: poll_map.json not found at {poll_map_path}")
             return []
@@ -1016,6 +1019,7 @@ class StartAsyncDebugCommand(gdb.Command):
                 print(f"[rust-future-tracing] Error converting {poll_fn}: {e}")
         
         return interesting_futures
+
 
     def offsetToDIE(self, die_offset: int) -> Optional[Tuple[object, str]]:
         """
@@ -1109,28 +1113,47 @@ class StartAsyncDebugCommand(gdb.Command):
 
     def load_async_dependencies(self) -> Optional[dict]:
         """
-        Load async dependency information from async_dependencies.json.
-        
-        Returns:
-            Optional[dict]: Parsed JSON data or None if loading failed
+        Load async dependency information from async_deps.json.
+
+        The file is expected at:
+        <target_project_root>/async_trace_results/async_deps.json
         """
         import json
         import os
-        
-        # Look for async_dependencies.json in results directory
-        deps_path = os.path.join(os.getcwd(), "results", "async_dependencies.json")
-        if not os.path.exists(deps_path):
-            print(f"[rust-future-tracing] ERROR: async_dependencies.json not found at {deps_path}")
-            return None
-        
+        import gdb
+
         try:
-            with open(deps_path, 'r') as f:
+            # 当前被调试的可执行文件路径
+            target_bin = gdb.current_progspace().filename
+            if not target_bin:
+                print("[rust-future-tracing] ERROR: No active debug target.")
+                return None
+
+            # 推导项目根目录
+            target_dir = os.path.dirname(target_bin)              # .../target/debug
+            project_root = os.path.abspath(os.path.join(target_dir, "..", ".."))
+
+            # 统一调试产物目录
+            result_dir = os.path.join(project_root, "async_trace_results")
+            deps_path = os.path.join(result_dir, "async_deps.json")
+
+        except Exception as e:
+            print(f"[rust-future-tracing] ERROR resolving async_deps path: {e}")
+            return None
+
+        if not os.path.exists(deps_path):
+            print(f"[rust-future-tracing] ERROR: async_deps.json not found at {deps_path}")
+            return None
+
+        try:
+            with open(deps_path, "r") as f:
                 deps_data = json.load(f)
             print(f"[rust-future-tracing] Loaded async dependencies from {deps_path}")
             return deps_data
         except Exception as e:
-            print(f"[rust-future-tracing] ERROR loading async_dependencies.json: {e}")
+            print(f"[rust-future-tracing] ERROR loading async_deps.json: {e}")
             return None
+
 
     def expand_future_dependencies(self, interesting_die_offsets: List[int]) -> dict:
         """
@@ -1265,7 +1288,7 @@ class StartAsyncDebugCommand(gdb.Command):
         """
         Validate expanded futures using DIE tree data structures instead of offset_to_name.
         
-        As mentioned in the document: "不要使用 async_dependencies.json 内部的 DIE offset - 函数/结构体名 对照表
+        As mentioned in the document: "不要使用 async_deps.json 内部的 DIE offset - 函数/结构体名 对照表
         (offset_to_name) 那个对照表是从 objdump 的输出中提取出来的，所以函数名/结构体名不一定和 elftools 的解析结果一致"
         
         Args:

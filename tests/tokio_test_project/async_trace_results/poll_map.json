@@ -930,7 +930,7 @@
     "async_backtrace": false
   },
   "/home/iristseng/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/reqwest-0.12.22/src/lib.rs:323": {
-    "fn_name": "static fn reqwest::get::{async_fn#0}<&str>(*mut core::task::wake::Context)",
+    "fn_name": "static fn reqwest::get::{async_fn#0}<&alloc::string::String>(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<core::result::Result<reqwest::async_impl::response::Response, reqwest::error::Error>>",
     "async_backtrace": false
   },
@@ -1469,7 +1469,22 @@
     "return_type": "core::task::poll::Poll<core::result::Result<(), want::Closed>>",
     "async_backtrace": false
   },
-  "src/main.rs:3": {
+  "src/main.rs:42": {
+    "fn_name": "static fn tokio_test_project::async_function_one::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::string::String, reqwest::error::Error>>",
+    "async_backtrace": true
+  },
+  "src/main.rs:70": {
+    "fn_name": "static fn tokio_test_project::async_function_three::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::string::String, reqwest::error::Error>>",
+    "async_backtrace": true
+  },
+  "src/main.rs:55": {
+    "fn_name": "static fn tokio_test_project::async_function_two::{async_fn#0}(*mut core::task::wake::Context)",
+    "return_type": "core::task::poll::Poll<core::result::Result<alloc::string::String, reqwest::error::Error>>",
+    "async_backtrace": false
+  },
+  "src/main.rs:86": {
     "fn_name": "static fn tokio_test_project::main::{async_block#0}(*mut core::task::wake::Context)",
     "return_type": "core::task::poll::Poll<core::result::Result<(), alloc::boxed::Box<dyn core::error::Error, alloc::alloc::Global>>>",
     "async_backtrace": false

@@ -20,7 +20,7 @@
 		- **原因**: 与 `async fn` 类似，编译器会生成 `{async_block#0}` 和 `{async_block_env#0}` 的兄弟节点，同样能被我们的脚本正确识别和关联。
 	3. **嵌套的异步函数调用**
 		- **例子**: `nested_async_fn` 中 `await` 了 `standard_async_fn` 和 `async_block`。
-		- **原因**: 依赖扩展功能 (`start-async-debug` 的第 3 步) 是这个工具的核心优势。只要起点是一个可追踪的 Future，它就能利用 `async_dependencies.json` 这份“地图”，自动找到并插桩整个调用链上的所有可追踪的 `poll` 函数。
+		- **原因**: 依赖扩展功能 (`start-async-debug` 的第 3 步) 是这个工具的核心优势。只要起点是一个可追踪的 Future，它就能利用 `async_deps.json` 这份“地图”，自动找到并插桩整个调用链上的所有可追踪的 `poll` 函数。
 	4. **带泛型和生命周期的 `async fn`**
 		- **例子**: `generic_async_fn<T>(...)`, `lifetime_async_fn<'a>(...)`
 		- **原因**: 只要不涉及类型擦除，泛型和生命周期通常只是在类型名称上有所体现 (`...<i32>`)，并不会改变 `poll`/`Future` 兄弟节点的底层 DWARF 结构。我们的脚本能够正确处理这些名称。
@@ -178,7 +178,7 @@
 [rust-future-tracing] No poll function found for future struct: {async_fn_env#0}
 [rust-future-tracing] Mapped comprehensive_async_test::nested_async_fn::{async_fn_env#0} -> DIE offset: 409548
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0x63fcc
 --Type <RET> for more, q to quit, c to continue without paging--c
 [rust-future-tracing] Expansion complete:
@@ -393,7 +393,7 @@ if name:
 [rust-future-tracing] No poll function found for future struct: {async_fn_env#0}
 [rust-future-tracing] Mapped comprehensive_async_test::nested_async_fn::{async_fn_env#0} -> DIE offset: 409548
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0x63fcc
 [rust-future-tracing] Expansion complete:
 --Type <RET> for more, q to quit, c to continue without paging--c
@@ -464,7 +464,7 @@ Hint: Use 'continue' or 'run' to start the program, then 'inspect-async' to see 
 [rust-future-tracing] Converting future to DIE offset: comprehensive_async_test::nested_async_fn::{async_fn_env#0}
 [rust-future-tracing] Mapped comprehensive_async_test::nested_async_fn::{async_fn_env#0} -> DIE offset: 409548
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0x63fcc
 [rust-future-tracing] Expansion complete:
   - Total expanded DIE offsets: 4
@@ -909,7 +909,7 @@ Process 28590:
 [rust-future-tracing] Converting future to DIE offset: comprehensive_async_test::async_block::{async_block_env#0}
 [rust-future-tracing] Mapped comprehensive_async_test::async_block::{async_block_env#0} -> DIE offset: 407150
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0x6366e
 [rust-future-tracing] Expansion complete:
   - Total expanded DIE offsets: 3
@@ -1457,7 +1457,7 @@ impl AsyncTrait for TraitImpl {
 [rust-future-tracing] Converting future to DIE offset: comprehensive_async_test::generic_async_fn::{async_fn_env#0}<i32>
 [rust-future-tracing] Mapped comprehensive_async_test::generic_async_fn::{async_fn_env#0}<i32> -> DIE offset: 407613
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0x6383d
 [rust-future-tracing] Expansion complete:
   - Total expanded DIE offsets: 2
@@ -1731,7 +1731,7 @@ Process 31463:
 [rust-future-tracing] Converting future to DIE offset: comprehensive_async_test::lifetime_async_fn::{async_fn_env#0}
 [rust-future-tracing] Mapped comprehensive_async_test::lifetime_async_fn::{async_fn_env#0} -> DIE offset: 407960
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0x63998
 [rust-future-tracing] Expansion complete:
   - Total expanded DIE offsets: 2
@@ -2004,7 +2004,7 @@ Process 31501:
 [rust-future-tracing] Converting future to DIE offset: comprehensive_async_test::{impl#1}::impl_async_fn::{async_fn_env#0}
 [rust-future-tracing] Mapped comprehensive_async_test::{impl#1}::impl_async_fn::{async_fn_env#0} -> DIE offset: 408307
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0x63af3
 [rust-future-tracing] Expansion complete:
   - Total expanded DIE offsets: 2
@@ -2281,7 +2281,7 @@ Process 32084:
 [rust-future-tracing] Converting future to DIE offset: comprehensive_async_test::combinators_async_fn::{async_fn_env#0}
 [rust-future-tracing] Mapped comprehensive_async_test::combinators_async_fn::{async_fn_env#0} -> DIE offset: 409160
 [rust-future-tracing] Expanding future dependencies...
-[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_dependencies.json
+[rust-future-tracing] Loaded async dependencies from /home/iristseng/data/rust-future-tracing/results/async_deps.json
 [rust-future-tracing] Expanding dependencies for DIE offset: 0x63e48
 [rust-future-tracing] Expansion complete:
   - Total expanded DIE offsets: 7

@@ -1,29 +1,8 @@
-# 在初赛中我们完成了基础版本的 dwarf 分析工具和 GDB 断点插桩工具. 
-# 但是它们是独立的 2 组工具，使用不方便。
-# 而且在初赛阶段我们专注于实现基本功能，所以没有考虑到代码可维护性和可读性的问题。
-# 因此在决赛阶段，我们将 2 组工具合并为一组统一的工具集. 且对代码进行了重构和注释，提升可维护性和可读性。
-# 为了方便测试，以及方便本工具的用户为其他异步运行时编写插件，本工具中的每一个小模块都是一个独立的 GDB 命令
-# 可以作为调试流程中被自动调用的模块，也可以让用户手动调用。
-# 另一个重大改变是，我们增加了大量测试用例。
-
-# 重构进度：
-# - dwarf_analyzer
-#   - [x] export_map.py 导出 map.json -> find_poll_fn.py
-#   - [ ] main.py -> GDB抽取出的dwarf解析模块
-#   - [ ] 可视化依赖树
-# - gdb_debugger / gdb_prolifer
-#   - [ ] tracers
-#   - [ ] 火焰图
-
 # 下面是本工具的入口文件，定义了核心工具集的命令行
 # 以及一些核心工具集的功能函数。
 
-
-
 import sys
 import os
-
-
 
 # Get the directory of the current script.
 # When this file is sourced in GDB, __file__ is defined, and we can use it
@@ -41,7 +20,7 @@ if script_dir not in sys.path:
 # 0. 利用 `init-dwarf-analysis` 命令，初始化 Dwarf 分析器（包括 future 和 poll 函数之间转换的功能）
 from core.init_dwarf_analysis import initDwarfAnalysisCommand # import will execute the whole module
 
-# 1. 调用 core/dwarf.py 提供的终端命令，生成 async_dependencies.json
+# 1. 调用 core/dwarf.py 提供的终端命令，生成 async_deps.json
 
 # 2. 利用 find-poll-fn 命令，找到所有 poll 函数
 from core.find_poll_fn import FindPollFnCommand
@@ -67,7 +46,7 @@ from core import InspectAsync # NOTE: 这个语句实际上是没有必要的，
 
 # 用户手动调用 future analyzer 获得 json
 # 命令行：
-# python3 -m dwarf_analyzer.main tests/tokio_test_project/target/debug/tokio_test_project --json > results/async_dependencies.json
+# python3 -m dwarf_analyzer.main tests/tokio_test_project/target/debug/tokio_test_project --json > results/async_deps.json
 # 在 GDB dwarf 解析模块做好之后，再做自动调用 future 解析器的功能。
 
 
